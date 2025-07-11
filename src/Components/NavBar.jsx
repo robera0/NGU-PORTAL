@@ -5,11 +5,8 @@ import { useUser } from './userContext'
 import { Link } from 'react-router-dom'
 const NavBar = () => {
 
-  const num =[1,2,3,4]
 
-   const newnum= num.slice(0,3)
-   console.log(newnum)
-    const{ImageUrl,setImageurl}=useUser()
+    const{ImageUrl}=useUser()
   return (
     <div>
         <nav className='flex  gap-10'>

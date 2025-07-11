@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Payment_info from './Components/Payment_info'
 import Profile from './Components/Profile'
 import { UserProvider } from './Components/userContext'
+import RegistrationForm from './Components/RegistrationForm'
 const App = () => {
   return (
         <UserProvider>
@@ -13,6 +14,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/paymentinfo" element={<Payment_info/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/registeration' element={<RegistrationForm/>}/>
          </Route>
        </Routes>     
     </BrowserRouter>

@@ -15,7 +15,7 @@ const Payment_info = () => {
     'September', 'October', 'November', 'December'
   ];
   const monthName = Month[date.getMonth()];
-  const MonthNum = date.getMonth() - 1;
+  const MonthNum = date.getUTCDate()
   const Year = date.getFullYear();
 
   const [paymentList, setPaymentList] = useState([]);
@@ -27,7 +27,7 @@ const Payment_info = () => {
     setPaymentAmount(e.target.value);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
     const IntervalPayment = setInterval(() => {
       setIsLoading(true);
     }, 120);
@@ -36,6 +36,7 @@ const Payment_info = () => {
       clearInterval(IntervalPayment);
       setIsLoading(false);
       setPaymentList(prevList => [...prevList, paymentAmount].reverse());
+       e.preventDefault()
     }, 4000);
   };
 
@@ -88,7 +89,7 @@ const Payment_info = () => {
                 />
 
                 <button
-                  onClick={handleClick}
+                  onClick={handleSubmit}
                   className="bg-[#AF89EA] text-white px-6 py-2 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300"
                 >
                   Submit Payment

@@ -11,7 +11,8 @@ const Home = () => {
   'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'
 ];
-   const monthName= Month[date.getMonth()]
+    const MonthNum = date.getUTCDate()
+   const monthName= Month[date.getUTCMonth()]
   return (
     
     <div className='flex'>
@@ -25,7 +26,7 @@ const Home = () => {
                       <NavBar/>
             <div className='home w-[95%]  mt-10 overflow-hidden rounded-2xl h-64'>
                 <div className='items-center flex mt-10 ml-10'>
-                    <p className='text-gray-200'>{monthName} {" "} {date.getMonth()-1}, {date.getFullYear()}</p>
+                    <p className='text-gray-200'>{monthName} {" "} {MonthNum}, {date.getFullYear()}</p>
                 </div>
                   <div className='text-white items-center flex  flex-col gap-4 mt-10 ml-10'>
                     <h1 className='text-2xl font-bold'>Welcome Back, Robera!</h1>

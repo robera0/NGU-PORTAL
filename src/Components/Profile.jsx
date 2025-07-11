@@ -31,7 +31,7 @@ const Profile = () => {
             </div>
         </div>
 
-        <div className='ml-10 h-screen w-full flex flex-col '>
+        <div className='ml-10 mt-2 shadow-xl pl-4 rounded-xl h-screen w-full flex flex-col '>
            <div className=' bg-[#E1D3F5] w-[75%]  mt-10 overflow-hidden rounded-2xl h-64'>
               <div className='flex ml-5 pt-4 gap-10'>
               <div 
@@ -82,8 +82,8 @@ const Profile = () => {
            
        </div>
                <div className='flex mt-10 pl-5 border-t border-t-purple-500  w-[75%] gap-10'>
-          <div className='w-[50%] pt-4 '>
-            <h1 className="text-xl font bold">Basic information</h1>
+          <div className='w-[50%] pt-4 space-y-5 '>
+            <h1 className="text-xl font-bold">Basic information</h1>
                 <p>Email</p>
                 <p>phone Number</p>
                  <p>Gender</p>
@@ -93,10 +93,21 @@ const Profile = () => {
 
           </div>
 
-          <div className='w-[50%] pt-4 '>
-              <h1  className="text-xl font bold">Acadamic information</h1>
+          <div className='w-[50%] pt-4 space-y-5  '>
+              <h1  className="text-xl font-bold">Acadamic information</h1>
+                <p>College</p>
+                <p>Department </p>
+                 <p>Program</p>
+                  <p>Enrollment</p>
+                   <p>Semester</p>
+                    <p>GPA</p>
           </div>
         </div>
+             <div className=' mt-5 pl-5 space-y-5    pt-4 border-t border-purple-500'>
+                <h1 className="text-xl font-bold">Basic information</h1>
+                    <p>College</p>
+                    <p>Pepartment </p>
+             </div>
         </div>
        
       
