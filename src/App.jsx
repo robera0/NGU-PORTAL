@@ -5,9 +5,12 @@ import Payment_info from './Components/Payment_info'
 import Profile from './Components/Profile'
 import { UserProvider } from './Components/userContext'
 import RegistrationForm from './Components/RegistrationForm'
+import { CountryProvider } from './CountryApi/Countryapi'
 const App = () => {
   return (
+      
         <UserProvider>
+           <CountryProvider>
                 <BrowserRouter>
        <Routes>
          <Route>
@@ -18,7 +21,8 @@ const App = () => {
          </Route>
        </Routes>     
     </BrowserRouter>
-        </UserProvider>
+    </CountryProvider>
+          </UserProvider>
      
      
    
