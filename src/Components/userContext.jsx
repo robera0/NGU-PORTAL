@@ -22,11 +22,18 @@ export const UserProvider = ({ children }) => {
   const [Relationship,setRelationship]=useState('')
   const [EmergencyAddress, setEmergencyAddress] = useState('');
   const[ EmrphoneNumber, setEmrPhoneNumber]=useState('')
-
+  const [slide, setSlide] = useState(false)
+  const [Acslide,setAcSlide]=useState(false)
+  const[hgname,setHgnamel]=useState("")
+  const[transcript ,setTranscript]=useState(null)
+  const[matric,setMatric]=useState(null)
+  const[listTranscript,setListTranscript]=useState([])
 
   return (
     <UserContext.Provider
       value={{
+        slide, setSlide,
+        Acslide,setAcSlide,
         ImageUrl, setImageurl,
         firstName, setFirstName,
         middleName, setMiddleName,
@@ -45,7 +52,11 @@ export const UserProvider = ({ children }) => {
         emrlastName, setemrLastName,
         Relationship,setRelationship,
         EmergencyAddress, setEmergencyAddress,
-        EmrphoneNumber, setEmrPhoneNumber
+        EmrphoneNumber, setEmrPhoneNumber,
+        hgname,setHgnamel,
+        transcript ,setTranscript,
+        matric,setMatric,
+        listTranscript,setListTranscript
       }}
     >
       {children}

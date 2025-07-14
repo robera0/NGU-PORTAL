@@ -13,7 +13,6 @@ const Basicinfo = () => {
   const date = new Date()
   const MonthNum = date.getUTCDate()
 
-  const [slide, setSlide] = useState(false)
 
   const startYear = 1997;
   const currentYear = new Date().getFullYear();
@@ -24,6 +23,7 @@ const Basicinfo = () => {
   }
 
   const {
+    slide, setSlide,
     firstName, setFirstName,
     middleName, setMiddleName,
     lastName, setLastName,
@@ -42,9 +42,10 @@ const Basicinfo = () => {
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
     EmrphoneNumber, setEmrPhoneNumber,
+    countries, setCountries
   } = useUser();
 
-const {country}=useCountryApi()
+const {Selectedcountry, setSelectedCountry}=useCountryApi()
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleMiddleNameChange = (e) => setMiddleName(e.target.value);
@@ -59,7 +60,7 @@ const {country}=useCountryApi()
   const handleBirthYearChange = (e) => setBirthYear(e.target.value);
   const handlePermanentAddressChange = (e) => setPermanentAddress(e.target.value);
   const handleCityChange = (e) => setCity(e.target.value);
-  const handleCountryChange = (e) => setCountry(e.target.value);
+  const handleCountryChange = (e) => setCountries(e.target.value);
   const handleEmrFirstNameChange = (e) => setEmrFirstName(e.target.value);
   const handleEmrLastNameChange = (e) => setemrLastName(e.target.value);
   const handleRelationship=(e)=>setRelationship(e.target.value);
@@ -285,12 +286,12 @@ const {country}=useCountryApi()
                     <p className='font-semibold mb-3 mt-5'>Country</p>
                     <select
                       className="w-56 h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      value={country}
+                      value={countries}
                       onChange={handleCountryChange}
                       required
                     >
                       <option value="">Select Country</option>
-                      {country.map((c, index) => (
+                      {Selectedcountry.map((c, index) => (
                         <option key={index} value={c}>{c}</option>
                       ))}
                     </select>

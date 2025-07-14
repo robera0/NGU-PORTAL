@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import SideBar from './SideBar'
 import Basicinfo from './Basicinfo'
 import { UserProvider } from './userContext'
-
+import Acadamic from './Acadamic'
+import NavBar from './NavBar'
 const RegistrationForm = () => {
   return (
     <div className='flex'>
@@ -13,8 +14,15 @@ const RegistrationForm = () => {
         </div>
       </div>
 
+      
+         
       {/* Main Content */}
-      <div className='mt-2 shadow-xl pl-4 rounded-xl h-full w-[85%] flex flex-col overflow-y-auto'>
+       <div className=' h-full w-[85%]'>
+         <div className='mt-8'>
+            <NavBar/>
+         </div>
+       
+         <div className='mt-2 border-t border-t-[#8200DB] w-[98%] mt-10 shadow-2xl pl-4 rounded-xl flex flex-col overflow-y-auto'>
         {/* Header */}
         <div className='pt-10 border-b border-b-gray-200'>
           <div className='flex mb-5 justify-between'>
@@ -37,17 +45,23 @@ const RegistrationForm = () => {
           </div>
         </div>
 
-        {/* Title */}
         <div className='flex justify-center mt-8'>
           <h1 className='font-bold text-3xl'>STUDENT REGISTRATION FORM</h1>
         </div>
 
         {/* Basic Info Section */}
         <div className={`h-full mt-10 px-8 transition-translate duration-300`}>
-                <Basicinfo/>
-             
+                <Basicinfo/>   
         </div>
+        {/*Acadamic information */}
+         <div className={`h-full mt-10 px-8 transition-translate duration-300`}>
+           <Acadamic/>
+         </div>
+       
       </div>
+
+       </div>
+      
     </div>
   )
 }

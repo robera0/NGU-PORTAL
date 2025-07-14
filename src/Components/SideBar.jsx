@@ -99,6 +99,7 @@ const SideBar = () => {
               </div>
               <span>Log out</span>
             </Link>
+            
         </div>
     </div>
   )

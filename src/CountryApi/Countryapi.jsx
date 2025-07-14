@@ -3,7 +3,8 @@ import { useState, useEffect, createContext, useContext } from "react";
 const UserContext = createContext();
 
 export const CountryProvider = ({ children }) => {
-  const [country, setCountry] = useState([]);
+  const [Selectedcountry, setSelectedCountry] = useState([]);
+  const [countries, setCountries] = useState("");
   
   const countryApi = 'https://countriesnow.space/api/v0.1/countries/population';
 
@@ -12,7 +13,7 @@ export const CountryProvider = ({ children }) => {
       const res = await fetch(countryApi);
       const data = await res.json();
       const countries = data.data.map(item => item.country).filter(Boolean).sort();
-      setCountry([...new Set(countries)]);
+      setSelectedCountry([...new Set(countries)]);
     } catch (error) {
       console.error("Error fetching countries:", error);
     }
@@ -23,7 +24,7 @@ export const CountryProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ country, setCountry }}>
+    <UserContext.Provider value={{ Selectedcountry, setSelectedCountry,countries, setCountries}}>
       {children}
     </UserContext.Provider>
   );
