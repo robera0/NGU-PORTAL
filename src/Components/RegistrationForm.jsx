@@ -26,7 +26,7 @@ const {isFormValid,setFormValid}=useUser()
        
          <div className='mt-2 border-t border-t-[#8200DB] w-[98%] mt-10 shadow-2xl pl-4 rounded-xl flex flex-col overflow-y-auto'>
         {/* Header */}
-        <div className='pt-10 border-b border-b-gray-200'>
+        <div className='pt-10 '>
           <div className='flex mb-5 justify-between'>
             <div className='flex w-[50%] gap-6'>
               <div
@@ -59,14 +59,6 @@ const {isFormValid,setFormValid}=useUser()
          <div className={`h-full mt-10 px-8 transition-translate duration-300`}>
            <Acadamic/>
          </div>
-         {/*Submit btn */} 
-            
-           <div  className='flex justify-end  mr-20 mt-5'>
-             <button 
-          
-             className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Submit</button>
-           </div>
-
            {isFormValid  && <>
            
              <div>

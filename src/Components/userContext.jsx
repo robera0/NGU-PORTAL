@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState,useRef, createContext, useContext } from "react";
 
 const UserContext = createContext();
 
@@ -30,6 +30,8 @@ export const UserProvider = ({ children }) => {
   const[listTranscript,setListTranscript]=useState([])
   const [extra,setExtra]=useState("")
   const[isBasicFormValid ,setBasicFormValid]=useState(false)
+  const [Next,setNext]=useState(false)
+   const scrollRef =useRef(null)
 
   return (
     <UserContext.Provider
@@ -59,7 +61,7 @@ export const UserProvider = ({ children }) => {
         transcript ,setTranscript,
         matric,setMatric,
         listTranscript,setListTranscript,
-        extra,setExtra,isBasicFormValid,setBasicFormValid
+        extra,setExtra,isBasicFormValid,setBasicFormValid,Next,setNext,scrollRef
       }}
     >
       {children}

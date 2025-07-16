@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from './userContext';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import FileLoader from '../Inputs/FileLoader';
 
 const Acadamic = () => {
@@ -21,10 +21,15 @@ const Acadamic = () => {
     hgname, setHgnamel,
     transcript, setTranscript,
     listTranscript, setListTranscript,
-    matric, setMatric,extra,setExtra
+    matric, setMatric,extra,setEx, scrollRef
   } = useUser();
 
-  const handleSlide = () => setAcSlide(prev => !prev);
+  const handleSlide = () => {
+ setAcSlide(prev => !prev) 
+
+  }
+
+
 
   const handleHgName = (e) => setHgnamel(e.target.value);
 
@@ -36,7 +41,7 @@ const Acadamic = () => {
     if (file && file.size > 1024 * 1024) {
       setNotify(true);
       setTranscript(null);
-      setTranscriptPreview('');
+      setTranscriptPreview('');top:
       setShowTranscript(false);
       return;
     }
@@ -94,11 +99,12 @@ const Acadamic = () => {
       >
         <h2 className='text-xl font-semibold'>Acadamic Background</h2>
         <div className={`${Acslide ? 'rotate-[-90deg] text-[#8200DB] font-bold bg-white' : 'rotate-0 bg-[#AF89EA]'} h-10 w-10 flex justify-center items-center rounded-full transition-transform duration-300`}>
-          <FontAwesomeIcon className={`${!Acslide && "text-white"}`} icon={faArrowLeft} />
+          <FontAwesomeIcon className={`${!Acslide  && "text-white"}`} icon={faArrowLeft} />
         </div>
       </div>
 
-      <div className={`transition-all duration-500 overflow-hidden ${Acslide ? 'max-h-[4000px] mt-6 px-6 overflow-y-auto' : 'max-h-0 px-6'}`}>
+      <div className={`transition-all duration-500when u click the btn it get you to  the form below in react overflow-hidden ${Acslide ? 'max-h-[4000px] mt-6 px-6 overflow-y-auto' : 'max-h-0 px-6'}`}
+        ref={scrollRef}>
         {Acslide && (
           <>
             {/* High School Name */}
@@ -199,7 +205,7 @@ const Acadamic = () => {
             </div>
             {/*Extra Curricular Activites   */}
 
-            <div className='flex flex-col flex-wrap gap-2 pt-10'>
+            <div className='flex flex-col flex-wrap gap-2 pt-10 border-b border-b-gray-200'>
                <div>
                   <h1 className='font-bold text-xl'>Extra curricular Participation</h1>
                </div>
@@ -219,6 +225,14 @@ const Acadamic = () => {
                       </div>
                     </div>
             </div>
+              {/*Submit btn */} 
+            
+           <div  className='flex justify-end  mr-20 mt-5'>
+             <button 
+          
+             className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Submit</button>
+           </div>
+
           </>
         )}
       </div>

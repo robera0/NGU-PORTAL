@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState,useEffect } from 'react';
+import React, { useRef } from 'react'
+
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUser } from './userContext'
@@ -44,7 +44,7 @@ const Basicinfo = () => {
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
     EmrphoneNumber, setEmrPhoneNumber,
-    countries, setCountries,setBasicFormValid
+    countries, setCountries,setBasicFormValid,setAcSlide,AcSlide,scrollRef
   } = useUser();
 
 const {Selectedcountry}=useCountryApi()
@@ -68,8 +68,19 @@ const {Selectedcountry}=useCountryApi()
   const handleRelationship=(e)=>setRelationship(e.target.value);
   const handleEmergencyAddress=(e)=>setEmergencyAddress(e.target.value);
   const handleEmrPhoneNumberChange = (e) => setEmrPhoneNumber(e.target.value);
+  
+ const handleNextbtn = () => {
+  setAcSlide(true); 
 
-
+  setTimeout(() => {
+    if (scrollRef.current ) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth',
+                                      block :"end",
+                                    inline:"nearest"});
+    }
+  }, 100); 
+};
+ 
   const Filled = firstName && setFirstName &&
                 middleName && setMiddleName &&
                 lastName && setLastName &&
@@ -392,9 +403,15 @@ const {Selectedcountry}=useCountryApi()
                       required
                     />
                   </div>
-                </div>
 
+                  {/*Next */}
                   
+                    <div  className='flex justify-end  mr-20 mt-5'>
+                        <button 
+                        onClick={handleNextbtn}
+                        className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Next</button>
+                      </div>
+                      </div>  
                
               </>
             )}
