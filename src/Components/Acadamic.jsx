@@ -21,12 +21,14 @@ const Acadamic = () => {
     hgname, setHgnamel,
     transcript, setTranscript,
     listTranscript, setListTranscript,
-    matric, setMatric
+    matric, setMatric,extra,setExtra
   } = useUser();
 
   const handleSlide = () => setAcSlide(prev => !prev);
 
   const handleHgName = (e) => setHgnamel(e.target.value);
+
+  const handleExtra=(e)=> setExtra(e.target.value)
 
   const handleTranscriptUpload = (e) => {
     const file = e.target.files[0];
@@ -84,7 +86,7 @@ const Acadamic = () => {
   };
 
   return (
-    <div>
+    <div className='border-b  border-b-gray-300'>
       <div
         onClick={handleSlide}
         className={`${Acslide ? "text-white" : "-translate-6"} flex items-center justify-between cursor-pointer px-6 py-4 bg-gray-200 rounded-xl shadow-sm hover:bg-[#8200DB] hover:text-white transition`}
@@ -194,6 +196,28 @@ const Acadamic = () => {
                 <p className="text-bold ml-5 text-red-600">{matricNotify ? "File size is greater than 1MB" : ""}</p>
                 <p className='text-sm text-gray-500 mt-1'>Your file must be less than 1MB</p>
               </div>
+            </div>
+            {/*Extra Curricular Activites   */}
+
+            <div className='flex flex-col flex-wrap gap-2 pt-10'>
+               <div>
+                  <h1 className='font-bold text-xl'>Extra curricular Participation</h1>
+               </div>
+                
+               <div className="flex flex-col gap-5 mt-3 mb-10">
+                      <div className="flex items-center gap-3">
+                        <input onChange={handleExtra} type="radio" name="radiobtn" id="student" className="w-5 h-5 accent-[#8200DB]" />
+                        <label htmlFor="student" className="text-gray-800">Student Council</label>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <input onChange={handleExtra}  type="radio" name="radiobtn" id="club" className="w-5 h-5 accent-[#8200DB]" />
+                        <label htmlFor="club" className="text-gray-800">Club Organization</label>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <input onChange={handleExtra}  type="radio" name="radiobtn" id="basketball" className="w-5 h-5 accent-[#8200DB]" />
+                        <label htmlFor="basketball" className="text-gray-800">Basketball</label>
+                      </div>
+                    </div>
             </div>
           </>
         )}

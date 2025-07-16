@@ -351,18 +351,18 @@ const {Selectedcountry, setSelectedCountry}=useCountryApi()
                     />
                   </div>
                   {/*  Emergency Phone Number */}
-                  <div className='space-y-1'>
+                  <div className='space-y-1 mb-2'>
                     <p className='font-semibold mb-3 mt-10'>  Emergency Phone Number</p>
                     <input
                       className="w-56 h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                       type="tel"
+                      placeholder='+251'
                       pattern="^(\+2519\d{8})$"
                       inputMode="numeric"
                       value={EmrphoneNumber}
                       onChange={handleEmrPhoneNumberChange}
                       required
                     />
-                    <p className='text-sm text-gray-500'>+251</p>
                   </div>
                 </div>
 

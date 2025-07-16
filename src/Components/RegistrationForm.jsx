@@ -1,21 +1,16 @@
-import { useState, useEffect } from 'react'
 import SideBar from './SideBar'
 import Basicinfo from './Basicinfo'
-import { UserProvider } from './userContext'
 import Acadamic from './Acadamic'
 import NavBar from './NavBar'
 const RegistrationForm = () => {
   return (
     <div className='flex'>
       {/* Sidebar */}
-      <div className='lg:w-[17%] ml-5 mt-5 h-screen'>
+      <div className='lg:w-[17%] ml-5 mt-2 h-screen'>
         <div className="fixed w-[15%]">
           <SideBar />
         </div>
       </div>
-
-      
-         
       {/* Main Content */}
        <div className=' h-full w-[85%]'>
          <div className='mt-8'>
@@ -57,6 +52,13 @@ const RegistrationForm = () => {
          <div className={`h-full mt-10 px-8 transition-translate duration-300`}>
            <Acadamic/>
          </div>
+         {/*Submit btn */} 
+            
+           <div  className='flex justify-end  mr-20 mt-5'>
+             <button 
+             
+             className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Submit</button>
+           </div>
        
       </div>
 
