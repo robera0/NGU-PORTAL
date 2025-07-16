@@ -2,7 +2,14 @@ import SideBar from './SideBar'
 import Basicinfo from './Basicinfo'
 import Acadamic from './Acadamic'
 import NavBar from './NavBar'
+import { useUser } from './userContext'
 const RegistrationForm = () => {
+
+ 
+
+const {isFormValid,setFormValid}=useUser()
+
+ 
   return (
     <div className='flex'>
       {/* Sidebar */}
@@ -56,9 +63,16 @@ const RegistrationForm = () => {
             
            <div  className='flex justify-end  mr-20 mt-5'>
              <button 
-             
+          
              className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Submit</button>
            </div>
+
+           {isFormValid  && <>
+           
+             <div>
+              <p className="text-green-600 font-semibold mt-2">You have successfully sumbites your form</p>
+             </div>
+           </>}
        
       </div>
 

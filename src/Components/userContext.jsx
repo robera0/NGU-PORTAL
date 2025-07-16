@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
   const[matric,setMatric]=useState(null)
   const[listTranscript,setListTranscript]=useState([])
   const [extra,setExtra]=useState("")
-  const[isFormValid ,setFormValid]=useState(false)
+  const[isBasicFormValid ,setBasicFormValid]=useState(false)
 
   return (
     <UserContext.Provider
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
         transcript ,setTranscript,
         matric,setMatric,
         listTranscript,setListTranscript,
-        extra,setExtra,isFormValid,setFormValid
+        extra,setExtra,isBasicFormValid,setBasicFormValid
       }}
     >
       {children}

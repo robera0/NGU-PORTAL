@@ -22,6 +22,8 @@ const Basicinfo = () => {
     setSlide(prev => !prev)
   }
 
+
+
   const {
     slide, setSlide,
     firstName, setFirstName,
@@ -42,10 +44,10 @@ const Basicinfo = () => {
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
     EmrphoneNumber, setEmrPhoneNumber,
-    countries, setCountries
+    countries, setCountries,setBasicFormValid
   } = useUser();
 
-const {Selectedcountry, setSelectedCountry}=useCountryApi()
+const {Selectedcountry}=useCountryApi()
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleMiddleNameChange = (e) => setMiddleName(e.target.value);
@@ -66,6 +68,32 @@ const {Selectedcountry, setSelectedCountry}=useCountryApi()
   const handleRelationship=(e)=>setRelationship(e.target.value);
   const handleEmergencyAddress=(e)=>setEmergencyAddress(e.target.value);
   const handleEmrPhoneNumberChange = (e) => setEmrPhoneNumber(e.target.value);
+
+
+  const Filled = firstName && setFirstName &&
+                middleName && setMiddleName &&
+                lastName && setLastName &&
+                studentNumber && setStudentNumber &&
+                yearLevel && setYearLevel &&
+                degreeProgram && setDegreeProgram &&
+                email && setEmail &&
+                phoneNumber && setPhoneNumber &&
+                birthMonth && setBirthMonth &&
+                birthDay && setBirthDay &&
+                birthYear && setBirthYear &&
+                permanentAddress && setPermanentAddress &&
+                city && setCity &&
+                emrfirstName && setEmrFirstName &&
+                emrlastName && setemrLastName &&
+                Relationship && setRelationship &&
+                EmergencyAddress && setEmergencyAddress &&
+                EmrphoneNumber && setEmrPhoneNumber 
+
+   if(Filled){
+
+    setBasicFormValid(true)
+    
+   }
   return (
     <div>
                   <div
