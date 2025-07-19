@@ -1,11 +1,10 @@
 import NavBar from "./NavBar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
+import html2pdf from 'html2pdf.js';
 import Input from "../Inputs/Input";
 import IdInput from "../Inputs/IdInput";
 import { useState } from "react";
 import Loader from "../Inputs/Loading";
+import SideBar from "./SideBar";
 
 const Payment_info = () => {
   const date = new Date();
@@ -44,16 +43,38 @@ const Payment_info = () => {
     setHistory(prev => !prev);
   };
 
+  const handleDownloadPdf = async ()=>{  // to download a pdf for the couces fee
+   
+    const element =document.getElementById("main")
+    html2pdf()
+  .set({
+    html2canvas: {
+      scale: 3,        
+      useCORS: true,    
+      allowTaint: true  
+    },
+    jsPDF: {
+      unit: 'in',
+      format: 'a4',     
+      orientation: 'portrait',
+    },
+    margin: 0.2,
+    filename: 'payment.pdf',
+  })
+  .from(element)
+  .save();
+
+
+
+  }
+
+
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <div className='fixed flex justify-center items-center rounded-r-full overflow-hidden w-80 h-full bg-[#AF89EA]'>
-        <div>
-          <h1 className="text-2xl font-bold text-white">School payment form</h1>
-          <Link to='/' className='mt-10 flex gap-2 cursor-pointer  items-center justify-center w-42 h-10  hover:bg-[#8200DB]  rounded-2xl text-white text-xl transition-all duration-1000'>
-            <FontAwesomeIcon icon={faRightFromBracket} flip="horizontal" />
-            <span>Home</span>
-          </Link>
+    <div className='lg:w-[17%] ml-5 mt-2 h-screen'>
+        <div className="fixed w-[15%]">
+          <SideBar />
         </div>
       </div>
 
@@ -65,9 +86,100 @@ const Payment_info = () => {
             </div>
 
             
-            <div className="flex justify-center items-center mt-6">
-              <h1 className="text-[#552bcb] text-4xl font-bold">Payment Info</h1>
+            <div className="flex flex-col justify-center items-center mt-6">
+              <h1 className="text-[#552bcb] text-4xl font-bold">Payment Info</h1> 
+                
+            <div className="flex flex-col justify-center items-center  border w-[70%]  h-[200%] shadow-xl  border-purple-500   gap-15 mt-10">
+               
+                  <label className="text-[#552bcb] flex justify-center items-centeritems-center mt-9 text-2xl font-bold">Selcet Payment method</label>
+
+                   <div className="flex flex-wrap gap-26">
+                       {/*Telebirr */}
+                        <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
+                          <img src="src/assets/TeleBirr Logo.png" alt="" className="w-full h-full object-contain" /> 
+                          <p>Tele Birr</p>
+                        </div>
+                        
+                        
+                        {/*CBE Bank */}
+
+                           <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
+                              <img src="src/assets/CBE Birr ( No background ) Logo.png" alt="" className="w-full h-full object-contain" /> 
+                                <p>CBE Bank</p>
+                        
+                        </div>
+                      
+                        {/* Awash Bank */}
+
+                          <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
+                              <img src="src/assets/Awash International Bank Logo.png" alt="" className="w-full h-full object-contain" /> 
+                              <p>Awash Bank</p>
+                        </div>
+
+                          {/*Abyssinia */}
+                        <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
+                          <img src="src/assets/Bank of Abyssinia Logo.png" alt="" className="w-full h-full object-contain" /> 
+                          <p>Abyssinia</p>
+                        </div>
+                        
+                        
+                          </div>
+
+
             </div>
+             
+               
+            </div>
+
+            {/*fees of the Courses  */}
+               <div id="main"  className="flex flex-col justify-center items-center mt-6">
+                    <table className="min-w-[900px] text-lg text-left shadow-md border-separate border-spacing-y-2">
+                      <thead className="bg-purple-100 text-[#552bcb]">
+                        <tr>
+                          <th className="px-6 py-4">Course Code</th>
+                          <th className="px-6 py-4">Course Title</th>
+                          <th className="px-6 py-4">Credit</th>
+                          <th className="px-6 py-4">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-800 font-medium">
+                        <tr className="bg-white rounded-lg shadow-sm">
+                          <td className="px-6 py-4">CS101</td>
+                          <td className="px-6 py-4">Introduction to Computer Science</td>
+                          <td className="px-6 py-4">3</td>
+                          <td className="px-6 py-4">$150</td>
+                        </tr>
+                        <tr className="bg-white rounded-lg shadow-sm">
+                          <td className="px-6 py-4">MA102</td>
+                          <td className="px-6 py-4">Calculus I</td>
+                          <td className="px-6 py-4">4</td>
+                          <td className="px-6 py-4">$200</td>
+                        </tr>
+                        <tr className="bg-white rounded-lg shadow-sm">
+                          <td className="px-6 py-4">ENG103</td>
+                          <td className="px-6 py-4">Academic Writing</td>
+                          <td className="px-6 py-4">2</td>
+                          <td className="px-6 py-4">$100</td>
+                        </tr>
+                        <tr className="bg-purple-50 text-[#552bcb] font-semibold">
+                          <td className="px-6 py-4" colSpan="2">Total</td>
+                          <td className="px-6 py-4">9</td>
+                          <td className="px-6 py-4">$450</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                      <button
+                  onClick={handleDownloadPdf}
+                  className="bg-[#AF89EA] cursor-pointer text-white mt-10 px-6 py-2 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300"
+                >
+               Download Pdf
+                </button>
+                  </div>
+
+
+
+            {/*payment Method */}
+
 
             {/* Input Section */}
             <div className="flex flex-col items-center gap-6 mt-8">
@@ -77,7 +189,7 @@ const Payment_info = () => {
               </div>
 
               <div className="flex gap-6 items-center">
-                <label className="text-xl font-semibold text-gray-700">Balance:</label>
+                <label className="text-xl font-semibold text-gray-700">Fee:</label>
                 <span className="text-xl font-bold text-green-600">200$</span>
 
                 <input

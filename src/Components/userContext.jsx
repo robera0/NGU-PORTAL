@@ -3,7 +3,9 @@ import { useState,useRef, createContext, useContext } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [ImageUrl, setImageurl] = useState('');
+    
+  const [ImageUrl, setImageurl] = useState(''); // profile iamge setter
+   //for Basic info Form
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -23,6 +25,7 @@ export const UserProvider = ({ children }) => {
   const [EmergencyAddress, setEmergencyAddress] = useState('');
   const[ EmrphoneNumber, setEmrPhoneNumber]=useState('')
   const [slide, setSlide] = useState(false)
+   // for acadamic form
   const [Acslide,setAcSlide]=useState(false)
   const[hgname,setHgnamel]=useState("")
   const[transcript ,setTranscript]=useState(null)
@@ -30,8 +33,9 @@ export const UserProvider = ({ children }) => {
   const[listTranscript,setListTranscript]=useState([])
   const [extra,setExtra]=useState("")
   const[isBasicFormValid ,setBasicFormValid]=useState(false)
+  const[isAcadamicFormValid ,setAcadamicFormValid]=useState(false)
   const [Next,setNext]=useState(false)
-   const scrollRef =useRef(null)
+   const scrollRef =useRef(null) //the scroll after the next btn clicked 
 
   return (
     <UserContext.Provider
@@ -61,7 +65,7 @@ export const UserProvider = ({ children }) => {
         transcript ,setTranscript,
         matric,setMatric,
         listTranscript,setListTranscript,
-        extra,setExtra,isBasicFormValid,setBasicFormValid,Next,setNext,scrollRef
+        extra,setExtra,isBasicFormValid,setBasicFormValid,Next,setNext,scrollRef,isAcadamicFormValid ,setAcadamicFormValid
       }}
     >
       {children}

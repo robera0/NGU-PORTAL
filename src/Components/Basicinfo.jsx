@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,9 +21,6 @@ const Basicinfo = () => {
   const handleSlide = () => {
     setSlide(prev => !prev)
   }
-
-
-
   const {
     slide, setSlide,
     firstName, setFirstName,
@@ -44,7 +41,7 @@ const Basicinfo = () => {
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
     EmrphoneNumber, setEmrPhoneNumber,
-    countries, setCountries,setBasicFormValid,setAcSlide,AcSlide,scrollRef
+    countries, setCountries,setBasicFormValid,isBasicFormValid,setAcSlide,scrollRef
   } = useUser();
 
 const {Selectedcountry}=useCountryApi()
@@ -60,7 +57,7 @@ const {Selectedcountry}=useCountryApi()
   const handleBirthMonthChange = (e) => setBirthMonth(e.target.value);
   const handleBirthDayChange = (e) => setBirthDay(e.target.value);
   const handleBirthYearChange = (e) => setBirthYear(e.target.value);
-  const handlePermanentAddressChange = (e) => setPermanentAddress(e.target.value);
+  const handlePermanentAddressChange = (e) => setPermanentAddress(e.target.value)   
   const handleCityChange = (e) => setCity(e.target.value);
   const handleCountryChange = (e) => setCountries(e.target.value);
   const handleEmrFirstNameChange = (e) => setEmrFirstName(e.target.value);
@@ -69,42 +66,56 @@ const {Selectedcountry}=useCountryApi()
   const handleEmergencyAddress=(e)=>setEmergencyAddress(e.target.value);
   const handleEmrPhoneNumberChange = (e) => setEmrPhoneNumber(e.target.value);
   
+  const [validatForm,setValidateForm]=useState("") // the error when the inputs are empty
+  
+   const Filled = // check the inputs values not to be empty
+  firstName?.trim() &&
+  middleName?.trim() &&
+  lastName?.trim() &&
+  studentNumber?.trim() &&
+  yearLevel &&
+  degreeProgram &&
+  email?.trim() &&
+  phoneNumber?.trim() &&
+  birthMonth &&
+  birthDay &&
+  birthYear &&
+  permanentAddress?.trim() &&
+  city?.trim() &&
+  emrfirstName?.trim() &&
+  emrlastName?.trim() &&
+  Relationship?.trim() &&
+  EmergencyAddress?.trim() &&
+  EmrphoneNumber?.trim();
+  
  const handleNextbtn = () => {
-  setAcSlide(true); 
+  
+  if(!Filled){
+
+     setValidateForm("required input must be filled ") ;
+     setBasicFormValid(false)
+  }
+  
+
+  else{
+   setValidateForm("successful") ;  
+   setBasicFormValid(true) // make the Basic inof valid and go to the Acadamic Form
+   setAcSlide(true); 
 
   setTimeout(() => {
+   
     if (scrollRef.current ) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth',
                                       block :"end",
                                     inline:"nearest"});
     }
   }, 100); 
-};
+}
  
-  const Filled = firstName && setFirstName &&
-                middleName && setMiddleName &&
-                lastName && setLastName &&
-                studentNumber && setStudentNumber &&
-                yearLevel && setYearLevel &&
-                degreeProgram && setDegreeProgram &&
-                email && setEmail &&
-                phoneNumber && setPhoneNumber &&
-                birthMonth && setBirthMonth &&
-                birthDay && setBirthDay &&
-                birthYear && setBirthYear &&
-                permanentAddress && setPermanentAddress &&
-                city && setCity &&
-                emrfirstName && setEmrFirstName &&
-                emrlastName && setemrLastName &&
-                Relationship && setRelationship &&
-                EmergencyAddress && setEmergencyAddress &&
-                EmrphoneNumber && setEmrPhoneNumber 
+};
 
-   if(Filled){
 
-    setBasicFormValid(true)
-    
-   }
+
   return (
     <div>
                   <div
@@ -296,17 +307,18 @@ const {Selectedcountry}=useCountryApi()
                   </div>
                 </div>
 
-                <div className=' flex-wrap gap-26'>
                   {/* Permanent Address */}
-                  <div className='space-y-1'>
-                    <p className='font-semibold mb-3 mt-10'>Permanent Address</p>
+                 <div className='space-y-1 mt-10'>
+                    <p className='font-semibold mb-3'>Permanent Address</p>
                     <input
-                      className="w-86 h-10 px-90 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full max-w-[720px] h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                       type="text"
                       value={permanentAddress}
                       onChange={handlePermanentAddressChange}
+                      required
                     />
                   </div>
+
                   
                   <div className='flex flex-wrap gap-26'>
                         {/* City */}
@@ -337,9 +349,6 @@ const {Selectedcountry}=useCountryApi()
                   </div>
                   </div>
 
-                 
-                </div>
-                
                <div className='flex flex-wrap gap-26 mt-10 '>
                   {/* Emergency contact */}
                   <div className='space-y-1'>
@@ -380,15 +389,17 @@ const {Selectedcountry}=useCountryApi()
                 </div>
                      {/* Emergency Permanent Address */}
                  <div className=' flex-wrap gap-26'>
-                  <div className='space-y-1'>
-                    <p className='font-semibold mb-3 mt-10'>Address Of Person To Contact In Case Of Emergency</p>
+                <div className='space-y-1 mt-10'>
+                    <p className='font-semibold mb-3'> Emergency Permanent Address</p>
                     <input
-                      className="w-86 h-10 px-90 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full max-w-[720px] h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                       type="text"
                       value={EmergencyAddress}
                       onChange={handleEmergencyAddress}
+                      required
                     />
                   </div>
+
                   {/*  Emergency Phone Number */}
                   <div className='space-y-1 mb-2'>
                     <p className='font-semibold mb-3 mt-10'>  Emergency Phone Number</p>
@@ -410,6 +421,13 @@ const {Selectedcountry}=useCountryApi()
                         <button 
                         onClick={handleNextbtn}
                         className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Next</button>
+                      </div>
+                      <div>
+                        {isBasicFormValid ? <> <p className="text-green-600 font-semibold mt-2">{validatForm}</p></>:
+                        
+                        <><p className="text-red-600 font-semibold mt-2">{validatForm}</p></>
+                        }
+                           
                       </div>
                       </div>  
                
