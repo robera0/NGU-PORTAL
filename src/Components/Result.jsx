@@ -22,7 +22,7 @@ const Result = () => {
                <div className="flex gap-10">
              
                <div  className="flex flex-col w-[75%] mt-6">
-                    <table className="min-w-[900px] text-lg text-left shadow-md border-separate border-spacing-y-2">
+                    <table className="min-w-[900px] text-lg text-left shadow-lg border-separate border-spacing-y-2">
                       <thead className="bg-purple-100 text-[#552bcb]">
                         <tr>
                           <th className="px-6 py-4">Course Code</th>
@@ -39,8 +39,6 @@ const Result = () => {
                           <td className="px-6 py-4">3</td>
                           <td className="px-6 py-4">A+</td>
                            <td className="px-6 py-4">4</td>
-
-                        
                         </tr>
                         <tr className="bg-white rounded-lg shadow-sm">
                           <td className="px-6 py-4">MA102</td>
@@ -72,7 +70,7 @@ const Result = () => {
                     </table>
                     </div>
              {/*status Checker */}
-                <div className="w-[20%] shadow-md border-spacing-y-2 mt-6 ">
+                <div className="w-[20%] shadow-xl border-spacing-y-2 mt-6 border border-purple-300 rounded-xl">
                    <p className="flex justify-center items-center text-sm text-[#8200DB] font-semibold mt-3 text-center">
                                   You have completed 11 quizzes this semester
                                 </p>
@@ -96,11 +94,11 @@ const Result = () => {
                 </div>
                  {/*Student infos */}
                 <div className="flex flex-wrap mt-10 gap-6  h-screeen ">
-                     <div className="flex  -mt-4 w-[40%] flex-wrap pt-5  shadow-xl inset-shadow-2xs border-t-purple-500 border-spacing gap-16">
+                     <div className="flex  -mt-4 w-[40%] flex-wrap pt-5  shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing gap-16">
                           <div
-                              className="w-28 h-28 ml-5 rounded-full "
+                              className=" ml-5 rounded-full "
                             > 
-                            <img className="w-32 h-28 rounded-full bg-center bg-cover bg-no-repeat" src={ImageUrl} alt="" />
+                            <img className="w-30 h-30  rounded-full overflow-hidden bg-center bg-cobg-center bg-cover bg-no-repeatver bg-no-repeat" src={ImageUrl} alt="" />
 
                             </div>
 
@@ -124,7 +122,7 @@ const Result = () => {
                      </div>
                      {/*Overall performance */}
 
-                       <div className="  w-[50%] -mt-4 h-screeen shadow-xl inset-shadow-2xs border-t-purple-500 border-spacing ">
+                       <div className="  w-[50%] -mt-4 h-screeen shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing ">
                          
                            <div className=" flex justify-center text-[#552bcb] h-10 items-center text-center bg-purple-100">
                              <h1 className=" text-[#552bcb] font-bold">Your overall performance This semester</h1>
