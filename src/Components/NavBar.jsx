@@ -26,7 +26,7 @@ const NavBar = () => {
                 </div>
                    <div className='flex-col mt-2 '>
                      <h1 className='font-bold'>Robera Ararsa</h1>
-                      <p className='text-gray-500'>2nd year</p>
+                      <p className='text-gray-500'>3rd year</p>
                    </div>
                         
             </Link>

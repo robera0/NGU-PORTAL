@@ -7,15 +7,15 @@ const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
 
   const instractors = [
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>,
-    <div className='rounded-full border-2 border-purple-500 bg-gray-200 w-20 h-20'></div>
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
+    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>
   ];
 
   const chunkArray = (arr, size) => {

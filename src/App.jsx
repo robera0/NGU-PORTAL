@@ -5,7 +5,9 @@ import Profile from './Components/Profile'
 import { UserProvider } from './Components/userContext'
 import RegistrationForm from './Components/RegistrationForm'
 import { CountryProvider } from './CountryApi/Countryapi'
+import Result from './Components/Result'
 import Courses from './Components/Courses'
+import Schedule from './Components/Schedule'
 const App = () => {
   return (
       
@@ -18,7 +20,9 @@ const App = () => {
             <Route path="/paymentinfo" element={<Payment_info/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/registeration' element={<RegistrationForm/>}/>
-            <Route path='/courses' element={<Courses/>}/>
+            <Route path='/result' element={<Result/>}/>
+            <Route path ='/courses' element= {<Courses/>}/>
+            <Route path='/schedule' element={<Schedule/>}/>
          </Route>
        </Routes>     
     </BrowserRouter>

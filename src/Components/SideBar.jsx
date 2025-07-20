@@ -64,13 +64,6 @@ const SideBar = () => {
                   <span>Courses</span>
             
             </Link>
-              {/*Drop Semester*/}
-            <Link to="/dropsemester" className={`${isActive("/dropsemester") &&"bg-[#8200DB] -translate-2" } mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-                 <div>
-                    <FontAwesomeIcon icon={faSquareXmark} />
-                 </div>
-             <span>Drop Semester</span>
-            </Link>
               {/*Result*/}
              <Link to='/result'  className={`${isActive("/result") &&"bg-[#8200DB] -translate-2" } mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
                <div>
