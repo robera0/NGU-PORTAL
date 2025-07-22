@@ -3,14 +3,13 @@ import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faSheetPlastic } from '@fortawesome/free-solid-svg-icons'
-import { faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 import { faLinesLeaning } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket'
 import { Link,useLocation } from 'react-router-dom'
-import { useUser } from './userContext'
+
 const SideBar = () => {
 
 

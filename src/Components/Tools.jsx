@@ -1,13 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList, faDownload, faImage, faPencil, faPrint, faSquarePlus, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { useSchedule } from '../Context/Scheduler'
 const Tools = () => {
+  
+  const{setAddItems}=useSchedule()
+  const handleAddItem=()=>setAddItems(true)
   return (
     <div className=" w-[15%] mt-40 h-full space-y-5 ">    
        <div  className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
            <div className='flex items-center pl-4' >
              <FontAwesomeIcon icon={faSquarePlus} />
            </div>
-         <button>Add Item</button>
+         <button onClick={handleAddItem}>Add Item</button>
        </div>
        {/*Edit item */}
        <div className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
