@@ -1,68 +1,35 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList, faDownload, faImage, faPencil, faPrint, faSquarePlus, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { useSchedule } from '../Context/Scheduler'
+
 const Tools = () => {
-  
-  const{setAddItems}=useSchedule()
-  const handleAddItem=()=>setAddItems(true)
+  const { setAddItems } = useSchedule()
+  const handleAddItem = () => setAddItems(true)
+
+  const tools = [
+    { icon: faSquarePlus, label: 'Add Item', onClick: handleAddItem },
+    { icon: faPencil, label: 'Edit Item' },
+    { icon: faTrash, label: 'Delete Item' },
+    { icon: faImage, label: 'Save Image' },
+    { icon: faPrint, label: 'Print' },
+    { icon: faDownload, label: 'Export' },
+    { icon: faUpload, label: 'Import' },
+    { icon: faClipboardList, label: 'New Schedule' },
+  ]
+
   return (
-    <div className=" w-[15%] mt-40 h-full space-y-5 ">    
-       <div  className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-           <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faSquarePlus} />
-           </div>
-         <button onClick={handleAddItem}>Add Item</button>
-       </div>
-       {/*Edit item */}
-       <div className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-         <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faPencil} />
-           </div>
-         <button>Edit Item</button>
-       </div>
-        {/*Delete Item */}
-        <div className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-        <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faTrash} />
-           </div>
-         <button>Delete Item</button>
-       </div>
-       {/*save image */}
-       <div className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-         <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faImage} />
-           </div>
-         <button>Save image</button>
-       </div>
-       {/*Print */}
-       <div className="flex  flex-wrap   gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-         <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faPrint} />
-           </div>
-         <button>Print</button>
-       </div>
-       {/*Export */}
-       <div className=" flex  flex-wrap    gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-          <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faDownload} />
-           </div>
-         <button className='flex justify-center items-center'>Export</button>
-       </div>
-        {/*Import */}
-        <div className=" flex flex-wrap  gap-5 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-          <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faUpload} />
-           </div>
-         <button className='flex justify-center items-center'>Import</button>
-       </div>
-       {/*New schedule */}
-       <div className=" flex flex-wrap gap-5 mb-2 bg-[#AF89EA] cursor-pointer text-white w-45 h-10 rounded-lg font-bold hover:bg-purple-700 transition-all duration-300">
-          <div className='flex items-center pl-4' >
-             <FontAwesomeIcon icon={faClipboardList} />
-           </div>
-         <button className='flex justify-center items-center'>New Schedule</button>
-       </div>
-  </div>
+    <div className="w-full sm:w-[45%] md:w-[25%] lg:w-[15%] mt-10 sm:mt-20 px-4 space-y-4">
+      {tools.map((tool, index) => (
+        <div
+          key={index}
+          onClick={tool.onClick}
+          className="flex items-center gap-3 bg-[#AF89EA] text-white w-full h-10 rounded-lg font-bold px-4 hover:bg-purple-700 transition-all duration-300 cursor-pointer"
+        >
+          <FontAwesomeIcon icon={tool.icon} />
+          <span className="text-sm sm:text-base">{tool.label}</span>
+        </div>
+      ))}
+    </div>
   )
 }
 

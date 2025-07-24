@@ -1,98 +1,102 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
-import { faSheetPlastic } from '@fortawesome/free-solid-svg-icons'
-import { faLinesLeaning } from '@fortawesome/free-solid-svg-icons'
-import { faMessage } from '@fortawesome/free-solid-svg-icons'
-import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+import {
+  faGraduationCap,
+  faCreditCard,
+  faPen,
+  faSheetPlastic,
+  faLinesLeaning,
+  faMessage,
+  faCalendar
+} from '@fortawesome/free-solid-svg-icons'
 import { faBox } from '@fortawesome/free-solid-svg-icons/faBox'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket'
-import { Link,useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const SideBar = () => {
+  const location = useLocation()
+  const isActive = (path) => location.pathname === path
 
-
-  
- const location = useLocation()
-
- const isActive=(path)=>location.pathname === path
-
- 
   return (
-    <div className='lg:h-screen flex flex-col text-white items-center overflow-hidden  bg-[#AF89EA]  rounded-4xl '>
-        <div className=' rounded-2xl  mt-7 md:text-3xl sm:w-32 sm:h-32 md:shrink-0 bg-[#8C59DC] text-white flex justify-center items-center '>
-              <FontAwesomeIcon
-              className='sm:h-48  md:text-8xl sm:text-6xl'
-              icon={faGraduationCap} />   
-        </div>
-        <div className='mt-8 flex flex-col tet-gray-200 '>
-            {/*Dashboard*/}
-            <Link to="/" className={` ${isActive("/") && "bg-[#8200DB] -translate-2"} mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-              <div>
-                  <FontAwesomeIcon icon={faBox} />
-              </div>
-             <span >Dashboard </span>
-            </Link>
-              {/*Payment info*/}
-           <Link to="/paymentinfo" className='mt-8 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800'>
-               <div>
-                   <FontAwesomeIcon icon={faCreditCard} />
-              </div>
-              
-              <span> Payment info</span>
-                      
-           </Link>
+    <div className='h-screen bg-[#AF89EA] flex flex-col justify-center items-center py-6 px-2 rounded-4xl'>
+      {/* Logo */}
+      <div className='rounded-2xl w-16 h-16 md:w-34 md:h-34 bg-[#8C59DC] flex items-center justify-center mb-6'>
+        <FontAwesomeIcon className='text-white text-2xl md:text-8xl' icon={faGraduationCap} />
+      </div>
 
-              {/*Registration */}
-              
-            <Link to="/registeration" 
-            className= {`${isActive("/registeration") &&"bg-[#8200DB] -translate-2" } rounded-2xl  transition-all duration-800 mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>  
-                 <div>
-                     <FontAwesomeIcon icon={faPen} />
-                 </div>
-             <span> Registration</span>
-                
-            </Link>
-              {/*courses*/}
-             <Link to="/courses" className={` ${isActive("/courses") &&"bg-[#8200DB] -translate-2" }  mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-              <div>
-                <FontAwesomeIcon icon={faSheetPlastic} />
-              </div>
-             
-                  <span>Courses</span>
-            
-            </Link>
-              {/*Result*/}
-             <Link to='/result'  className={`${isActive("/result") &&"bg-[#8200DB] -translate-2" } mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-               <div>
-                <FontAwesomeIcon icon={faLinesLeaning} />
-               </div>
-             <span >Result</span>
-            </Link>
-              {/*Notice*/}
-             <Link to='/notice' className={`${isActive("/notice") &&"bg-[#8200DB] -translate-2" } mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-                 <div>
-                    <FontAwesomeIcon icon={faMessage} />
-                 </div>
-             <span>Notice</span>
-            </Link >
-              {/*Schedule*/}
-             <Link  to='/schedule' className={`${isActive("/schedule") &&"bg-[#8200DB] -translate-2" } mt-7 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800`}>
-                 <div>
-                    <FontAwesomeIcon icon={faCalendar}/>
-                 </div>
-             <span>Schedule</span>
-            </Link>
-              {/*Logout */}
-            <Link to='/log in' className='mt-5 gap-2 flex items-center justify-center  cursor-pointer w-42 h-10  hover:bg-[#8200DB] -translate-2  rounded-2xl  transition-all duration-800'>
-              <div>
-                <FontAwesomeIcon icon={faRightFromBracket} />
-              </div>
-              <span>Log out</span>
-            </Link>
-            
-        </div>
+      {/* Navigation */}
+      <div className='flex flex-col justify-center items-center w-full gap-4'>
+        {/* Dashboard */}
+        <Link to="/" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faBox} />
+            <span className='hidden md:inline'>Dashboard</span>
+          </div>
+        </Link>
+
+        {/* Payment Info */}
+        <Link to="/paymentinfo" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/paymentinfo") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faCreditCard} />
+            <span className='hidden md:inline'>Payment Info</span>
+          </div>
+        </Link>
+
+        {/* Registration */}
+        <Link to="/registeration" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/registeration") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faPen} />
+            <span className='hidden md:inline'>Registration</span>
+          </div>
+        </Link>
+
+        {/* Courses */}
+        <Link to="/courses" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/courses") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faSheetPlastic} />
+            <span className='hidden md:inline'>Courses</span>
+          </div>
+        </Link>
+
+        {/* Result */}
+        <Link to="/result" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/result") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faLinesLeaning} />
+            <span className='hidden md:inline'>Result</span>
+          </div>
+        </Link>
+
+        {/* Notice */}
+        <Link to="/notice" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/notice") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faMessage} />
+            <span className='hidden md:inline'>Notice</span>
+          </div>
+        </Link>
+
+        {/* Schedule */}
+        <Link to="/schedule" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/schedule") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faCalendar} />
+            <span className='hidden md:inline'>Schedule</span>
+          </div>
+        </Link>
+
+        {/* Log Out */}
+        <Link to="/log in" className='w-full flex justify-center'>
+          <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
+            ${isActive("/log in") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            <span className='hidden md:inline'>Log out</span>
+          </div>
+        </Link>
+      </div>
     </div>
   )
 }

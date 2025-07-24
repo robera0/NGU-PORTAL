@@ -1,61 +1,98 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faGear} from '@fortawesome/free-solid-svg-icons'
 import { useSchedule } from '../Context/Scheduler'
+import { color } from 'framer-motion'
 
 
 const Table = () => {
     const Days =["Monday","Tuesday","Wednesday","Thursday","Friday"]
 
-    const{subtitle,setSubtitle}=useSchedule()
+    const{color,subtitle,setSubtitle,AllInfo}=useSchedule()
     const handleSubtitle=(e)=>setSubtitle(e.target.value)
    
-    return (
-   <div className=" w-[82%] mt-20  h-full  border-2  border-purple-100 space-y-5 shadow-xl  "> 
-                
-    <div className='flex flex-wrap gap-15   h-16 bg-purple-100'>
-         <div  className='flex text-[#8200DB] text-xl font-bold items-center pl-2' >
-            <h1 className='font-bold text-2xl flex text-center text-[#8200DB]' >NGCU</h1>
-         </div>
-            <div>
-             <input type="text" 
-                placeholder='Schedule Title'
-                
-                onChange={handleSubtitle}
-                className=' h-10 w-172 mt-2 flex justify-center items-center text-center  bg-white  rounded-md border border-gray-400   focus:border-purple-500  outline-none'/>
-            </div>
-            {/*setting */}
-            <div className='group flex gap-3 cursor-pointer hover:bg-[#8200DB] hover:text-white duration-300 rounded-md'>
-                <div className='flex items-center pl-3' >
-                             <FontAwesomeIcon className='text-[#8200DB] group-hover:text-white cursor-pointer text-2xl' icon={faGear} />
-                           </div>
-                             <div className='flex w-26 text-[#8200DB] text-xl font-bold items-center '>
-                                 <button className=' group-hover:text-white cursor-pointer hover:'>Settings</button>
-                             </div>
-                          
-            </div>
+    let hr = 2;
+      let min = 0;
+      
+      const arrtime=[]
+      while (hr <= 10) {
+        
+        const  all= (hr + ":" + (min === 0 ? "00" : min));
+        arrtime.push(all)
 
-    </div>
+        min += 30;
+        if (min === 60) {
+          min = 0;
+          hr++;
+        }
+       
+      }
+      const gettheTable=(AllInfo,index)=>{
 
-          {/*Date for the schedule */}
-          <div className='ml-10 mt-5 w-[94%] h-1000 border border-white bg-purple-200 rounded-md shadow-md '>
-             <div className=' pt-5 flex flex-wrap justify-center items-center font-bold text-2xl text-[#552BCB]'>
-                         {subtitle}
-                      </div> 
-               <div className=' pt-10 flex flex-wrap gap-22 text-xl font-bold text-[#552BCB]'>
-                     <div className='w-28 pt-5 border-r border-white'>
-                          
-                     </div>
-                     
-                {Days.map((day,index)=>
-                (
-                   <div key={index} className='h-full'>
-                     {day}
-                     </div>
-                ))}
-               </div>
+         if(AllInfo.day ==index ){
+
+
+         }
+
+
+
+      }
+      
+
+return (
+    <div className="w-full md:w-[90%] mx-auto mt-10 border-2 border-purple-100 space-y-5 shadow-xl p-4">
+      
+      {/* Header Section */}
+      <div className='flex flex-wrap gap-5 items-center justify-between h-auto bg-purple-100 p-3 rounded-md'>
+        <h1 className='text-2xl font-bold text-[#8200DB]'>NGCU</h1>
+
+        <input
+          type="text"
+          placeholder='Schedule Title'
+          onChange={handleSubtitle}
+          className='h-10 w-full sm:w-[300px] bg-white rounded-md border border-gray-400 focus:border-purple-500 outline-none text-center text-sm sm:text-base'
+        />
+
+        {/* Settings */}
+        <div className='group flex items-center gap-2 cursor-pointer hover:bg-[#8200DB] hover:text-white duration-300 rounded-md p-2'>
+          <FontAwesomeIcon className='text-[#8200DB] group-hover:text-white text-2xl' icon={faGear} />
+          <button className='text-[#8200DB] text-base font-bold group-hover:text-white'>Settings</button>
+        </div>
+      </div>
+
+      {/* Subtitle */}
+      <div className='text-center pt-3 font-bold text-xl text-[#552BCB]'>
+        {subtitle}
+      </div>
+
+      {/* Schedule Table */}
+      <div className='w-full bg-purple-200 border border-white rounded-md shadow-md p-4 overflow-x-auto'>
+        <div className='flex'>
+          {/* Time Column */}
+          <div className='w-24 pr-4'>
+            {arrtime.map((time, index) => (
+              <div key={index} className='py-2 text-center border-b text-sm text-[#552BCB] font-semibold'>
+                {time}
+              </div>
+            ))}
           </div>
-   </div>
+
+          {/* Day Columns */}
+          <div className='flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+            {Days.map((day, index) => (
+              <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
+                <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
+                <div
+                  onClick={() => gettheTable(AllInfo, index)}
+                  className="h-24 bg-[#8200DB] text-white flex items-center justify-center cursor-pointer rounded-md"
+                >
+                  <div className="text-sm text-center px-2">{AllInfo.course_Title}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
-
 export default Table 
