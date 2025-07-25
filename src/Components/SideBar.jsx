@@ -28,7 +28,7 @@ const SideBar = () => {
         {/* Dashboard */}
         <Link to="/" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faBox} />
             <span className='hidden md:inline'>Dashboard</span>
           </div>
@@ -37,7 +37,7 @@ const SideBar = () => {
         {/* Payment Info */}
         <Link to="/paymentinfo" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/paymentinfo") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/paymentinfo") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faCreditCard} />
             <span className='hidden md:inline'>Payment Info</span>
           </div>
@@ -46,7 +46,7 @@ const SideBar = () => {
         {/* Registration */}
         <Link to="/registeration" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/registeration") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/registeration") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faPen} />
             <span className='hidden md:inline'>Registration</span>
           </div>
@@ -55,7 +55,7 @@ const SideBar = () => {
         {/* Courses */}
         <Link to="/courses" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/courses") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/courses") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faSheetPlastic} />
             <span className='hidden md:inline'>Courses</span>
           </div>
@@ -64,7 +64,7 @@ const SideBar = () => {
         {/* Result */}
         <Link to="/result" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/result") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/result") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faLinesLeaning} />
             <span className='hidden md:inline'>Result</span>
           </div>
@@ -73,7 +73,7 @@ const SideBar = () => {
         {/* Notice */}
         <Link to="/notice" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/notice") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/notice") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faMessage} />
             <span className='hidden md:inline'>Notice</span>
           </div>
@@ -82,7 +82,7 @@ const SideBar = () => {
         {/* Schedule */}
         <Link to="/schedule" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/schedule") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/schedule") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faCalendar} />
             <span className='hidden md:inline'>Schedule</span>
           </div>
@@ -91,7 +91,7 @@ const SideBar = () => {
         {/* Log Out */}
         <Link to="/log in" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
-            ${isActive("/log in") ? "bg-[#8200DB] -translate-x-2" : "hover:bg-[#8200DB]"}`}>
+            ${isActive("/log in") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span className='hidden md:inline'>Log out</span>
           </div>

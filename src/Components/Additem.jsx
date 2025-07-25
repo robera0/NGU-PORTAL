@@ -1,20 +1,18 @@
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
   import { faXmark} from '@fortawesome/free-solid-svg-icons'
   import { useSchedule } from '../Context/Scheduler'
-  import { useState } from 'react'
+  import {  useState } from 'react'
   const Additem = () => {
       const Days =[ "Mon", "Tue", "Wen", "Thu","Fri" ]
-      const{setCourseTitle,setStartmin,setEndMin,
-          setAddItems,color,setColor,setStart,day,setday,
-           setEnd,setAm,setPm,setCourseType,setinstructor,
-           setLocation,AllInfo,setAddContent}=useSchedule()
-   const [course,setCourse]=useState(true)
-   const [events,setEvents]=useState(false)
-   const meetingtime=1;
-   const Eventtime =1;
-   const[checked,setchecked]=useState(false)
-
-
+      const{setCourseTitle,setStartmin,setEndMin,courseTitle,
+          setAddItems,color,setColor,setStart, startTime,day,setday,
+           setEnd,setAm,setPm,setCourseType,setinstructor,startMin,endtime,endMin,Am,
+           setLocation,AllInfo,setAllInfo,setAddContent}=useSchedule()
+  const [course,setCourse]=useState(true)
+  const [events,setEvents]=useState(false)
+  const meetingtime=1;
+  const Eventtime =1;
+  const[checked,setchecked]=useState(false)
   const handleCloseAddItems=()=>setAddItems(false)
   const handleChecked=()=>setchecked(prev=>!prev) 
   const handleCourseTitle = (e) =>setCourseTitle(e.target.value);
@@ -33,52 +31,40 @@
   const handleAddCourse = () =>{
 
      localStorage.setItem("student",JSON.stringify(AllInfo))
-
      const storedInfo=JSON.parse(localStorage.getItem("student")) || {};
-
      setAddContent(true)
-
-     handleChecking(index,e)
-      
+     console.log(storedInfo)
    }
  
-   
-  const handleChecking=(index,e)=>{
-
-
-    if(e.target.checked){
-      
-     setday(prev=>[...prev,index])
-     console.log(day)
+  //to checka and store in the day list if it match with the index
+    const handleChecking=(e)=>{
+       setday(e.target.value);
+        if(e.target.checked){
+       // Store it if its checkd 
+         setAllInfo((prev) => ({...prev,
+                [day]: {
+                "course_Title": courseTitle,
+                "start_Time": startTime && `${startTime}:${startMin}`,
+                "end_Time": endtime && `${endtime}:${endMin}`,
+                "time": Am,
+              }
+            }));
+         
+        }
     }
-    else{
-      setday(prev=>prev.filter(i=>i!==index))
-      console.log(day)
-    }
-   }
-
-     
-  
-
-     
-  
-  const handleAddAnotherCs = (e) => setAddAnotherCs(e.target.type === "checkbox" ? e.target.checked : e.target.value);
-
-      const handleCourse=()=>{setCourse(true)
+      const handleCourse=()=>{
+        setCourse(true)
           if(events){
               setEvents(false)
           }
       }
+      
       const hadndleEvents=()=>{
         setEvents(prev=> !prev)
-
         if(course){
           setCourse(false)
         }
       }
-
-     
-
 
     return (
     <div className='ml-40 mt-10 bg-white border border-purple-100 h-180 rounded  shadow-md'>
@@ -153,7 +139,7 @@
                     <div key={index} className='pt-2 h-full flex gap-2 flex-col '>
                       {day} 
           
-                      <input onChange={(e)=>handleChecking(index,e)} value={day} className='all rounded-full' type="checkBox" />
+                      <input onChange={handleChecking} value={day} className='all rounded-full' type="checkBox" />
                       </div>
                       
                   ))}
@@ -210,7 +196,7 @@
           </div>
               </div>
               <div className='group flex flex-wrap  justify-center items-center cursor-pointer  hover:text-white'>
-                  <button onClick={handleAddAnotherCs} className='w-70 h-8 mt-4 border  rounded-lg font-bold text-purple-200 shadow-md  group-hover:bg-[#8200DB] hover:text-white  cursor-pointer duration-300 '>Add Another meeting</button>
+                  <button onClick={""} className='w-70 h-8 mt-4 border  rounded-lg font-bold text-purple-200 shadow-md  group-hover:bg-[#8200DB] hover:text-white  cursor-pointer duration-300 '>Add Another meeting</button>
                 </div>
 
                 <div className='group flex flex-wrap  justify-center items-center cursor-pointer  hover:text-white'>

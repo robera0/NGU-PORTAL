@@ -10,7 +10,7 @@ const Enrolled_Cources = () => {
             <h1 className='font-bold text-xl'>Enrolled cources</h1>
               <button className='mt-auto ml-auto text-[#4D24CB] cursor-pointer font-bold'>See all</button>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between gap-9'>
               <div className='w-90 h-44 mt-5 bg-[#E1D3F5] shadow-2xl rounded-xl flex px-6'>
   <div className='w-[60%] flex flex-col justify-center gap-4'>
     <h1 className='text-[#9360E3] font-bold text-md'>

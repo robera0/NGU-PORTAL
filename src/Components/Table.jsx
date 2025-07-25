@@ -1,46 +1,42 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faGear} from '@fortawesome/free-solid-svg-icons'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
 import { useSchedule } from '../Context/Scheduler'
-import { color } from 'framer-motion'
-
 
 const Table = () => {
-    const Days =["Monday","Tuesday","Wednesday","Thursday","Friday"]
+  const Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-    const{color,subtitle,setSubtitle,AllInfo}=useSchedule()
-    const handleSubtitle=(e)=>setSubtitle(e.target.value)
-   
-    let hr = 2;
-      let min = 0;
+  const { color, subtitle, setSubtitle, AllInfo,day } = useSchedule();
+
+  const handleSubtitle = (e) => setSubtitle(e.target.value);
+
+  // Generate time  (2:00 to 10:30)
+  let hr = 2;
+  let min = 0;
+   let FirstTwoWords=""
+  const arrtime = [];
+
+  while (hr <= 10) {
+    const all = `${hr}:${min === 0 ? "00" : min}`;
+    arrtime.push(all);
+
+    min += 30;
+    if (min === 60) {
+      min = 0;
+      hr++;
+    }
+  }
+    
+   //  to check if the day vlaue in the object  and the day in the table matchs
+   const handleDay=()=>{
+
+   FirstTwoWords=Days.slice(0,2) ==AllInfo.selectedDay
       
-      const arrtime=[]
-      while (hr <= 10) {
-        
-        const  all= (hr + ":" + (min === 0 ? "00" : min));
-        arrtime.push(all)
-
-        min += 30;
-        if (min === 60) {
-          min = 0;
-          hr++;
-        }
-       
-      }
-      const gettheTable=(AllInfo,index)=>{
-
-         if(AllInfo.day ==index ){
-
-
-         }
-
-
-
-      }
-      
-
-return (
+    console.log(FirstTwoWords)
+   }
+  
+    return (
     <div className="w-full md:w-[90%] mx-auto mt-10 border-2 border-purple-100 space-y-5 shadow-xl p-4">
-      
+
       {/* Header Section */}
       <div className='flex flex-wrap gap-5 items-center justify-between h-auto bg-purple-100 p-3 rounded-md'>
         <h1 className='text-2xl font-bold text-[#8200DB]'>NGCU</h1>
@@ -78,21 +74,35 @@ return (
 
           {/* Day Columns */}
           <div className='flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-            {Days.map((day, index) => (
-              <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
-                <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
-                <div
-                  onClick={() => gettheTable(AllInfo, index)}
-                  className="h-24 bg-[#8200DB] text-white flex items-center justify-center cursor-pointer rounded-md"
-                >
-                  <div className="text-sm text-center px-2">{AllInfo.course_Title}</div>
+            {Days.map((day, index) => {
+              let FirstTwoWords
+              return (
+                <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
+                  <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
+
+                  <div
+                    className="min-h-[6rem] bg-[#8200DB] text-white flex items-center justify-center rounded-md p-3"
+                    style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
+                  >
+                    <div className="text-sm text-center flex flex-col space-y-1 w-full px-2 break-words">
+                      {FirstTwoWords? (
+                        <>
+                          <p>{AllInfo.course_Title}</p>
+                          <p>{AllInfo.start_Time} - {AllInfo.end_Time} {AllInfo.time}</p>
+                        </>
+                      ) : (
+                        <p className="text-gray-300">No class</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default Table 
+
+export default Table;

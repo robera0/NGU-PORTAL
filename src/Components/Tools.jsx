@@ -3,11 +3,16 @@ import { faClipboardList, faDownload, faImage, faPencil, faPrint, faSquarePlus, 
 import { useSchedule } from '../Context/Scheduler'
 
 const Tools = () => {
-  const { setAddItems } = useSchedule()
+  const { setAddItems,setDeleteItem ,setEditItem,setSaveImage,
+      setPrint,setExport,setImport,setNewschedule
+
+  } = useSchedule()
   const handleAddItem = () => setAddItems(true)
+  const handleDeleteItem=()=>setDeleteItem(true)
+  const handleEditItem=()=>setEditItem(true)
 
   const tools = [
-    { icon: faSquarePlus, label: 'Add Item', onClick: handleAddItem },
+    { icon: faSquarePlus, label: 'Add Item', onClick: handleAddItem,handleDeleteItem },
     { icon: faPencil, label: 'Edit Item' },
     { icon: faTrash, label: 'Delete Item' },
     { icon: faImage, label: 'Save Image' },

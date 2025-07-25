@@ -3,30 +3,33 @@ import SideBar from './SideBar'
 import NavBar from './NavBar'
 import Finance from './Finance'
 import Enrolled_Cources from './Enrolled_Cources'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-const Home = () => {
-    const date = new Date() 
-  const Month = [
-  'January', 'February', 'March', 'April',
-  'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'
-];
-    const MonthNum = date.getUTCDate()
-   const monthName= Month[date.getUTCMonth()]
-  return (
-    
-    <div className='flex'>
-        <div className='lg:w-[17%] ml-5 mt-5 h-screen'>
-            <div className="fixed w-[15%]">
-            <SideBar/>
-            </div>
-        </div>
 
-        <div  className='w-[93%] ml-5 mt-5'>
-                      <NavBar/>
+const Home = () => {
+  const date = new Date()
+  const Month = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  const dayNum = date.getUTCDate();
+  const monthName = Month[date.getUTCMonth()];
+
+  return (
+    <div className='flex flex-col lg:flex-row'>
+      {/* Sidebar */}
+      <div className='w-full lg:w-[17%] mt-5 px-4 lg:ml-5'>
+        <div className='lg:fixed w-full lg:w-[15%]'>
+          <SideBar />
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className='w-full lg:w-[83%] px-4 lg:px-0 mt-5'>
+        <NavBar />
+
             <div className='home w-[95%]  mt-10 overflow-hidden rounded-2xl h-64'>
                 <div className='items-center flex mt-10 ml-10'>
-                    <p className='text-gray-200'>{monthName} {" "} {MonthNum}, {date.getFullYear()}</p>
+                    <p className='text-gray-200'>{monthName} {" "} {dayNum}, {date.getFullYear()}</p>
                 </div>
                   <div className='text-white items-center flex  flex-col gap-4 mt-10 ml-10'>
                     <h1 className='text-2xl font-bold'>Welcome Back, Robera!</h1>
@@ -34,10 +37,15 @@ const Home = () => {
                   </div>
               
             </div>
-             <Finance/>
-             <Enrolled_Cources/>
+
+        <div className='mt-8'>
+          <Finance />
         </div>
-           
+
+        <div className='mt-8'>
+          <Enrolled_Cources />
+        </div>
+      </div>
     </div>
   )
 }
