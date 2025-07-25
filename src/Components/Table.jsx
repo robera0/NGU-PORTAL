@@ -25,14 +25,7 @@ const Table = () => {
       hr++;
     }
   }
-    
-   //  to check if the day vlaue in the object  and the day in the table matchs
-   const handleDay=()=>{
-
-   FirstTwoWords=Days.slice(0,2) ==AllInfo.selectedDay
-      
-    console.log(FirstTwoWords)
-   }
+  
   
     return (
     <div className="w-full md:w-[90%] mx-auto mt-10 border-2 border-purple-100 space-y-5 shadow-xl p-4">
@@ -75,8 +68,11 @@ const Table = () => {
           {/* Day Columns */}
           <div className='flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
             {Days.map((day, index) => {
-              let FirstTwoWords
-              return (
+                
+               const Sliced=day.slice(0,2)
+               const matched = Object.keys(AllInfo).filter(item=>Sliced.includes(item)) 
+             
+               return (
                 <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
                   <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
 
@@ -85,10 +81,13 @@ const Table = () => {
                     style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
                   >
                     <div className="text-sm text-center flex flex-col space-y-1 w-full px-2 break-words">
-                      {FirstTwoWords? (
+                      {matched ? (
                         <>
-                          <p>{AllInfo.course_Title}</p>
-                          <p>{AllInfo.start_Time} - {AllInfo.end_Time} {AllInfo.time}</p>
+                         {matched.map((key,idx)=>(
+                          <ul key={idx}>
+                            <p>{AllInfo[key]}</p>
+                          </ul>
+                         ))}
                         </>
                       ) : (
                         <p className="text-gray-300">No class</p>

@@ -25,7 +25,7 @@ export const UserScheduler =({children}) =>{
  const [courseType,setCourseType]=useState("")
  const[instructor,setinstructor]=useState("")
  const [Location,setLocation]=useState("")
- const[day,setday]=useState("")
+ const[day,setday]=useState(null)
  const[AddContent,setAddContent]=useState(false)
  const [AllInfo,setAllInfo]=useState({})
 
@@ -35,7 +35,7 @@ export const UserScheduler =({children}) =>{
         AddItem,setAddItems,EditItems,setEditItem,
         saveImage,setSaveImage,print,setPrint,Export,setExport,
         Import,setImport,newSchedule,setNewschedule,
-        color,setColor,startTime,setStart,AllInfo,setAllInfo,
+        color,setColor,startTime,setStart,setAllInfo,
         endtime,setEnd,Am,setAm,Pm,setPm,courseType,setCourseType,
         instructor,setinstructor,Location,setLocation,
         AllInfo,startMin,setStartmin,endMin,setEndMin,day,setday,AddContent,setAddContent,deleteItem,setDeleteItem

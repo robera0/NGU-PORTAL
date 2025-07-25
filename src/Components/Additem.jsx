@@ -38,16 +38,19 @@
  
   //to checka and store in the day list if it match with the index
     const handleChecking=(e)=>{
-       setday(e.target.value);
+      
+      const val = e.target.value.trim() === "" ? "Noting is picked" : e.target.value;
+
+       setday(val);
+        // Store it if its checkd 
         if(e.target.checked){
-       // Store it if its checkd 
-         setAllInfo((prev) => ({...prev,
-                [day]: {
+         setAllInfo((prev) => ({...prev, 
+                [val]: {
                 "course_Title": courseTitle,
                 "start_Time": startTime && `${startTime}:${startMin}`,
                 "end_Time": endtime && `${endtime}:${endMin}`,
                 "time": Am,
-              }
+              },
             }));
          
         }
