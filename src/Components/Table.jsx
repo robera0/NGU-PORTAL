@@ -67,36 +67,36 @@ const Table = () => {
 
           {/* Day Columns */}
           <div className='flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-            {Days.map((day, index) => {
-                
-               const Sliced=day.slice(0,2)
-               const matched = Object.keys(AllInfo).filter(item=>Sliced.includes(item)) 
-             
-               return (
-                <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
-                  <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
+              {Days.map((day, index) => {
+                  let Sliced = day.slice(0, 3)
+                  let matchedKeys = Object.keys(AllInfo).filter(item => item === Sliced);
+                     matchedKeys.map(items=>{
+                      console.log(items)
+                     })
+                  return (
+                    <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
+                      <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day }</span>
 
-                  <div
-                    className="min-h-[6rem] bg-[#8200DB] text-white flex items-center justify-center rounded-md p-3"
-                    style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
-                  >
-                    <div className="text-sm text-center flex flex-col space-y-1 w-full px-2 break-words">
-                      {matched ? (
-                        <>
-                         {matched.map((key,idx)=>(
-                          <ul key={idx}>
-                            <p>{AllInfo[key]}</p>
-                          </ul>
-                         ))}
-                        </>
-                      ) : (
-                        <p className="text-gray-300">No class</p>
-                      )}
+                      <div
+                        className="min-h-[6rem] bg-[#8200DB] text-white flex items-center justify-center rounded-md p-3"
+                        style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
+                      >
+                        <div className="text-sm text-center flex flex-col space-y-1 w-full px-2 break-words">
+                          {matchedKeys.length > 0 ? (
+                            matchedKeys.map((key, idx) => (
+                              <ul key={idx}>
+                                <li>{AllInfo[key].course_Title}</li>
+                                <li>{AllInfo[key].start_Time} - {AllInfo[key].end_Time} {AllInfo[key].time}</li>
+                              </ul>
+                            ))
+                          ) : (
+                            <p className="text-gray-300">No class</p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
           </div>
         </div>
       </div>

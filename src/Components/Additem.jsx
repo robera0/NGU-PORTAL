@@ -3,7 +3,7 @@
   import { useSchedule } from '../Context/Scheduler'
   import {  useState } from 'react'
   const Additem = () => {
-      const Days =[ "Mon", "Tue", "Wen", "Thu","Fri" ]
+      const Days =[ "Mon", "Tue", "Wed", "Thu","Fri" ]
       const{setCourseTitle,setStartmin,setEndMin,courseTitle,
           setAddItems,color,setColor,setStart, startTime,day,setday,
            setEnd,setAm,setPm,setCourseType,setinstructor,startMin,endtime,endMin,Am,
@@ -33,7 +33,7 @@
      localStorage.setItem("student",JSON.stringify(AllInfo))
      const storedInfo=JSON.parse(localStorage.getItem("student")) || {};
      setAddContent(true)
-     console.log(storedInfo)
+     console.log(AllInfo)
    }
  
   //to checka and store in the day list if it match with the index
