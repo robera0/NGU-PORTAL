@@ -5,14 +5,14 @@ import { useSchedule } from '../Context/Scheduler'
 const Table = () => {
   const Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-  const { color, subtitle, setSubtitle, AllInfo,day } = useSchedule();
+  
+  const { color, subtitle, setSubtitle, AllInfo } = useSchedule(); 
 
   const handleSubtitle = (e) => setSubtitle(e.target.value);
 
-  // Generate time  (2:00 to 10:30)
+  // Generate time (2:00 to 10:30)
   let hr = 2;
   let min = 0;
-   let FirstTwoWords=""
   const arrtime = [];
 
   while (hr <= 10) {
@@ -25,9 +25,8 @@ const Table = () => {
       hr++;
     }
   }
-  
-  
-    return (
+
+  return (
     <div className="w-full md:w-[90%] mx-auto mt-10 border-2 border-purple-100 space-y-5 shadow-xl p-4">
 
       {/* Header Section */}
@@ -67,36 +66,39 @@ const Table = () => {
 
           {/* Day Columns */}
           <div className='flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-              {Days.map((day, index) => {
-                  let Sliced = day.slice(0, 3)
-                  let matchedKeys = Object.keys(AllInfo).filter(item => item === Sliced);
-                     matchedKeys.map(items=>{
-                      console.log(items)
-                     })
-                  return (
-                    <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
-                      <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day }</span>
+            {Days.map((day, index) => {
+              const slicedDay = day.slice(0, 3);
+              const dailyEntries = AllInfo[slicedDay] || [];
 
+              return (
+                <div key={index} className="flex flex-col bg-white p-3 rounded-md shadow-sm">
+                  <span className="text-center text-lg font-semibold text-[#552BCB] mb-2">{day}</span>
+                  {dailyEntries.length > 0 ? (
+                    dailyEntries.map((entry, entryIdx) => (
                       <div
-                        className="min-h-[6rem] bg-[#8200DB] text-white flex items-center justify-center rounded-md p-3"
-                        style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
+                        key={entryIdx}
+                        className="min-h-[6rem] text-white flex items-center justify-center rounded-md p-3 mb-2"
+                       style={{ backgroundColor:entry.color|| "purple", whiteSpace: 'normal', overflowWrap: 'break-word' }}
                       >
                         <div className="text-sm text-center flex flex-col space-y-1 w-full px-2 break-words">
-                          {matchedKeys.length > 0 ? (
-                            matchedKeys.map((key, idx) => (
-                              <ul key={idx}>
-                                <li>{AllInfo[key].course_Title}</li>
-                                <li>{AllInfo[key].start_Time} - {AllInfo[key].end_Time} {AllInfo[key].time}</li>
-                              </ul>
-                            ))
-                          ) : (
-                            <p className="text-gray-300">No class</p>
-                          )}
+                          <ul className="list-none p-0 m-0 text-left">
+                            <li><strong>{entry.course_Title}</strong></li> 
+                            <li>{entry.start_Time} - {entry.end_Time} </li>
+                          </ul>
                         </div>
                       </div>
+                    ))
+                  ) : (
+                    <div
+                      className="min-h-[6rem] bg-[#8200DB] text-white flex items-center justify-center rounded-md p-3"
+                      style={{ whiteSpace: 'normal', overflowWrap: 'break-word' }}
+                    >
+                      <p className="text-gray-300">No class</p>
                     </div>
-                  );
-                })}
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
