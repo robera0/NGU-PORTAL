@@ -4,7 +4,6 @@ import {fileURLToPath} from 'url'
 import path from 'path'
 import csTeachers from './teachers.js'
 import enrolledCourses from './Courses.js'
-
 const PORT =process.env.PORT || 8000
 
 const app =express()
