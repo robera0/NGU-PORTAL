@@ -13,7 +13,14 @@ const Home = () => {
   ];
   const dayNum = date.getUTCDate();
   const monthName = Month[date.getUTCMonth()];
+ 
+   const fetchApi= async()=>{
+    const res =await fetch('http://localhost:8000/api/data')
+    const data =await res.json()
+    console.log(data)
+  }
 
+  fetchApi()
   return (
     <div className='flex flex-col lg:flex-row'>
       {/* Sidebar */}

@@ -230,7 +230,6 @@
                         <div className="flex items-center gap-3">
                           <input value="Student Council" onChange={handleExtra} type="radio" name="radiobtn" id="student" className="w-5 h-5 accent-[#8200DB]" />
                           <label htmlFor="student" className="text-gray-800">Student Council</label>
-                          <p>{extra}</p>
                         </div>
                         <div className="flex items-center gap-3">
                           <input value="Club Organization"  onChange={handleExtra}  type="radio" name="radiobtn" id="club" className="w-5 h-5 accent-[#8200DB]" />

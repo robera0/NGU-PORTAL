@@ -2,21 +2,46 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins } from '@fortawesome/free-solid-svg-icons/faCoins';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query'
+import { useRef } from 'react';
+import { useUser } from './userContext';
 
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
+  const {scrollRef} =useUser()
+   
+  // fetchong the cs teachers
+  const fetchTeachers=async()=>{
+    const res= await fetch('http://localhost:8000/api/csteachers');
+    if (!res.ok) throw new Error('Failed to fetch');
+    return res.json()
+  }
+  
+    const {data,error}=useQuery({
+      queryKey:['name'],
+      queryFn:fetchTeachers,
+    })
 
-  const instractors = [
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>,
-    <div style={{backgroundImage: `url("src/assets/defaultUser.jpg")`}} className='rounded-full border-2 border-purple-500  bg-center bg-cover bg-no-repeat w-20 h-20'></div>
-  ];
+    if(error)return  <p>Error: {error.message}</p>
+    if(!data) return  <p>their is no</p>
+
+     const renderInstructors = () => {
+    return data.map((teacher, i) => (
+      <div key={i} className="flex flex-col items-center w-24"> 
+        <div
+         style={{
+          backgroundImage: teacher.profile
+            ? `url(${teacher.profile})`
+            : 'url("/src/assets/defaultUser.jpg")'
+        }}
+          className="rounded-full shadow-xl  flex justify-center items-center border-2 border-purple-500 bg-center bg-cover bg-no-repeat w-20 h-20"
+        />
+        <span className="text-sm  text-center text-[#3C17BD] font-bold mt-2  w-full px-1">
+          {teacher.name}
+        </span>  
+      </div>       
+    ));
+  };
 
   const chunkArray = (arr, size) => {
     const result = [];
@@ -26,16 +51,18 @@ const Finance = () => {
     return result;
   };
 
-  const chunks = chunkArray(instractors, 3);
-
+  const chunks = chunkArray(renderInstructors(), 3); 
   const handleSeeAll = () => {
+    
     setSeeAll((prev) => !prev);
+    
+  
   };
 
   return (
     <div className='mt-5'>
       <h1 className='font-bold text-xl'>Finance</h1>
-      <div className='flex gap-10 mt-5'>
+      <div className='flex mt-2'>
         {/* Stats section */}
         <div className='md:w-[70%] flex gap-10 md:h-64'>
           <div className='w-50 h-64 shadow-2xl rounded-xl flex flex-col justify-center items-center'>
@@ -65,59 +92,51 @@ const Finance = () => {
 
         {/* Instructors section */}
         <div className='md:w-[30%] md:h-64'>
-          <div className='flex pl-5 gap-10'>
+          <div className='flex items-center gap-22 mb-4 gap-4'>
             <h1 className='font-bold'>Course Instructors</h1>
             <button onClick={handleSeeAll} className='text-[#4D24CB] cursor-pointer font-bold'>
-              {seeAll ? 'See Less' : 'See All'}
+              {seeAll ? 'See less' : 'See all'}
             </button>
           </div>
-
-          <div className='space-y-2 pl-5 transition-all duration-500 ease-in-out '>
-            {chunks.map((group, groupIndex) => {
-            
-              if (!seeAll && groupIndex > 0) return null;
-
-              return (
-                <div
-                  key={groupIndex}
-                  className={`mt-2  overflow-hidden transition-all duration-500 ease-in-out ${
-                    seeAll ? 'max-h-[180px]' : 'max-h-[90px]'
-                  }`}
-                >
-                  <div className='flex gap-8 transition-all duration-500 ease-in-out '>
-                    {group.map((inst, index) => (
-                      <div className=' transition-all duration-500 ease-in-out' key={index}>{inst}</div>
-                    ))}
+          <div ref={scrollRef} className='space-y-2 transition-all duration-300 ease-in-out'>
+            {chunks.map((group, groupIndex) => (
+              <div 
+                key={groupIndex}
+                className={`flex justify-between ${!seeAll && groupIndex > 0 ? 'hidden' : ''}`}
+              >
+                {group.map((inst, index) => (
+                  <div className='transition-transform duration-300 hover:scale-100' key={index}>
+                    {inst}
                   </div>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            ))}
           </div>
 
           {/* Daily Notice */}
           <div>
-            <div className='flex  mt-3 ml-2 gap-22'>
+            <div className='flex items-center gap-32 mt-6 mb-2'>
               <h1 className='font-bold'>Daily Notice</h1>
-              <button className='text-left text-[#4D24CB] cursor-pointer font-bold'>See all</button>
+              <button className='text-[#4D24CB] cursor-pointer font-bold'>See all</button>
             </div>
 
-            <div className='p-4 pt-2 rounded-xl max-w-[90%] mt-3 shadow-2xl'>
-              <div>
+            <div className='p-4 rounded-xl shadow-2xl'>
+              <div className='mb-4'>
                 <h1 className='font-bold mb-2'>Payment Due</h1>
-                <p className='text-gray-500'>
+                <p className='text-gray-500 text-sm'>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis autem corrupti sapiente!
                   Quo itaque quos dolorem maiores nisi sed illo nesciunt deleniti.
                 </p>
-                <button className='text-left mt-2 text-[#4D24CB] cursor-pointer font-bold'>See all</button>
+                <button className='text-[#4D24CB] hover:text-[#3C17BD] font-semibold mt-2'>See details</button>
               </div>
 
-              <div className='mt-4'>
+              <div>
                 <h1 className='font-bold mb-2'>Exam Schedule</h1>
-                <p className='text-gray-500'>
+                <p className='text-gray-500 text-sm'>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis autem corrupti sapiente!
                   Quo itaque quos dolorem maiores nisi sed illo nesciunt deleniti.
                 </p>
-                <button className='text-left mt-2 text-[#4D24CB] cursor-pointer font-bold'>See all</button>
+                <button className='text-[#4D24CB] hover:text-[#3C17BD] font-semibold mt-2'>See details</button>
               </div>
             </div>
           </div>

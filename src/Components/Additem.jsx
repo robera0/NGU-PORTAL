@@ -44,7 +44,7 @@ const Additem = () => {
 
     if (e.target.checked) {
       setAllInfo((prevAllInfo) => {
-        const existingEntries = prevAllInfo[dayValue] ? [...prevAllInfo[dayValue]] : [];
+        const existingEntries = prevAllInfo[dayValue] ?  [...prevAllInfo[dayValue]] :[]
         return {
           ...prevAllInfo,
           [dayValue]: [...existingEntries, newEntry],

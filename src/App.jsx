@@ -9,15 +9,19 @@ import { UserScheduler } from './Context/Scheduler'
 import Result from './Components/Result'
 import Courses from './Components/Courses'
 import Schedule from './Components/Schedule'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const App = () => {
+  const queryclient = new QueryClient()
   return (
       
         <UserProvider>
            <CountryProvider>
              <UserScheduler>
                 <BrowserRouter>
+                 <QueryClientProvider client={queryclient}>
        <Routes>
          <Route>
+         
             <Route path="/" element={<Home />} />
             <Route path="/paymentinfo" element={<Payment_info/>}/>
             <Route path='/profile' element={<Profile/>}/>
@@ -26,7 +30,8 @@ const App = () => {
             <Route path ='/courses' element= {<Courses/>}/>
             <Route path='/schedule' element={<Schedule/>}/>
          </Route>
-       </Routes>     
+       </Routes>    
+        </QueryClientProvider> 
     </BrowserRouter>
     </UserScheduler>
     </CountryProvider>

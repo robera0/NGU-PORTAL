@@ -7,12 +7,14 @@ const Tools = () => {
       setPrint,setExport,setImport,setNewschedule
 
   } = useSchedule()
-  const handleAddItem = () => setAddItems(true)
+  const handleAddItem = () => setAddItems(true) 
   const handleDeleteItem=()=>setDeleteItem(true)
   const handleEditItem=()=>setEditItem(true)
+  const handleNewSchedule=()=>setNewschedule(true)
+
 
   const tools = [
-    { icon: faSquarePlus, label: 'Add Item', onClick: handleAddItem,handleDeleteItem },
+    { icon: faSquarePlus, label: 'Add Item', onClick: handleAddItem,handleDeleteItem,handleNewSchedule },
     { icon: faPencil, label: 'Edit Item' },
     { icon: faTrash, label: 'Delete Item' },
     { icon: faImage, label: 'Save Image' },
@@ -28,7 +30,7 @@ const Tools = () => {
         <div
           key={index}
           onClick={tool.onClick}
-          className="flex items-center gap-3 bg-[#AF89EA] text-white w-full h-10 rounded-lg font-bold px-4 hover:bg-purple-700 transition-all duration-300 cursor-pointer"
+          className="flex items-center gap-3 bg-[#AF89EA] text-white w-full h-10 rounded-lg font-bold px-2 hover:bg-purple-700 transition-all duration-300 cursor-pointer"
         >
           <FontAwesomeIcon icon={tool.icon} />
           <span className="text-sm sm:text-base">{tool.label}</span>

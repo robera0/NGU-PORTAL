@@ -28,6 +28,7 @@ export const UserScheduler =({children}) =>{
  const[day,setday]=useState(null)
  const[AddContent,setAddContent]=useState(false)
  const [AllInfo,setAllInfo]=useState({})
+ 
 
     return(
         <UserContext.Provider value ={{
