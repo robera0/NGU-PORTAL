@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+body{
+
+    overflow-x: hidden;
+}
+.home{
+
+    background-image: url('./assets/Home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
