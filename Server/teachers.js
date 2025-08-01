@@ -30,7 +30,7 @@
     name: "Mr. Bereket Kebede",
     subject: "Operating Systems",
     title: "Lab Instructor",
-      profile:'/src/assets/kalkidan.jpeg'
+     profile:'/src/assets/kalkidan.jpeg'
   },
   {
     name: "Mrs. Kalkidan Abebe",
@@ -48,6 +48,7 @@
     name: "Dr. Eden Fikru",
     subject: "Computer Networks",
     title: "Associate Professor",
+     profile:''
   },
   {
     name: "Mr. Melaku Getachew",

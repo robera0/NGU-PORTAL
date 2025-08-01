@@ -5,6 +5,16 @@ import { useUser } from "./userContext"
 const Result = () => {
 
      const{ImageUrl}= useUser()
+
+  const fetchUser= async()=>{
+
+    const res  =await fetch('http://localhost:8000/api/students')
+    const data =await res.json()
+
+    console.log(data)
+  }
+
+  fetchUser()
   
   return (
       <div className="flex h-screen">

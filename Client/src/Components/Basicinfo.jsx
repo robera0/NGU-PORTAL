@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
-
+import React, { useEffect, useRef, useState } from 'react'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUser } from './userContext'
 import { useCountryApi } from '../CountryApi/Countryapi';
+
 const Basicinfo = () => {
       const Month = [
     'January', 'February', 'March', 'April',
@@ -40,7 +40,7 @@ const Basicinfo = () => {
     emrlastName, setemrLastName,
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
-    EmrphoneNumber, setEmrPhoneNumber,
+    EmrphoneNumber, setEmrPhoneNumber,hgname,
     countries, setCountries,setBasicFormValid,isBasicFormValid,setAcSlide,scrollRef
   } = useUser();
 
@@ -87,6 +87,36 @@ const {Selectedcountry}=useCountryApi()
   Relationship?.trim() &&
   EmergencyAddress?.trim() &&
   EmrphoneNumber?.trim();
+
+  // send the basicn info to the server 
+
+const newStudent=async()=>{
+
+  const res =await fetch('http://localhost:8000/api/students',{
+    method:'POST',
+    headers:{
+    'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+        id:0,
+        First_name :firstName,
+        Middle_name:middleName,
+        Last_name:lastName,
+        Degree_Program:degreeProgram ,
+        id_Number:studentNumber,
+        Email:email,
+        Phone_Number:phoneNumber,
+        Country:countries,
+        High_School_Name:hgname,
+    })
+  })
+  if (!res.ok) {
+    throw new Error('Failed to post data');
+  }
+  const data=await res.json ()
+  console.log (data)
+}
+
   
  const handleNextbtn = () => {
   
@@ -101,6 +131,7 @@ const {Selectedcountry}=useCountryApi()
    setValidateForm("successful") ;  
    setBasicFormValid(true) // make the Basic inof valid and go to the Acadamic Form
    setAcSlide(true); 
+   newStudent()
 
   setTimeout(() => {
    
@@ -113,7 +144,6 @@ const {Selectedcountry}=useCountryApi()
 }
  
 };
-
 
 
   return (
@@ -337,7 +367,6 @@ const {Selectedcountry}=useCountryApi()
                     <p className='font-semibold mb-3 mt-5'>Country</p>
                     <select
                       className="w-56 h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      value={countries}
                       onChange={handleCountryChange}
                       required
                     >

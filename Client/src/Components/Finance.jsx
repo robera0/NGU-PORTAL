@@ -11,19 +11,21 @@ const Finance = () => {
   const {scrollRef} =useUser()
    
   // fetchong the cs teachers
-  const fetchTeachers=async()=>{
-    const res= await fetch('http://localhost:8000/api/csteachers');
-    if (!res.ok) throw new Error('Failed to fetch');
-    return res.json()
-  }
-  
-    const {data,error}=useQuery({
-      queryKey:['name'],
-      queryFn:fetchTeachers,
-    })
+ const fetchTeachers = async () => {
+  const res = await fetch('http://localhost:8000/api/csteachers');
+  if (!res.ok) throw new Error('Failed to fetch');
+  return res.json();
+};
 
-    if(error)return  <p>Error: {error.message}</p>
-    if(!data) return  <p>their is no</p>
+const { data, error, isLoading } = useQuery({
+  queryKey: ['teachers'],
+  queryFn: fetchTeachers,
+  staleTime: 1000 * 60 * 1, 
+});
+
+if (isLoading) return <p>Loading...</p>;
+if (error) return <p>Error: {error.message}</p>;
+if (!data) return <p>No data</p>;
 
      const renderInstructors = () => {
     return data.map((teacher, i) => (
