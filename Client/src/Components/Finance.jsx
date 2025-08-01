@@ -15,6 +15,7 @@ const Finance = () => {
   // fetchong the cs teachers
  const fetchTeachers = async () => {
   const res = await fetch(`${API_URL}/api/csteachers`);
+    console.log("API_URL:", API_URL)
    const contentType = res.headers.get("content-type");
   if (!contentType || !contentType.includes("application/json")) {
   const text = await res.text();
