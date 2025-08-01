@@ -9,21 +9,13 @@ import { useUser } from './userContext';
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
   const {scrollRef} =useUser()
-    const API_URL = import.meta.env.VITE_API_URL;
-
    
   // fetchong the cs teachers
  const fetchTeachers = async () => {
-  const res = await fetch(`${API_URL}/api/csteachers`);
-    console.log("API_URL:", API_URL)
-   const contentType = res.headers.get("content-type");
-  if (!contentType || !contentType.includes("application/json")) {
-  const text = await res.text();
-  console.error("Received non-JSON response:", text);
-  throw new Error("Server did not return JSON");
+  const res = await fetch('https://ngu-portal.onrender.com/api/csteachers');
+  if (!res.ok) throw new Error('Failed to fetch');
+  return res.json();
 };
-return res.json();
- }
 
 const { data, error, isLoading } = useQuery({
   queryKey: ['teachers'],
