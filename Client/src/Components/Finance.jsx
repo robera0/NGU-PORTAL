@@ -9,10 +9,12 @@ import { useUser } from './userContext';
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
   const {scrollRef} =useUser()
+    const API_URL = import.meta.env.VITE_API_URL;
+
    
   // fetchong the cs teachers
  const fetchTeachers = async () => {
-  const res = await fetch('http://localhost:8000/api/csteachers');
+  const res = await fetch(`${API_URL}/api/csteachers`);
   if (!res.ok) throw new Error('Failed to fetch');
   return res.json();
 };

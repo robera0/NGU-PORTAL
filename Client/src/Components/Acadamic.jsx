@@ -96,10 +96,12 @@
     };
 
   // send the basicn info to the server 
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
 const newStudent=async()=>{
 
-  const res =await fetch('http://localhost:8000/api/students',{
+  const res =await fetch(`${API_URL }/api/students`,{
     method:'POST',
     headers:{
     'Content-Type': 'application/json'
