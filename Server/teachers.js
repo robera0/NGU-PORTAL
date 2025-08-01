@@ -6,7 +6,7 @@
     name: "Dr. Alice Tesfaye",
     subject: "Programming Fundamentals",
     title: "Lecturer",
-    profile:'/nbaProfile.jpeg'
+    profile:'/images.png'
   },
   {
     name: "Mr. Daniel Mulugeta",
