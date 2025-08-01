@@ -104,7 +104,7 @@ const Payment_info = () => {
                         {/*CBE Bank */}
 
                            <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
-                              <img src="src/assets/CBE Birr ( No background ) Logo.png" alt="" className="w-full h-full object-contain" /> 
+                              <img src="/CBE Birr ( No background ) Logo.png" alt="" className="w-full h-full object-contain" /> 
                                 <p>CBE Bank</p>
                         
                         </div>
