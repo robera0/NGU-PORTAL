@@ -4,7 +4,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     
-  const [ImageUrl, setImageurl] = useState('src/assets/defaultUser.jpg'); // profile iamge setter
+  const [ImageUrl, setImageurl] = useState('/defaultUser.jpg'); // profile iamge setter
    //for Basic info Form
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');

@@ -96,7 +96,7 @@ const Payment_info = () => {
                    <div className="flex flex-wrap gap-26">
                        {/*Telebirr */}
                         <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
-                          <img src="src/assets/TeleBirr Logo.png" alt="" className="w-full h-full object-contain" /> 
+                          <img src="/TeleBirr Logo.png" alt="" className="w-full h-full object-contain" /> 
                           <p>Tele Birr</p>
                         </div>
                         
@@ -112,13 +112,13 @@ const Payment_info = () => {
                         {/* Awash Bank */}
 
                           <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
-                              <img src="src/assets/Awash International Bank Logo.png" alt="" className="w-full h-full object-contain" /> 
+                              <img src="/Awash International Bank Logo.png" alt="" className="w-full h-full object-contain" /> 
                               <p>Awash Bank</p>
                         </div>
 
                           {/*Abyssinia */}
                         <div className=" cursor-pointer hover:border-2  hover:border-[#8200DB] rounded-xl gap-10 mb-10 w-40 h-20 duration-100">
-                          <img src="src/assets/Bank of Abyssinia Logo.png" alt="" className="w-full h-full object-contain" /> 
+                          <img src="/Bank of Abyssinia Logo.png" alt="" className="w-full h-full object-contain" /> 
                           <p>Abyssinia</p>
                         </div>
                         

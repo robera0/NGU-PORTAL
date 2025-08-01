@@ -30,7 +30,7 @@ const {isFormValid,setFormValid}=useUser()
           <div className='flex mb-5 justify-between'>
             <div className='flex w-[50%] gap-6'>
               <div
-                style={{ backgroundImage: `url("src/assets/download.jpeg")` }}
+                style={{ backgroundImage: `url("/download.jpeg")` }}
                 className="w-28 h-28 rounded-full bg-gray-200 bg-center bg-cover bg-no-repeat"
               ></div>
               <div className='flex items-center'>
