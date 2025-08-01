@@ -101,7 +101,7 @@
 
 const newStudent=async()=>{
 
-  const res =await fetch(`${API_URL }/api/students`,{
+  const res =await fetch(`${API_URL}/api/students`,{
     method:'POST',
     headers:{
     'Content-Type': 'application/json'

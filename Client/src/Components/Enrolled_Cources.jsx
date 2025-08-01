@@ -14,13 +14,16 @@ import {
   faPenNib
 } from '@fortawesome/free-solid-svg-icons'
 
+ const API_URL = import.meta.env.VITE_API_URL;
+
+
 const Enrolled_Cources = () => {
  
     const [seeAll, setSeeAll] = useState(false);
     const {scrollRef} =useUser()
      // fetchong the courses
   const fetchCources =async()=>{
-    const res= await fetch('http://localhost:8000/api/courses');
+    const res= await fetch(`${API_URL}/api/courses`);
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
   }
