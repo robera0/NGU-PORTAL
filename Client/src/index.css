@@ -10,7 +10,7 @@ body{
 }
 .home{
 
-    background-image: url('./assets/Home.jpg');
+    background-image: url('/Home.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
