@@ -15,6 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.3",
     "@tanstack/react-query": "^5.83.0",
     "@yusifaliyevpro/countries": "^2.2.2",
     "dotenv": "^17.2.1",
