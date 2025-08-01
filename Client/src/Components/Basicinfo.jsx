@@ -88,35 +88,6 @@ const {Selectedcountry}=useCountryApi()
   EmergencyAddress?.trim() &&
   EmrphoneNumber?.trim();
 
-  // send the basicn info to the server 
-
-const newStudent=async()=>{
-
-  const res =await fetch('http://localhost:8000/api/students',{
-    method:'POST',
-    headers:{
-    'Content-Type': 'application/json'
-    },
-    body:JSON.stringify({
-        id:0,
-        First_name :firstName,
-        Middle_name:middleName,
-        Last_name:lastName,
-        Degree_Program:degreeProgram ,
-        id_Number:studentNumber,
-        Email:email,
-        Phone_Number:phoneNumber,
-        Country:countries,
-        High_School_Name:hgname,
-    })
-  })
-  if (!res.ok) {
-    throw new Error('Failed to post data');
-  }
-  const data=await res.json ()
-  console.log (data)
-}
-
   
  const handleNextbtn = () => {
   
@@ -131,7 +102,6 @@ const newStudent=async()=>{
    setValidateForm("successful") ;  
    setBasicFormValid(true) // make the Basic inof valid and go to the Acadamic Form
    setAcSlide(true); 
-   newStudent()
 
   setTimeout(() => {
    

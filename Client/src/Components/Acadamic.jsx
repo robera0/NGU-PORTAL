@@ -94,6 +94,36 @@
       };
       reader.readAsDataURL(file);
     };
+
+  // send the basicn info to the server 
+
+const newStudent=async()=>{
+
+  const res =await fetch('http://localhost:8000/api/students',{
+    method:'POST',
+    headers:{
+    'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+        id:0,
+        First_name :firstName,
+        Middle_name:middleName,
+        Last_name:lastName,
+        Degree_Program:degreeProgram ,
+        id_Number:studentNumber,
+        Email:email,
+        Phone_Number:phoneNumber,
+        Country:countries,
+        High_School_Name:hgname,
+    })
+  })
+  if (!res.ok) {
+    throw new Error('Failed to post data');
+  }
+  const data=await res.json ()
+  console.log (data)
+}
+
   const handleSubmitbtn= ()=>{
       if(!Filled){
 
@@ -103,6 +133,7 @@
       else{
     setValidateAcForm("successful") ;  
     setAcadamicFormValid(true) // make the Acadamic inof valid and go to the Acadamic Form
+       newStudent()
     // some loader gone be here
   }
     }
@@ -255,7 +286,9 @@
             <div  className='flex justify-end  mr-20 mt-5'>
               <button 
               onClick={handleSubmitbtn}
-              className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB] hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>Submit</button>
+              className='flex items-center justify-center text-white cursor-pointer w-42 h-10 bg-[#AF89EA] hover:bg-[#8200DB]
+               hover:font-bold hover:text-white -translate-2  rounded-xl  transition-all duration-800 mt-5 mb-5 '>
+                Submit</button>
             </div>
                 </div>
             </>
