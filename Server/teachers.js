@@ -6,19 +6,19 @@
     name: "Dr. Alice Tesfaye",
     subject: "Programming Fundamentals",
     title: "Lecturer",
-    profile:'/assets/nbaProfile.jpeg'
+    profile:'/nbaProfile.jpeg'
   },
   {
     name: "Mr. Daniel Mulugeta",
     subject: "Data Structures & Algorithms",
     title: "Senior Instructor",
-    profile:'/assets/Daniel.jpeg'
+    profile:'/Daniel.jpeg'
   },
   {
     name: "Ms. Selamawit Bekele",
     subject: "Database Systems",
     title: "Lecturer",
-     profile:'/assets/yeatProfile.jpeg'
+     profile:'/yeatProfile.jpeg'
   },
   {
     name: "Dr. Yonas Alemayehu",
@@ -30,7 +30,7 @@
     name: "Mr. Bereket Kebede",
     subject: "Operating Systems",
     title: "Lab Instructor",
-     profile:'/src/assets/kalkidan.jpeg'
+     profile:'/kalkidan.jpeg'
   },
   {
     name: "Mrs. Kalkidan Abebe",
