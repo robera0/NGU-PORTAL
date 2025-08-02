@@ -16,7 +16,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faCode,
-    grade: "A"
+    grade: "A",
+    grade_point: 4.0
   },
   {
     course_id: "CSCI202",
@@ -25,7 +26,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faNetworkWired,
-    grade: "A-"
+    grade: "A-",
+    grade_point: 3.7
   },
   {
     course_id: "MATH201",
@@ -34,7 +36,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faSquareRootVariable,
-    grade: "B+"
+    grade: "B+",
+    grade_point: 3.3
   },
   {
     course_id: "STAT210",
@@ -43,7 +46,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faChartBar,
-    grade: "B"
+    grade: "B",
+    grade_point: 3.0
   },
   {
     course_id: "CSCI205",
@@ -52,7 +56,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faDatabase,
-    grade: "A"
+    grade: "A",
+    grade_point: 4.0
   },
   {
     course_id: "CSCI230",
@@ -61,7 +66,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faMicrochip,
-    grade: "A"
+    grade: "A",
+    grade_point: 4.0
   },
   {
     course_id: "ENGL103",
@@ -70,7 +76,8 @@ const enrolledCourses = [
     credit_hours: 3,
     semester: "Fall 2025",
     icon: faPenNib,
-    grade: "A-"
+    grade: "A-",
+    grade_point: 3.7
   }
 ];
 
