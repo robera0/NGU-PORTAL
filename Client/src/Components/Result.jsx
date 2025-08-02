@@ -21,7 +21,7 @@ const Result = () => {
 
   if (loadingCourses) return <p  className="font-bold text-xl text-blue-400">Loading...</p>;
 if (courseserror) return <p>Error: {courseserror.message}</p>;
-if (!course) return <p className="font-bold text-xl text-red-400">No data</p>;
+if (!course) return <p className="font-bold text-xl text-red-400">No Courses</p>;
  
 const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
 
