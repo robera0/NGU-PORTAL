@@ -34,7 +34,7 @@ if (!data) return <p>No data</p>;
          style={{
           backgroundImage: teacher.profile
             ? `url(${teacher.profile})`
-            : 'url("/src/assets/defaultUser.jpg")'
+            : 'url("/defaultUser.jpg")'
         }}
           className="rounded-full shadow-xl  flex justify-center items-center border-2 border-purple-500 bg-center bg-cover bg-no-repeat w-20 h-20"
         />

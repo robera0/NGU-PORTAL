@@ -1,21 +1,43 @@
 import SideBar from "./SideBar"
 import NavBar from './NavBar'
 import { useUser } from "./userContext"
+import { useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 
 const Result = () => {
 
      const{ImageUrl}= useUser()
-
+ // getting the enrolled courses
   const fetchUser= async()=>{
 
-    const res  =await fetch('http://localhost:8000/api/students')
-    const data =await res.json()
-
-    console.log(data)
+    const res  =await fetch('https://ngu-portal.onrender.com/api/courses')
+  return res.json()
   }
 
-  fetchUser()
-  
+  const {course,loadingCourses,courseserror}=useQuery({
+    queryKey:["courses"],
+    queryFn:fetchUser
+  })
+
+  if (loadingCourses) return <p  className="font-bold text-xl text-blue-400">Loading...</p>;
+if (courseserror) return <p>Error: {courseserror.message}</p>;
+if (!course) return <p className="font-bold text-xl text-red-400">No data</p>;
+ 
+const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
+
+ // getting the basic Student info
+
+ const fetchStud=async()=>{
+
+  const res = await fetch ('https://ngu-portal.onrender.com/api/students')
+
+  return res.json()
+ }
+ const {Stud ,loadingstudents,studserror}=useQuery({
+  queryKey:'[courses]',
+  queryFn:fetchStud
+ })
+
   return (
       <div className="flex h-screen">
       {/* Sidebar */}
@@ -43,37 +65,25 @@ const Result = () => {
                         </tr>
                       </thead>
                       <tbody className="text-gray-800 font-medium">
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">CS101</td>
-                          <td className="px-6 py-4">Introduction to Computer Science</td>
-                          <td className="px-6 py-4">3</td>
-                          <td className="px-6 py-4">A+</td>
-                           <td className="px-6 py-4">4</td>
-                        </tr>
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">MA102</td>
-                          <td className="px-6 py-4">Calculus I</td>
-                          <td className="px-6 py-4">4</td>
-                          <td className="px-6 py-4">A+</td>
-                           <td className="px-6 py-4">4</td>
-                        </tr>
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">ENG103</td>
-                          <td className="px-6 py-4">Academic Writing</td>
-                          <td className="px-6 py-4">2</td>
-                          <td className="px-6 py-4">B+</td>
-                           <td className="px-6 py-4">3</td>
-                        </tr>
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">ECN201</td>
-                          <td className="px-6 py-4">Advanced DataBase</td>
-                          <td className="px-6 py-4">4</td>
-                          <td className="px-6 py-4">A-</td>
-                           <td className="px-6 py-4">4</td>
-                        </tr>
+                          {course.map((c,indx)=>(
+                             <tr key={indx} className="bg-white rounded-lg shadow-sm">
+                               <td className="px-6 py-4">{c.course_id}</td>
+                          <td className="px-6 py-4">{c.course_name}</td>
+                          <td className="px-6 py-4">{c.credit_hours}</td>
+                          <td className="px-6 py-4">{c.grade}</td>
+                           <td className="px-6 py-4">{c.grade_point}</td>
+                             </tr>
+
+                          ))}
+                          
                          <tr className=" text-[#552bcb]">
                           <td className="px-6 py-4" colSpan={2}>Total Credit Requirement</td>
-                          <td className="px-6 py-4" >Total Credit Taken</td>
+                         <td className="px-6 py-4">
+                              <div className="flex items-center gap-2">
+                                <span>Total Credit Taken:</span>
+                                <span className="text-[#552bcb] font-bold">{totalCreditHr}</span>
+                              </div>
+                            </td>
                           <td className="px-6 py-4" >CGPA</td>
                           </tr>
                       </tbody>
@@ -119,7 +129,8 @@ const Result = () => {
                               </div>
 
                               <div className="mt-3 mb-5  space-y-2">
-                                <h3>Name</h3>
+                              {studserror ? <p>Error: {studserror.message}</p> : null}
+                                 <h3>Name</h3>
                                 <h3>Department</h3>
                                 <h3>Student Id</h3>
                                 <h3>Enrollemnt</h3>
