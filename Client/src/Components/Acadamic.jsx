@@ -22,6 +22,18 @@
       hgname, setHgnamel,
       transcript, setTranscript,
       listTranscript, setListTranscript,
+      firstName, setFirstName,
+    middleName, setMiddleName,
+    lastName, setLastName,
+    studentNumber, setStudentNumber,
+    yearLevel, setYearLevel,
+    degreeProgram, setDegreeProgram,
+    email, setEmail,
+    phoneNumber, setPhoneNumber,
+    birthMonth, setBirthMonth,
+    birthDay, setBirthDay,
+    birthYear, setBirthYear,
+    countries,
       matric, setMatric,extra,setExtra, scrollRef,isAcadamicFormValid ,setAcadamicFormValid
     } = useUser();
 

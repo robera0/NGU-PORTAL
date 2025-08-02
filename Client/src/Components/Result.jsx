@@ -14,18 +14,11 @@ const Result = () => {
   return res.json()
   }
 
-  const {course,loadingCourses,courseserror}=useQuery({
+  const {data:course,loadingCourses,courseserror}=useQuery({
     queryKey:["courses"],
     queryFn:fetchUser
   })
-
-  if (loadingCourses) return <p  className="font-bold text-xl text-blue-400">Loading...</p>;
-if (courseserror) return <p>Error: {courseserror.message}</p>;
-if (!course) return <p className="font-bold text-xl text-red-400">No Courses</p>;
- 
-const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
-
- // getting the basic Student info
+  // getting the basic Student info
 
  const fetchStud=async()=>{
 
@@ -33,10 +26,15 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
 
   return res.json()
  }
- const {Stud ,loadingstudents,studserror}=useQuery({
+ const {data:Stud ,loadingstudents,studserror}=useQuery({
   queryKey:'[courses]',
   queryFn:fetchStud
  })
+
+ console.log(Stud)
+const totalCreditHr = Array.isArray(course)
+  ? course.reduce((sum, c) => sum + parseFloat(c.credit_hours), 0)
+  : 0;
 
   return (
       <div className="flex h-screen">
@@ -65,7 +63,10 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
                         </tr>
                       </thead>
                       <tbody className="text-gray-800 font-medium">
-                          {course.map((c,indx)=>(
+                        {courseserror ? <p>Error: {courseserror.message}</p> : null}
+                        {!course? <p className="font-bold text-xl text-red-400">No Courses</p>: null}
+                        {loadingCourses? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
+                          {Array.isArray(course) ? course.map((c,indx)=>(
                              <tr key={indx} className="bg-white rounded-lg shadow-sm">
                                <td className="px-6 py-4">{c.course_id}</td>
                           <td className="px-6 py-4">{c.course_name}</td>
@@ -74,7 +75,17 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
                            <td className="px-6 py-4">{c.grade_point}</td>
                              </tr>
 
-                          ))}
+                          )):<>
+                             <tr className="bg-white rounded-lg shadow-sm">
+                               <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                           <td className="px-6 py-4"></td>
+                             </tr>
+                          
+                          
+                          </> }
                           
                          <tr className=" text-[#552bcb]">
                           <td className="px-6 py-4" colSpan={2}>Total Credit Requirement</td>
@@ -114,7 +125,7 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
                 </div>
                  {/*Student infos */}
                 <div className="flex flex-wrap mt-10 gap-6  h-screeen ">
-                     <div className="flex  -mt-4 w-[40%] flex-wrap pt-5  shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing gap-16">
+                     <div className="flex  -mt-4 mb-5 w-[40%] flex-wrap pt-5  shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing gap-16">
                           <div
                               className=" ml-5 rounded-full "
                             > 
@@ -129,7 +140,7 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
                               </div>
 
                               <div className="mt-3 mb-5  space-y-2">
-                              {studserror ? <p>Error: {studserror.message}</p> : null}
+                             {studserror ? <p>Error: {studserror.message}</p> : null}
                                  <h3>Name</h3>
                                 <h3>Department</h3>
                                 <h3>Student Id</h3>
@@ -143,7 +154,7 @@ const totalCreditHr= course.reduce((sum,c)=> sum + parseFloat(c.credit_hours),0)
                      </div>
                      {/*Overall performance */}
 
-                       <div className="  w-[50%] -mt-4 h-screeen shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing ">
+                       <div className="  w-[50%]  mb-5 -mt-4 h-screeen shadow-2xl inset-shadow-2xs border-t-purple-500 border-spacing ">
                          
                            <div className=" flex justify-center text-[#552bcb] h-10 items-center text-center bg-purple-100">
                              <h1 className=" text-[#552bcb] font-bold">Your overall performance This semester</h1>
