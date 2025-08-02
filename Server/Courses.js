@@ -15,7 +15,8 @@ const enrolledCourses = [
     instructor: "Dr. Alice Tesfaye",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faCode
+    icon: faCode,
+    grade: "A"
   },
   {
     course_id: "CSCI202",
@@ -23,7 +24,8 @@ const enrolledCourses = [
     instructor: "Mr. Daniel Mulugeta",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faNetworkWired
+    icon: faNetworkWired,
+    grade: "A-"
   },
   {
     course_id: "MATH201",
@@ -31,7 +33,8 @@ const enrolledCourses = [
     instructor: "Dr. Sara Hailu",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faSquareRootVariable
+    icon: faSquareRootVariable,
+    grade: "B+"
   },
   {
     course_id: "STAT210",
@@ -39,7 +42,8 @@ const enrolledCourses = [
     instructor: "Mr. Elias Tadesse",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faChartBar
+    icon: faChartBar,
+    grade: "B"
   },
   {
     course_id: "CSCI205",
@@ -47,7 +51,8 @@ const enrolledCourses = [
     instructor: "Ms. Selamawit Bekele",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faDatabase
+    icon: faDatabase,
+    grade: "A"
   },
   {
     course_id: "CSCI230",
@@ -55,7 +60,8 @@ const enrolledCourses = [
     instructor: "Mr. Yohannes Mekonnen",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faMicrochip
+    icon: faMicrochip,
+    grade: "A"
   },
   {
     course_id: "ENGL103",
@@ -63,7 +69,8 @@ const enrolledCourses = [
     instructor: "Ms. Bethlehem Alemu",
     credit_hours: 3,
     semester: "Fall 2025",
-    icon: faPenNib
+    icon: faPenNib,
+    grade: "A-"
   }
 ];
 
