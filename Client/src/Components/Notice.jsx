@@ -71,16 +71,17 @@ const Notice = () => {
         <div className="space-y-3 mt-10  ml-10">
      <div className="flex space-x-2 items-center">
         <div>
-           <FontAwesomeIcon className="text-4xl text-purple-600" icon={faBiohazard} />
+           <FontAwesomeIcon className="text-4xl text-[#552bcb]" icon={faBiohazard} />
         </div>
           <h1>Daily Notice</h1>
      </div>
    
        {Array.isArray(Stud) && Stud.map((s)=>(
-                        <div> 
-                          <h1 className='text-2xl font-bold'>{`${getGreeting()},${" "} ${s.id.firstname}!`}</h1>
+                        <div className="flex"> 
+                          <h1 className='text-2xl font-bold'>{`${getGreeting()},${" "}`}</h1>
+                          <h1 className='text-2xl font-bold text-[#552bcb]' >{` ${s.id.firstname}!`}</h1>
                         </div>))}
-    <p>{`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice}`} `}</p>
+    <p className="text-gray-500">{`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice}`} `}</p>
         </div>
     
 
@@ -88,7 +89,7 @@ const Notice = () => {
 
         <div className="mt-8 space-y-6 px-8">
           {isLoading && <p>Loading notices...</p>}
-          {error && <p className="text-red-500">Failed to load notices.</p>}
+          {error && <p className="text-red-500">Failed to load messages.</p>}
 
           {Array.isArray(notices) &&
             notices.map((notice, index) => (
