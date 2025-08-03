@@ -96,4 +96,4 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-[Specify the license under which your project is released (e.g.,
+the front end is deploed on netlify and the back is on render
