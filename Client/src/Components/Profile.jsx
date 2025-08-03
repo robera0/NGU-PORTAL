@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import SideBar from './SideBar'
 import { useUser } from './userContext'
+import { useQuery } from '@tanstack/react-query'
 const Profile = () => {
-
+ const date = new Date()
   const[Active,setActive]=useState(true)
 
   const{ImageUrl,setImageurl}=useUser()
@@ -22,6 +23,25 @@ const Profile = () => {
              reader.readAsDataURL(file);  
         }
    }
+const fetchStud=async()=>{
+
+  const res = await fetch('https://ngu-portal.onrender.com/api/students')
+
+  return res.json()
+ }
+ const {data:Stud ,loadingstudents,studserror}=useQuery({
+  queryKey:'[stud]',
+  queryFn:fetchStud
+ })
+
+ const handleYearLevel=()=>{
+  const year_level = date.getUTCFullYear() 
+  return year_level
+}
+
+const year = handleYearLevel(Stud)
+
+
 
   return (
     <div className='flex '>
@@ -47,15 +67,35 @@ const Profile = () => {
                   </div>
 
                  <div className='font-semibold mt-3  space-y-2 '>
-                    <h1 className='text-xl'>Robera Ararsa</h1>
-                       <p>ID:24/4525</p>
-                         <p>B.Sc. Computer Science</p>
+                    {!Stud? <p className="font-bold text-xl text-red-400">No Students</p>: null}
+                        {loadingstudents? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
+                  {Array.isArray(Stud) ? Stud.map((s,index)=>(
+                      <div  className='font-semibold mt-3  space-y-2 ' key={index}> 
+                          <h1 className='text-xl'>{s.id.firstname}{ " "} {s.id.middlename}</h1>
+                           <p>ID : {s.id.student_id}</p>
+                           <p>{s.id.program}</p>
+                           <div className=' flex space-x-2'>
+                             <p>
+                              {`${year -s.id.batch} Year`}
+                               </p>
+                                <span className={Active ? 'text-green-500' : 'text-red-500'}>
+                                  {Active ? 'Active' : 'Not Active'}
+                                </span>
+                             
+                           </div>
+                      </div>
+                  )) :
+                  <>
+                  <h1 className='text-xl'></h1>
+                       <p></p>
+                         <p></p>
                       <p>
-                          3rd Year{' '}
+                         {' '}
                           <span className={Active ? 'text-green-500' : 'text-red-500'}>
                             {Active ? 'Active' : 'Not Active'}
                           </span>
                         </p>
+                  </>}
                  </div>
                
           </div>

@@ -1,10 +1,28 @@
 import { useState,useRef, createContext, useContext } from "react";
-
+import { useQuery } from "@tanstack/react-query";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    
-  const [ImageUrl, setImageurl] = useState('/defaultUser.jpg'); // profile iamge setter
+
+
+
+ const fetchStud=async()=>{
+
+  const res = await fetch('https://ngu-portal.onrender.com/api/students')
+
+  return res.json()
+ }
+ const {data:Stud ,loadingstudents,studserror}=useQuery({
+  queryKey:'[stud]',
+  queryFn:fetchStud
+ })
+  const profile = Stud?.find(items=> items.id.profile)
+
+  console.log(profile)
+ 
+ const [ImageUrl, setImageurl] = useState( profile ? profile : '/defaultUser.jpg'); // profile iamge setter
+ 
+  
    //for Basic info Form
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -17,6 +35,7 @@ export const UserProvider = ({ children }) => {
   const [birthMonth, setBirthMonth] = useState('');
   const [birthDay, setBirthDay] = useState('');
   const [birthYear, setBirthYear] = useState('');
+  const [gender,setGender]=useState('')
   const [permanentAddress, setPermanentAddress] = useState('');
   const [city, setCity] = useState('');
   const [emrfirstName, setEmrFirstName] = useState('');
@@ -53,7 +72,7 @@ export const UserProvider = ({ children }) => {
         phoneNumber, setPhoneNumber,
         birthMonth, setBirthMonth,
         birthDay, setBirthDay,
-        birthYear, setBirthYear,
+        birthYear, setBirthYear,gender,setGender,
         permanentAddress, setPermanentAddress,
         city, setCity,
         emrfirstName, setEmrFirstName,

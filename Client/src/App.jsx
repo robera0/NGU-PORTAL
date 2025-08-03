@@ -13,12 +13,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const App = () => {
   const queryclient = new QueryClient()
   return (
-      
+       <QueryClientProvider client={queryclient}>
         <UserProvider>
            <CountryProvider>
              <UserScheduler>
                 <BrowserRouter>
-                 <QueryClientProvider client={queryclient}>
+                
        <Routes>
          <Route>
          
@@ -31,11 +31,11 @@ const App = () => {
             <Route path='/schedule' element={<Schedule/>}/>
          </Route>
        </Routes>    
-        </QueryClientProvider> 
     </BrowserRouter>
     </UserScheduler>
     </CountryProvider>
           </UserProvider>
+           </QueryClientProvider> 
      
      
    

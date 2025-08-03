@@ -5,6 +5,8 @@
   import FileLoader from '../Inputs/FileLoader';
 
   const Acadamic = () => {
+
+    const date = new Date()
     const [notify, setNotify] = useState(false);
     const [matricNotify, setMatricNotify] = useState(false);
     const [showTranscript, setShowTranscript] = useState(false);
@@ -28,12 +30,13 @@
     studentNumber, setStudentNumber,
     yearLevel, setYearLevel,
     degreeProgram, setDegreeProgram,
-    email, setEmail,
+    email, setEmail,permanentAddress,
     phoneNumber, setPhoneNumber,
     birthMonth, setBirthMonth,
+    emrfirstName,
     birthDay, setBirthDay,
     birthYear, setBirthYear,
-    countries,
+    countries,gender,setGender,
       matric, setMatric,extra,setExtra, scrollRef,isAcadamicFormValid ,setAcadamicFormValid
     } = useUser();
 
@@ -110,22 +113,33 @@
   // send the basicn info to the server 
 const newStudent=async()=>{
 
-  const res =await fetch('https://ngu-portal.onrender.com/api/students',{
+  const res = await fetch('https://localhost:8000/api/students',{
     method:'POST',
     headers:{
     'Content-Type': 'application/json'
     },
     body:JSON.stringify({
-        id:0,
-        First_name :firstName,
-        Middle_name:middleName,
-        Last_name:lastName,
-        Degree_Program:degreeProgram ,
-        id_Number:studentNumber,
-        Email:email,
-        Phone_Number:phoneNumber,
-        Country:countries,
-        High_School_Name:hgname,
+         firstname: firstName,
+          middlename: middleName,
+          lastname: lastName,
+          student_id: studentNumber,
+          email: email,
+          phone_number: phoneNumber,
+          gender: gender, 
+          date_of_birth: `${birthYear}-${birthMonth}-${birthDay}`,
+          country: countries,
+          address: permanentAddress,
+          college: "New Generation",
+          department: degreeProgram,
+          program: `BSC ${degreeProgram}`,
+          enrollment: {
+            year: yearLevel,
+            student_type: "Regular" 
+          },
+          batch:`${date.getFullYear()}`,
+          semester: "",
+          gpa: "",
+          emergency_contact:emrfirstName
     })
   })
   if (!res.ok) {

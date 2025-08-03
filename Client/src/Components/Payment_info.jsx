@@ -5,7 +5,7 @@ import IdInput from "../Inputs/IdInput";
 import { useState } from "react";
 import Loader from "../Inputs/Loading";
 import SideBar from "./SideBar";
-
+import { useQuery } from "@tanstack/react-query";
 const Payment_info = () => {
   const date = new Date();
   const Month = [
@@ -63,10 +63,20 @@ const Payment_info = () => {
   })
   .from(element)
   .save();
-
-
-
   }
+
+  const fetchUser= async()=>{
+
+    const res  =await  fetch('https://ngu-portal.onrender.com/api/courses')
+  return res.json()
+  }
+
+  const {data:course,loadingCourses,courseserror}=useQuery({
+    queryKey:["courses"],
+    queryFn:fetchUser
+  })
+
+
 
 
   return (
@@ -143,29 +153,26 @@ const Payment_info = () => {
                         </tr>
                       </thead>
                       <tbody className="text-gray-800 font-medium">
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">CS101</td>
-                          <td className="px-6 py-4">Introduction to Computer Science</td>
-                          <td className="px-6 py-4">3</td>
-                          <td className="px-6 py-4">$150</td>
-                        </tr>
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">MA102</td>
-                          <td className="px-6 py-4">Calculus I</td>
-                          <td className="px-6 py-4">4</td>
-                          <td className="px-6 py-4">$200</td>
-                        </tr>
-                        <tr className="bg-white rounded-lg shadow-sm">
-                          <td className="px-6 py-4">ENG103</td>
-                          <td className="px-6 py-4">Academic Writing</td>
-                          <td className="px-6 py-4">2</td>
-                          <td className="px-6 py-4">$100</td>
-                        </tr>
-                        <tr className="bg-purple-50 text-[#552bcb] font-semibold">
-                          <td className="px-6 py-4" colSpan="2">Total</td>
-                          <td className="px-6 py-4">9</td>
-                          <td className="px-6 py-4">$450</td>
-                        </tr>
+                           {courseserror ? <p>Error: {courseserror.message}</p> : null}
+                        {!course? <p className="font-bold text-xl text-center text-red-400">No Courses</p>: null}
+                        {loadingCourses? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
+                          {Array.isArray(course) ? course.map((c,indx)=>(
+                             <tr key={indx} className="bg-white rounded-lg shadow-sm">
+                               <td className="px-6 py-4">{c.course_id}</td>
+                          <td className="px-6 py-4">{c.course_name}</td>
+                          <td className="px-6 py-4">{c.credit_hours}</td>
+                           <td className="px-6 py-4">{c.course_fee}</td>
+                             </tr>
+
+                          )):<>
+                             <tr className="bg-white rounded-lg shadow-sm">
+                               <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                          <td className="px-6 py-4"></td>
+                           <td className="px-6 py-4"></td>
+                             </tr>
+                          </> }
                       </tbody>
                     </table>
                       <button

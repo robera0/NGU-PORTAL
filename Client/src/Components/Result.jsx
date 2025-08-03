@@ -2,15 +2,13 @@ import SideBar from "./SideBar"
 import NavBar from './NavBar'
 import { useUser } from "./userContext"
 import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
-
 const Result = () => {
 
      const{ImageUrl}= useUser()
  // getting the enrolled courses
   const fetchUser= async()=>{
 
-    const res  =await fetch('https://ngu-portal.onrender.com/api/courses')
+    const res  =await  fetch('https://ngu-portal.onrender.com/api/courses')
   return res.json()
   }
 
@@ -22,16 +20,15 @@ const Result = () => {
 
  const fetchStud=async()=>{
 
-  const res = await fetch ('https://ngu-portal.onrender.com/api/students')
+  const res = await fetch('https://ngu-portal.onrender.com/api/students')
 
   return res.json()
  }
  const {data:Stud ,loadingstudents,studserror}=useQuery({
-  queryKey:'[courses]',
+  queryKey:'[stud]',
   queryFn:fetchStud
  })
 
- console.log(Stud)
 const totalCreditHr = Array.isArray(course)
   ? course.reduce((sum, c) => sum + parseFloat(c.credit_hours), 0)
   : 0;
@@ -64,7 +61,7 @@ const totalCreditHr = Array.isArray(course)
                       </thead>
                       <tbody className="text-gray-800 font-medium">
                         {courseserror ? <p>Error: {courseserror.message}</p> : null}
-                        {!course? <p className="font-bold text-xl text-red-400">No Courses</p>: null}
+                        {!course? <p className="font-bold text-xl text-center text-red-400">No Courses</p>: null}
                         {loadingCourses? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
                           {Array.isArray(course) ? course.map((c,indx)=>(
                              <tr key={indx} className="bg-white rounded-lg shadow-sm">
@@ -140,17 +137,34 @@ const totalCreditHr = Array.isArray(course)
                               </div>
 
                               <div className="mt-3 mb-5  space-y-2">
-                             {studserror ? <p>Error: {studserror.message}</p> : null}
-                                 <h3>Name</h3>
-                                <h3>Department</h3>
-                                <h3>Student Id</h3>
-                                <h3>Enrollemnt</h3>
-                                <h3>Batch</h3>
-
+                            {!Stud? <p className="font-bold text-xl text-red-400">No Students</p>: null}
+                        {loadingstudents? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
+                                {Array.isArray(Stud) ? Stud.map((s) => (
+                                  <div>
+                                     <div className="flex space-x-2">
+                                     <h3> Name :</h3>
+                                     <h3 className="font-bold text-[#552bcb]">{s.id.firstname} {s.id.middlename}</h3>
+                                     </div>
+                                      <div className="flex space-x-2">
+                                        <h3>Department :</h3>
+                                        <h3 className="font-bold text-[#552bcb]">{s.id.department}</h3>
+                                     </div>
+                                     <div className="flex space-x-2">
+                                      <h3>Student Id :</h3>
+                                          <h3 className="font-bold text-[#552bcb]">{s.id.student_id} </h3>
+                                     </div>
+                                     <div className="flex space-x-2">
+                                         <h3>Enrollment:</h3>
+                                            <h3 className="font-bold text-[#552bcb]">{s.id.enrollment.year}</h3>
+                                     </div>
+                                     <div className="flex space-x-2">
+                                       <h3>Batch :</h3>
+                                              <h3 className="font-bold text-[#552bcb]">{s.id.batch}</h3>
+                                     </div>
+                                  </div>
+                                )) : null}
                               </div>
-                             
                            </div>
-                        
                      </div>
                      {/*Overall performance */}
 
