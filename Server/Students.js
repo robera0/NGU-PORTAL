@@ -4,7 +4,7 @@ const Students = [
       firstname:"Robera",
       middlename:"Ararsa",
       lastname:"Ulu",
-      student_id: 24/45/25,
+      student_id: "24/45/25",
       email: "robera.araraa@example.com",
       phone_number: +251935385438,
       gender: "Male",
