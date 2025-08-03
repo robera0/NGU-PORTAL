@@ -44,10 +44,10 @@ app.get('/api/courses',cors(corsOptions),(req,res)=>{
 app.post('/api/students', (req,res)=>{
 
 const { firstname, middlename, lastname, student_id, email, phone_number, gender, date_of_birth, country, address, 
-  college, department, program, emergency_contact,  enrollment: { year, student_type }= {}, batch, semester, gpa
+  college, department, program, emergency_contact,  enrollment: { year, student_type }= {}, batch, semester, gpa, Profile
           }= req.body
 
-const newStud={ id:Students.length + 1 , firstname, middlename, lastname, student_id, email, phone_number, gender, date_of_birth, country, address, college, department, program, emergency_contact,  enrollment: { year, student_type }, batch, semester, gpa}
+const newStud={ id:Students.length + 1 , firstname, middlename, lastname, student_id, email, phone_number, gender, date_of_birth, country, address, college, department, program, emergency_contact,  enrollment: { year, student_type }, batch, semester, gpa, Profile}
 
 Students.push(newStud)
 

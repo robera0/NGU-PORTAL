@@ -1,3 +1,5 @@
+import Profile from "../Client/src/Components/Profile";
+
 const Students = [
   {
     id: {
@@ -21,7 +23,8 @@ const Students = [
       },
       batch:2015,
       semester: "6th",
-      gpa: 3.75
+      gpa: 3.75,
+      Profile:"/profile.jpg"
     }
   }
 ];
