@@ -11,7 +11,7 @@ const Notice = () => {
   const { slide, setSlide } = useUser() // Not used for individual toggling anymore
   const [openIndex, setOpenIndex] = useState(null)
       
-
+  // fetch the messages
   const fetchDailyNotice = async () => {
     const res = await fetch('https://ngu-portal.onrender.com/api/notice')
     return res.json()
@@ -25,7 +25,7 @@ const Notice = () => {
   const handleSlide = (index) => {
     setOpenIndex(prev => (prev === index ? null : index))
   }
-
+   // fetch the students name
     const fetchStud=async()=>{
   
     const res = await fetch('https://ngu-portal.onrender.com/api/students')

@@ -3,10 +3,23 @@ import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUser } from './userContext'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 const NavBar = () => {
 
-
     const{ImageUrl}=useUser()
+      // fetch the messages
+  const fetchDailyNotice = async () => {
+    const res = await fetch('https://ngu-portal.onrender.com/api/notice')
+    return res.json()
+  }
+
+  const { data: notices, isLoading, error } = useQuery({
+    queryKey: ['notices'],
+    queryFn: fetchDailyNotice
+  })
+ 
+  const NumofNotice =notices?.length
+
   return (
     <div>
         <nav className='flex  gap-10'>
@@ -30,15 +43,18 @@ const NavBar = () => {
                    </div>
                         
             </Link>
-               <span className='pt-5  mr-8 relative'>
-                <div className='w-2 h-2 absolute top-7  bg-red-700 rounded-[100%]'></div>
+           
+            <Link to = '/notice' className='pt-5  mr-8 relative'>
+                <div className='w-7 h-7 absolute bottom-7  bg-red-700 rounded-[100%]'>
+                  <p className='text-white text-center cursor-pointer'>{NumofNotice}</p>
+                </div>
                 <button className='cursor-pointer'>
                      <FontAwesomeIcon
-                className='md:text-2xl text-black'
+                className='md:text-4xl lg-4xl text-black'
                 icon={faBell}/>
                 </button>
+            </Link>
                
-               </span>
         </nav>
     </div>
   )
