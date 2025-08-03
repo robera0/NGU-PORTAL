@@ -19,6 +19,7 @@ const Payment_info = () => {
 
   const [paymentList, setPaymentList] = useState([]);
   const [paymentAmount, setPaymentAmount] = useState('');
+  const[paymentFailed,setPaymenFailed]=useState(false)
   const [History, setHistory] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
 
@@ -26,18 +27,7 @@ const Payment_info = () => {
     setPaymentAmount(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    const IntervalPayment = setInterval(() => {
-      setIsLoading(true);
-    }, 120);
 
-    setTimeout(() => {
-      clearInterval(IntervalPayment);
-      setIsLoading(false);
-      setPaymentList(prevList => [...prevList, paymentAmount].reverse());
-       e.preventDefault()
-    }, 4000);
-  };
 
   const handleHistory = () => {
     setHistory(prev => !prev);
@@ -76,8 +66,30 @@ const Payment_info = () => {
     queryFn:fetchUser
   })
 
+ const fee= course?.reduce((sum,c)=> sum + c.course_fee ,0) || "Calculating"
+ 
+  const handleSubmit = (e) => {
+     if(paymentAmount === "") {
+        setPaymenFailed("dont leave it empty")
+     }
+     else if( paymentAmount != fee)  {
+      setPaymenFailed(`you enterd ${paymentAmount} but you have to pay ${fee}`)
+    }
+     else{
+           const IntervalPayment = setInterval(() => {
+      setIsLoading(true);
+    }, 120);
 
-
+    setTimeout(() => {
+      clearInterval(IntervalPayment);
+      setIsLoading(false);
+      setPaymentList(prevList => [...prevList, paymentAmount].reverse());
+       e.preventDefault()
+    }, 4000);
+    setPaymenFailed("payment Successfull")
+     }
+ 
+  };
 
   return (
     <div className="flex h-screen">
@@ -197,11 +209,10 @@ const Payment_info = () => {
 
               <div className="flex gap-6 items-center">
                 <label className="text-xl font-semibold text-gray-700">Fee:</label>
-                <span className="text-xl font-bold text-green-600">200$</span>
+                <span className="text-xl font-bold text-green-600">{`${fee} birr`}</span>
 
                 <input
                   type="number"
-                  value={paymentAmount}
                   onChange={handleAmount}
                   className="border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 w-32"
                   placeholder="Enter amount"
@@ -213,6 +224,19 @@ const Payment_info = () => {
                 >
                   Submit Payment
                 </button>
+              <p
+                className={`${
+                  paymentFailed === "dont leave it empty" ||
+                  paymentFailed === `you enterd ${paymentAmount} but you have to pay ${fee}`
+                    ? "text-red-400"
+                    : paymentFailed === "payment Successfull"
+                     &&"text-green-400"
+                    
+                } text-center font-bold`}
+              >
+                {paymentFailed}
+              </p>
+                          
               </div>
             </div>
 

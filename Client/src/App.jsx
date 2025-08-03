@@ -10,6 +10,7 @@ import Result from './Components/Result'
 import Courses from './Components/Courses'
 import Schedule from './Components/Schedule'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Notice from './Components/Notice'
 const App = () => {
   const queryclient = new QueryClient()
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route path='/result' element={<Result/>}/>
             <Route path ='/courses' element= {<Courses/>}/>
             <Route path='/schedule' element={<Schedule/>}/>
+            <Route path='/notice' element={<Notice/>}/>
          </Route>
        </Routes>    
     </BrowserRouter>
