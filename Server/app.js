@@ -5,6 +5,7 @@ import path from 'path'
 import csTeachers from './teachers.js'
 import enrolledCourses from './Courses.js'
 import Students from './Students.js'
+import dailyNotices from './dailyNotice.js'
 
 const PORT =process.env.PORT || 8000
 
@@ -65,6 +66,13 @@ app.get('/api/students',(req,res)=>{
 app.get('/api/courses',(req,res)=>{
 
  res.status(200).json(enrolledCourses)
+})
+
+//get daily notice 
+
+app.get('/api/notice',(req,res)=>{
+
+  res.status(200).json(dailyNotices)
 })
 
 
