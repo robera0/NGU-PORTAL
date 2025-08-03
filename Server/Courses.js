@@ -84,7 +84,7 @@ const enrolledCourses = [
     icon: faPenNib,
     grade: "A-",
     grade_point: 3.7,
-    course_fee: 1200
+    course_fee: 1200,
   }
 ];
 

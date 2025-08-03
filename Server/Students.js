@@ -1,4 +1,3 @@
-import Profile from "../Client/src/Components/Profile";
 
 const Students = [
   {
