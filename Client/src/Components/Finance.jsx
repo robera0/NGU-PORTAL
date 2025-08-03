@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query'
 import { useRef } from 'react';
 import { useUser } from './userContext';
+ import FileLoader from '../Inputs/FileLoader';
 
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
@@ -23,7 +24,7 @@ const { data, error, isLoading } = useQuery({
   staleTime: 1000 * 60 * 1, 
 });
 
-if (isLoading) return <p>Loading...</p>;
+if (isLoading) return <p><FileLoader /></p>;
 if (error) return <p>Error: {error.message}</p>;
 if (!data) return <p>No data</p>;
 

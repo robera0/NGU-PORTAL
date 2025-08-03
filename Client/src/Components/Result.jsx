@@ -2,6 +2,8 @@ import SideBar from "./SideBar"
 import NavBar from './NavBar'
 import { useUser } from "./userContext"
 import { useQuery } from "@tanstack/react-query"
+ import FileLoader from '../Inputs/FileLoader';
+
 const Result = () => {
 
      const{ImageUrl}= useUser()
@@ -61,8 +63,8 @@ const totalCreditHr = Array.isArray(course)
                       </thead>
                       <tbody className="text-gray-800 font-medium">
                         {courseserror ? <p>Error: {courseserror.message}</p> : null}
-                        {!course? <p className="font-bold text-xl text-center text-red-400">No Courses</p>: null}
-                        {loadingCourses? <p  className="font-bold text-xl text-blue-400">Loading...</p>: null}
+                        {!course? <p className="font-bold text-xl ml-20 text-red-400"><FileLoader/></p>: null}
+                        {loadingCourses? <p  className="font-bold text-xl text-blue-400"><FileLoader/></p>: null}
                           {Array.isArray(course) ? course.map((c,indx)=>(
                              <tr key={indx} className="bg-white rounded-lg shadow-sm">
                                <td className="px-6 py-4">{c.course_id}</td>

@@ -71,7 +71,7 @@ const Notice = () => {
         <div className="space-y-3 mt-10  ml-10">
      <div className="flex space-x-2 items-center">
         <div>
-           <FontAwesomeIcon className="text-4xl text-[#552bcb]" icon={faBiohazard} />
+           <FontAwesomeIcon className="text-2xl text-[#552bcb]" icon={faBiohazard} />
         </div>
           <h1>Daily Notice</h1>
      </div>
@@ -118,7 +118,7 @@ const Notice = () => {
                   }`}
                 >
                   {openIndex === index && (
-                    <div className="bg-white rounded-md p-4 shadow-md space-y-2">
+                    <div className="bg-white rounded-md p-4 shadow-xl mt-3 mb-3 space-y-2">
                   <div className="flex space-x-2">
                                      <h3 className="font-bold text-purple-500"> Message: :</h3>
                                      <h3> {notice.message}</h3>
@@ -135,7 +135,7 @@ const Notice = () => {
                                      </div>
 
                  <div className="flex space-x-2">
-                                     <h3 className="font-bold text-purple-500"> Name :</h3>
+                                     <h3 className="font-bold text-purple-500"> Date :</h3>
                                      <h3 > {notice.date}</h3>
                                      </div>
                     </div>
