@@ -74,6 +74,14 @@ app.get('/api/notice',(req,res)=>{
 
   res.status(200).json(dailyNotices)
 })
+// get the read messages
+
+app.get('/api/notice/:id',(req,res)=>{
+
+  const messages = req.params.id
+
+  res.status(200).json(messages)
+})
 
 
 

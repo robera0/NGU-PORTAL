@@ -55,6 +55,7 @@ export const UserProvider = ({ children }) => {
   const[isAcadamicFormValid ,setAcadamicFormValid]=useState(false)
   const [Next,setNext]=useState(false)
    const scrollRef =useRef(null) //the scroll after the next btn clicked 
+   const [NumofNotice,setNumofNotice]=useState('')
 
   return (
     <UserContext.Provider
@@ -83,7 +84,7 @@ export const UserProvider = ({ children }) => {
         hgname,setHgnamel,
         transcript ,setTranscript,
         matric,setMatric,
-        listTranscript,setListTranscript,
+        listTranscript,setListTranscript,NumofNotice,setNumofNotice,
         extra,setExtra,isBasicFormValid,setBasicFormValid,Next,setNext,scrollRef,isAcadamicFormValid ,setAcadamicFormValid
       }}
     >

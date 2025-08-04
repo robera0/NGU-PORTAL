@@ -6,10 +6,15 @@ import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { useQuery } from "@tanstack/react-query"
 import { useUser } from "./userContext"
 import { useState } from "react"
+ import FileLoader from '../Inputs/FileLoader';
+
 
 const Notice = () => {
-  const { slide, setSlide } = useUser() // Not used for individual toggling anymore
-  const [openIndex, setOpenIndex] = useState(null)
+  const { slide, setSlide,NumofNotice,setNumofNotice } = useUser() 
+ const  [openIndex, setOpenIndex] = useState(null)
+ const [newMessage, setNewMessage] = useState([])
+
+
       
   // fetch the messages
   const fetchDailyNotice = async () => {
@@ -21,6 +26,8 @@ const Notice = () => {
     queryKey: ['notices'],
     queryFn: fetchDailyNotice
   })
+
+
 
   const handleSlide = (index) => {
     setOpenIndex(prev => (prev === index ? null : index))
@@ -37,7 +44,8 @@ const Notice = () => {
     queryFn:fetchStud
    })
 
- const NumofNotice =notices?.length
+
+ setNumofNotice (newMessage?.length)
 
  const getGreeting =()=>{
   const hour = new Date().getHours();
@@ -52,7 +60,10 @@ const Notice = () => {
     return "Good night";
   }
 }
-
+ 
+const handleRead = (idToDelete) => {
+  setNewMessage(prev => prev.filter(n => n.id !== idToDelete))
+}
 
   return (
     <div className="flex h-screen">
@@ -81,18 +92,18 @@ const Notice = () => {
                           <h1 className='text-2xl font-bold'>{`${getGreeting()},${" "}`}</h1>
                           <h1 className='text-2xl font-bold text-[#552bcb]' >{` ${s.id.firstname}!`}</h1>
                         </div>))}
-    <p className="text-gray-500">{`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice}`} `}</p>
+    <p className="text-gray-500">{`${NumofNotice === 0 ? 'You have no Messages' :`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice}`}`}`}</p>
         </div>
     
 
 
 
         <div className="mt-8 space-y-6 px-8">
-          {isLoading && <p>Loading notices...</p>}
+          {isLoading && <p><FileLoader/></p>}
           {error && <p className="text-red-500">Failed to load messages.</p>}
 
           {Array.isArray(notices) &&
-            notices.map((notice, index) => (
+            newMessage.map((notice, index) => (
               <div key={notice.id} className="space-y-2">
                 <div
                   onClick={() => handleSlide(index)}
@@ -134,10 +145,15 @@ const Notice = () => {
                                      <h3> {notice.details}</h3>
                                      </div>
 
-                 <div className="flex space-x-2">
-                                     <h3 className="font-bold text-purple-500"> Date :</h3>
-                                     <h3 > {notice.date}</h3>
-                                     </div>
+                <div className="flex justify-between items-center">
+                        <div className="flex space-x-2">
+                          <h3 className="font-bold text-purple-500">Date:</h3>
+                          <h3>{notice.date}</h3>
+                        </div>
+                        <button onClick={()=>handleRead(notice.id)} className="bg-purple-500 text-white px-4 py-1 rounded hover:bg-purple-600">
+                          Read
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
