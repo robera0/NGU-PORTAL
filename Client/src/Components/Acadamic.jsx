@@ -113,13 +113,13 @@
   // send the basicn info to the server 
 const newStudent=async()=>{
 
-  const res = await fetch('https://localhost:8000/api/students',{
+  const res = await fetch('https://ngu-portal.onrender.com/api/students',{
     method:'POST',
     headers:{
     'Content-Type': 'application/json'
     },
     body:JSON.stringify({
-         firstname: firstName,
+          firstname: firstName,
           middlename: middleName,
           lastname: lastName,
           student_id: studentNumber,

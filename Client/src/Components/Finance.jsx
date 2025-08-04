@@ -11,7 +11,15 @@ const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
   const [seeAllMessg, setSeeAllMessg] = useState(false);
   const {scrollRef,newMessage} =useUser()
-   
+     const fetchDailyNotice = async () => {
+    const res = await fetch('https://ngu-portal.onrender.com/api/notice')
+    return res.json()
+  }
+
+  const { data: notices } = useQuery({
+    queryKey: ['notices'],
+    queryFn: fetchDailyNotice
+  })
   // fetchong the cs teachers
  const fetchTeachers = async () => {
   const res = await fetch('https://ngu-portal.onrender.com/api/csteachers');
@@ -135,7 +143,7 @@ if (!data) return <p>No data</p>;
           </div>
 
           <div className="space-y-4 transition-all duration-300 ease-in-out">
-            {newMessage.length === 0 && <p className="text-gray-500">No notices available.</p>}
+            {Array.isArray(notices) && newMessage.length === 0 && <p className="text-gray-500">No notices available.</p>}
 
             {newMessage.slice(0, seeAllMessg ? newMessage.length : 2).map((notice, index) => (
               <div key={notice.id} className="shadow-md rounded-xl p-4 border border-purple-200 bg-white hover:shadow-xl transition">
