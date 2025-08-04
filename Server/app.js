@@ -9,7 +9,7 @@ import enrolledCourses from './Courses.js'
 import Students from './Students.js'
 import dailyNotices from './dailyNotice.js'
 import PdfParse from 'pdf-parse'
-import { addSummary, getAllSummaries } from './summary.js';
+import { addSummary, getAllSummaries } from 'summary.js';
 const PORT =process.env.PORT || 8000
 
 const app =express()
