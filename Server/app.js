@@ -1,12 +1,15 @@
 import express from 'express'
 import cors from 'cors'
+import fs  from 'fs'
+import multer from 'multer'
 import {fileURLToPath} from 'url'
 import path from 'path'
 import csTeachers from './teachers.js'
 import enrolledCourses from './Courses.js'
 import Students from './Students.js'
 import dailyNotices from './dailyNotice.js'
-
+import PdfParse from 'pdf-parse'
+import summary from './summary.js'
 const PORT =process.env.PORT || 8000
 
 const app =express()
@@ -100,7 +103,33 @@ app.get('/api/notice/:limit' ,(req,res)=>{
     res.status(200).json(limitedMessage)
 
 })
+//summerize the Pdf
+const upload = multer({ dest: 'uploads/' });
+
+ app.post('/api/notice/summerize', upload.single('file'),async(req,res)=>{
+
+  const pdfBuffer = fs.readFile(req.file.path)
 
 
+  try {
+    const data = await PdfParse(pdfBuffer);
+    const content = data.text;
+
+    const summary = content.split('.').slice(0, 2).join('.') + '.';
+    
+  const savedSummary = addSummary(req.file.originalname, summary);
+
+    res.json({ savedSummary });
+  } catch (err) {
+    res.status(500).send('Error parsing PDF');
+  }
+
+ })
+
+ //get the summerized pdf
+app.get('/api/summerize',(req,res)=>{
+
+  res.status(200).json(summary)
+})
 
 app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
