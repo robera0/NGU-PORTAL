@@ -78,9 +78,11 @@ app.get('/api/notice',(req,res)=>{
 
 app.get('/api/notice/:id',(req,res)=>{
 
-  const messages = req.params.id
+  const message = req.params.id
 
-  res.status(200).json(messages)
+  const wantedmessage = dailyNotices.filter(item=>item.id === message)
+
+  res.status(200).json(wantedmessage)
 })
 
 //get limited message 
@@ -90,6 +92,10 @@ app.get('/api/notice/:limit' ,(req,res)=>{
   const limit = parseInt(req.params.limit)
 
   const limitedMessage =dailyNotices.slice(0,limit)
+
+  const message = dailyNotices
+
+
 
     res.status(200).json(limitedMessage)
 
