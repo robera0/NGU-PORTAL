@@ -6,7 +6,7 @@ const Students = [
       middlename:"Ararsa",
       lastname:"Ulu",
       student_id: "24/45/25",
-      email: "robera.araraa@example.com",
+      email: "roberaararaa@example.com",
       phone_number: +251935385438,
       gender: "Male",
       date_of_birth: "2003-04-15",
@@ -21,7 +21,7 @@ const Students = [
         student_type: "Regular"
       },
       batch:2015,
-      semester: "6th",
+      semester: "2th",
       gpa: 3.75,
       Profile:"/profile.jpg"
     }
