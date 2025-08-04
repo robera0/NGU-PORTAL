@@ -83,6 +83,18 @@ app.get('/api/notice/:id',(req,res)=>{
   res.status(200).json(messages)
 })
 
+//get limited message 
+
+app.get('/api/notice/:limit' ,(req,res)=>{
+
+  const limit = parseInt(req.params.limit)
+
+  const limitedMessage =dailyNotices.slice(0,limit)
+
+    res.status(200).json(limitedMessage)
+
+})
+
 
 
 app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
