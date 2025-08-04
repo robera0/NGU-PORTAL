@@ -9,7 +9,8 @@ import { useUser } from './userContext';
 
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
-  const {scrollRef} =useUser()
+  const [seeAllMessg, setSeeAllMessg] = useState(false);
+  const {scrollRef,newMessage} =useUser()
    
   // fetchong the cs teachers
  const fetchTeachers = async () => {
@@ -61,6 +62,12 @@ if (!data) return <p>No data</p>;
     
   
   };
+    const handleSeeAllMessg = () => {
+    
+    setSeeAllMessg((prev) => !prev);
+    
+  
+  };
 
   return (
     <div className='mt-5'>
@@ -101,7 +108,7 @@ if (!data) return <p>No data</p>;
               {seeAll ? 'See less' : 'See all'}
             </button>
           </div>
-          <div ref={scrollRef} className='space-y-2 transition-all duration-300 ease-in-out'>
+          <div ref={scrollRef} className='space-y-2 mr-10 transition-all duration-300 ease-in-out'>
             {chunks.map((group, groupIndex) => (
               <div 
                 key={groupIndex}
@@ -118,10 +125,27 @@ if (!data) return <p>No data</p>;
 
           {/* Daily Notice */}
           <div>
-            <div className='flex items-center gap-32 mt-6 mb-2'>
-              <h1 className='font-bold'>Daily Notice</h1>
-              <button className='text-[#4D24CB] cursor-pointer font-bold'>See all</button>
-            </div>
+       {/* Daily Notice Section */}
+        <div className='mt-10 mr-10'>
+          <div className='flex items-center justify-between mb-4'>
+            <h1 className='font-bold text-lg'>Daily Notices</h1>
+            <button onClick={handleSeeAllMessg} className='text-[#4D24CB] cursor-pointer font-semibold hover:text-[#3C17BD]'>
+              {seeAllMessg ? 'See less' : 'See all'}
+            </button>
+          </div>
+
+          <div className="space-y-4 transition-all duration-300 ease-in-out">
+            {newMessage.length === 0 && <p className="text-gray-500">No notices available.</p>}
+
+            {newMessage.slice(0, seeAllMessg ? newMessage.length : 2).map((notice, index) => (
+              <div key={notice.id} className="shadow-md rounded-xl p-4 border border-purple-200 bg-white hover:shadow-xl transition">
+                <h2 className="text-md font-bold text-[#3C17BD] mb-1">{notice.title}</h2>
+                <p className="text-sm text-gray-600 line-clamp-2">{notice.description}</p>
+                <span className="text-xs text-gray-400">{notice.date}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
             <div className='p-4 rounded-xl shadow-2xl'>
               <div className='mb-4'>

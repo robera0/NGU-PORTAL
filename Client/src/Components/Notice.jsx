@@ -10,9 +10,8 @@ import { useState } from "react"
 
 
 const Notice = () => {
-  const { slide, setSlide,NumofNotice,setNumofNotice } = useUser() 
+  const {NumofNotice,setNumofNotice,newMessage, setNewMessage } = useUser() 
  const  [openIndex, setOpenIndex] = useState(null)
- const [newMessage, setNewMessage] = useState([])
 
 
       
@@ -27,8 +26,9 @@ const Notice = () => {
     queryFn: fetchDailyNotice
   })
 
-
-
+if(notices && newMessage.length ===0) {
+  setNewMessage(notices)
+}
   const handleSlide = (index) => {
     setOpenIndex(prev => (prev === index ? null : index))
   }
