@@ -6,7 +6,7 @@ import csTeachers from './teachers.js'
 import enrolledCourses from './Courses.js'
 import Students from './Students.js'
 import dailyNotices from './dailyNotice.js'
-
+import courseAssignments from './courseAssgn.js'
 const PORT =process.env.PORT || 8000
 
 const app =express()
@@ -100,7 +100,12 @@ app.get('/api/notice/:limit' ,(req,res)=>{
     res.status(200).json(limitedMessage)
 
 })
-//summerize the Pdf
+//get course related taskes 
+
+app.get('/api/courseAssignments',(req,res)=>{
+
+  res.status(200).json(courseAssignments)
+})
 
 
 app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
