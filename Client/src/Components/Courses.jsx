@@ -1,14 +1,33 @@
 import SideBar from "./SideBar"
 import NavBar from './NavBar'
-import { useUser } from "./userContext"
+import { useSchedule } from '../Context/Scheduler';
 import { useQuery } from "@tanstack/react-query"
- import FileLoader from '../Inputs/FileLoader';
- import { motion, AnimatePresence } from 'framer-motion';
+import FileLoader from '../Inputs/FileLoader';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faRotateRight  } from '@fortawesome/free-solid-svg-icons';
+import ViewAssign from "./ViewAssign";
+import { useEffect } from "react";
 
 const Courses = () => {
  
+  const {view,setView,setNewassign,newAssign}=useSchedule()
+
+     // fetch the course ass,homework and proj
+
+     const fetchCourcesAssign =async()=>{
+    const res= await fetch('https://ngu-portal.onrender.com/api/c');
+    if (!res.ok) throw new Error('Failed to fetch');
+    return res.json()
+  }
+  
+    const {data:c,refetchAssign,isFetchingAssign,assignerror}=useQuery({
+      queryKey:['courseAssing'],
+      queryFn:fetchCourcesAssign,
+    })
+
+
+
   const fetchCources =async()=>{
     const res= await fetch('https://ngu-portal.onrender.com/api/courses');
     if (!res.ok) throw new Error('Failed to fetch');
@@ -22,8 +41,44 @@ const Courses = () => {
 
     const Record=course?.length || 0
 
+ 
+  const handleViewAssign=(id)=>{
+    setView(true)
   
+    const main = Array.isArray(c) ? c.filter(ca => ca.course_id === id) : [];
+
+  setNewassign(main)
+
+
+      }
+
+   useEffect(() => {
+  console.log("Updated assignment data:", newAssign);
+}, [newAssign]);
+
+ 
   return (
+         <>
+              <AnimatePresence>
+          {view && (
+            <motion.div
+              className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="relative max-w-6xl w-full max-h-full  overflow-x-hidden flex justify-center"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ViewAssign />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="flex h-screen">
       {/* Sidebar */}
     <div className='lg:w-[17%] ml-5 mt-2 h-screen'>
@@ -35,7 +90,8 @@ const Courses = () => {
          <div className='mt-8'>
             <NavBar/>
          </div>
-
+          {/* Overlay Vew Assignment */}
+      
          <div>
           {/*add search section */}
 
@@ -57,7 +113,7 @@ const Courses = () => {
       </div>
     </div>
 
-    {/* 🧾 Course Cards */}
+    {/* Course Cards */}
     <div className="flex flex-wrap gap-6"> 
       {isFetching ? <FileLoader/> :  
         <>
@@ -72,7 +128,7 @@ const Courses = () => {
 
               <div className="bg-purple-700 hover:bg-purple-800 text-white px-2 py-1 rounded-lg font-medium transition-all duration-300 cursor-pointer flex justify-center items-center space-x-2 w-fit">
                 <FontAwesomeIcon className="text-sm" icon={faEye} />
-                <button className="cursor-pointer text-sm">View Assignments</button>
+                <button onClick={()=>handleViewAssign(c.course_id)} className="cursor-pointer text-sm">View Assignments</button>
               </div>
             </div>
           </div>
@@ -93,6 +149,7 @@ const Courses = () => {
 
             </div>
          </div>
+        </>
   )
 }
 

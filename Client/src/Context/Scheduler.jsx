@@ -28,7 +28,8 @@ export const UserScheduler =({children}) =>{
  const[day,setday]=useState(null)
  const[AddContent,setAddContent]=useState(false)
  const [AllInfo,setAllInfo]=useState({})
- 
+const [view,setView] =useState(false)
+const [newAssign,setNewassign]=useState([])
 
     return(
         <UserContext.Provider value ={{
@@ -38,8 +39,8 @@ export const UserScheduler =({children}) =>{
         Import,setImport,newSchedule,setNewschedule,
         color,setColor,startTime,setStart,setAllInfo,
         endtime,setEnd,Am,setAm,Pm,setPm,courseType,setCourseType,
-        instructor,setinstructor,Location,setLocation,
-        AllInfo,startMin,setStartmin,endMin,setEndMin,day,setday,AddContent,setAddContent,deleteItem,setDeleteItem
+        instructor,setinstructor,Location,setLocation,newAssign,setNewassign,
+        AllInfo,startMin,setStartmin,endMin,setEndMin,day,setday,AddContent,setAddContent,deleteItem,setDeleteItem,view,setView
     }
     }
         >

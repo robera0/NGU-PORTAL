@@ -92,7 +92,7 @@ const handleRead = (idToDelete) => {
                           <h1 className='text-2xl font-bold'>{`${getGreeting()},${" "}`}</h1>
                           <h1 className='text-2xl font-bold text-[#552bcb]' >{` ${s.id.firstname}!`}</h1>
                         </div>))}
-    <p className="text-gray-500">{`${NumofNotice === 0 ? 'You have no Messages' :`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice}`}`}`}</p>
+    <p className="text-gray-500">{`${NumofNotice === 0 ? 'You have no Messages' :`${getGreeting() == "Good night"? `make sure u see all ${NumofNotice} of the messages before you sleep` :`today you need to follow up with ${NumofNotice} messages`}`}`}</p>
         </div>
     
 
