@@ -129,7 +129,7 @@ app.get(`/api/c`,async (req,res)=>{
      const co = courseAssignments.find(co => co.course_id === c.course_id);
 
       return {
-          course_id:c.course_id,
+          course_id:co?.course_id,
           title: co?.assessments?.[0]?.title || "No title",
           type:co?.assessments?.[0]?.type || 'not assigned',
          instructor:c.instructor,
