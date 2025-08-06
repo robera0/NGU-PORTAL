@@ -112,8 +112,6 @@ app.get('/api/courseAssignments',(req,res)=>{
 
 app.get(`/api/c`,async (req,res)=>{
 
-
-
   try {
 
     const[courseres, coursAssgnres] =await Promise.all([
@@ -131,6 +129,7 @@ app.get(`/api/c`,async (req,res)=>{
      const co = courseAssignments.find(co => co.course_id === c.course_id);
 
       return {
+          course_id:c.course_id,
           title: co?.assessments?.[0]?.title || "No title",
           type:co?.assessments?.[0]?.type || 'not assigned',
          instructor:c.instructor,
@@ -139,8 +138,6 @@ app.get(`/api/c`,async (req,res)=>{
           due:co?.assessments?.[0]?.due_date || " Not known"
  
       }
-
-
     })
       res.json(filterdAssgn);
   }
