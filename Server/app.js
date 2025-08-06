@@ -130,9 +130,9 @@ app.get(`/api/c`,async (req,res)=>{
 
       return {
           course_id:co?.course_id,
-          title: co?.assessments?.[0]?.maptitle || "No title",
           type:co?.assessments?.map((a=>({     
-          weight:a?.weight ,
+           title:a?.title,
+            weight:a?.weight ,
            due:a?.due_date 
  
       }))) || 'not assigned',
