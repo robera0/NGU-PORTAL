@@ -128,17 +128,19 @@ app.get(`/api/c`,async (req,res)=>{
 
      const co = courseAssignments.find(co => co.course_id === c.course_id);
 
-      return {
-          course_id:co?.course_id,
-          title: co?.assessments?.[0]?.title || "No title",
-          type:co?.assessments?.[0]?.type || 'not assigned',
-         instructor:c.instructor,
-         course_name: c.course_name,
-          weight:co?.assessments?.[0]?.weight || "No Mark",
-          due:co?.assessments?.[0]?.due_date || " Not known"
- 
-      }
-    })
+  return {
+    instructor: c.instructor,
+    course_name: c.course_name,
+    assignments: co?.assessments?.map(a => ({
+      title: a.title,
+      type: a.type,
+      due: a.due_date,
+      weight: a.weight,
+      status: a.status
+    })) || []
+  };
+});
+    
       res.json(filterdAssgn);
   }
  catch (err) {
