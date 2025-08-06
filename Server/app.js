@@ -7,6 +7,8 @@ import enrolledCourses from './Courses.js'
 import Students from './Students.js'
 import dailyNotices from './dailyNotice.js'
 import courseAssignments from './courseAssgn.js'
+import axios from 'axios'
+import { promises } from 'dns'
 const PORT =process.env.PORT || 8000
 
 const app =express()
@@ -96,7 +98,6 @@ app.get('/api/notice/:limit' ,(req,res)=>{
   const message = dailyNotices
 
 
-
     res.status(200).json(limitedMessage)
 
 })
@@ -107,5 +108,45 @@ app.get('/api/courseAssignments',(req,res)=>{
   res.status(200).json(courseAssignments)
 })
 
+//to filter course assignmnet with courseId
+
+app.get(`/api/c`,async (req,res)=>{
+
+
+
+  try {
+
+    const[courseres, coursAssgnres] =await Promise.all([
+
+      axios.get('https://ngu-portal.onrender.com/api/courses'),
+      axios.get('https://ngu-portal.onrender.com/api/courseAssignments'),
+      
+    ])
+
+    const course = courseres.data
+    const courassgn= coursAssgnres.data
+
+    const filterdAssgn = course.map((c)=>{
+
+     const co = courseAssignments.find(co => co.course_id === c.course_id);
+
+      return {
+           title:co?.title || "No title",
+          type:co?.type || 'not assigned',
+         instructor:c.instructor,
+         course_name: c.course_name,
+          weight:co.weight,
+          due:co.due_date,
+ 
+      }
+
+
+    })
+      res.json(filterdAssgn);
+  }
+ catch (err) {
+    res.status(500).json({ error: 'Failed to fetch or combine data' });
+  }
+})
 
 app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
