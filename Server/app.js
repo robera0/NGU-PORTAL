@@ -1,112 +1,31 @@
 import express from 'express'
+import mongoose  from "mongoose";
 import cors from 'cors'
-import {fileURLToPath} from 'url'
-import path from 'path'
-import csTeachers from './teachers.js'
-import enrolledCourses from './Courses.js'
-import Students from './Students.js'
-import dailyNotices from './dailyNotice.js'
-import courseAssignments from './courseAssgn.js'
 import axios from 'axios'
-import { promises } from 'dns'
+import dotenv from 'dotenv'
+import courseRouter from './Courses.js';
+import studentRouter from './Students.js';
+import teacherRouter from './teachers.js';
+import noticeRouter from './dailyNotice.js'
+import assignmentRouter from './courseAssgn.js';
+dotenv.config()
+
 const PORT =process.env.PORT || 8000
-
-const app =express()
-
-app.use(express.json())
+const MONGOURL=process.env.MONGO_CONNECTION_STRING
 
 const corsOptions = {
   origin: '*',
   credentials: true
 }
-
+const app =express()
+app.use(express.json())
 app.use(cors(corsOptions))
 
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
-
-app.use(express.static(path.join(__dirname,'./assets')))
-
-
-
-// get the teachers
-app.get('/api/csteachers',cors(corsOptions),(req,res)=>{
-
- res.status(200).json(csTeachers)
-})
-
-//get the courses
-
-app.get('/api/courses',cors(corsOptions),(req,res)=>{
-
- res.status(200).json(enrolledCourses)
-})
-
-// Store the Student info on the server
-
-app.post('/api/students', (req,res)=>{
-
-const { firstname, middlename, lastname, student_id, email, phone_number, gender, date_of_birth, country, address, 
-  college, department, program, emergency_contact,  enrollment: { year, student_type }= {}, batch, semester, gpa, Profile
-          }= req.body
-
-const newStud={ id:Students.length + 1 , firstname, middlename, lastname, student_id, email, phone_number, gender, date_of_birth, country, address, college, department, program, emergency_contact,  enrollment: { year, student_type }, batch, semester, gpa, Profile}
-
-Students.push(newStud)
-
-res.status(200).json(Students)
-})
-
-// get the Students info
-app.get('/api/students',(req,res)=>{
-
- res.status(200).json(Students)
-})
-
-//get the courses
-
-app.get('/api/courses',(req,res)=>{
-
- res.status(200).json(enrolledCourses)
-})
-
-//get daily notice 
-
-app.get('/api/notice',(req,res)=>{
-
-  res.status(200).json(dailyNotices)
-})
-// get the read messages
-
-app.get('/api/notice/:id',(req,res)=>{
-
-  const message = req.params.id
-
-  const wantedmessage = dailyNotices.filter(item=>item.id === message)
-
-  res.status(200).json(wantedmessage)
-})
-
-//get limited message 
-
-app.get('/api/notice/:limit' ,(req,res)=>{
-
-  const limit = parseInt(req.params.limit)
-
-  const limitedMessage =dailyNotices.slice(0,limit)
-
-  const message = dailyNotices
-
-
-    res.status(200).json(limitedMessage)
-
-})
-//get course related taskes 
-
-app.get('/api/courseAssignments',(req,res)=>{
-
-  res.status(200).json(courseAssignments)
-})
+app.use('/api',courseRouter) //get the courses
+app.use('/api',studentRouter) // store the students 
+app.use('/api',teacherRouter) // get the teachers
+app.use('/api',noticeRouter) // get daily messages
+app.use('/api',assignmentRouter) // get the assignmnet from the instructors 
 
 //to filter course assignmnet with courseId
 
@@ -116,18 +35,20 @@ app.get(`/api/c`,async (req,res)=>{
 
     const[courseres, coursAssgnres] =await Promise.all([
 
-      axios.get('https://ngu-portal.onrender.com/api/courses'),
-      axios.get('https://ngu-portal.onrender.com/api/courseAssignments'),
+      axios.get('http://localhost:8000/api/course'),
+      axios.get('http://localhost:8000/api/assignment'),
       
     ])
 
     const course = courseres.data
-    const courassgn= coursAssgnres.data
+    const ass= coursAssgnres.data
+    console.log(course)
+    console.log(ass)
+   
+   const filterdAssgn = course.map((c)=>{
 
-    const filterdAssgn = course.map((c)=>{
-
-     const co = courseAssignments.find(co => co.course_id === c.course_id);
-
+     const co = ass.find(co => co.course_id === c.course_id);
+ 
       return {
           course_id:co?.course_id,
           type:co?.assessments?.map((a=>({     
@@ -141,6 +62,7 @@ app.get(`/api/c`,async (req,res)=>{
          
       }
     })
+  
       res.json(filterdAssgn);
   }
  catch (err) {
@@ -148,4 +70,11 @@ app.get(`/api/c`,async (req,res)=>{
   }
 })
 
-app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
+
+mongoose
+.connect(MONGOURL)
+.then(()=>{
+  app.listen(PORT,()=>console.log(`the server is running on ${PORT}`))
+  console.log("the database is connected succefully ")
+})
+

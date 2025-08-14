@@ -16,7 +16,7 @@ const Courses = () => {
      // fetch the course ass,homework and proj
 
      const fetchCourcesAssign =async()=>{
-    const res= await fetch('https://ngu-portal.onrender.com/api/c');
+    const res= await fetch('http://localhost:8000/api/c');
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
   }
@@ -29,7 +29,7 @@ const Courses = () => {
 
 
   const fetchCources =async()=>{
-    const res= await fetch('https://ngu-portal.onrender.com/api/courses');
+    const res= await fetch('http://localhost:8000/api/course');
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
   }

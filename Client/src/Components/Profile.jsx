@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 const Profile = () => {
  const date = new Date()
   const[Active,setActive]=useState(true)
-
+ const[edit,setedit]=useState(false)
   const{ImageUrl,setImageurl}=useUser()
    const handleProfile=(e)=>{
 
@@ -23,9 +23,10 @@ const Profile = () => {
              reader.readAsDataURL(file);  
         }
    }
+
 const fetchStud=async()=>{
 
-  const res = await fetch('https://ngu-portal.onrender.com/api/students')
+  const res = await fetch('hhttp://localhost:8000/api/students')
 
   return res.json()
  }
@@ -41,8 +42,11 @@ const fetchStud=async()=>{
 
 const year = handleYearLevel(Stud)
 
+const handleEdit=()=>{
 
+  setedit(prev=>!prev)
 
+}
   return (
     <div className='flex '>
        <div className='lg:w-[17%] ml-5 mt-5 h-screen'>
@@ -55,16 +59,23 @@ const year = handleYearLevel(Stud)
   <div className="bg-[#f3eaff] ml-10 w-[75%] mt-10 rounded-2xl h-64 px-6 py-4">
     <div className="flex  items-start gap-6">
       {/* Profile Image */}
+
       <div
         style={{ backgroundImage: `url(${ImageUrl})` }}
         className="relative w-36 h-36 rounded-full border-4 border-purple-500 bg-gray-200 bg-center bg-cover bg-no-repeat shadow-md"
       >
-        <input
+        {edit && (
+            <>
+             <input
           type="file"
           accept="image/*"
           onChange={handleProfile}
           className="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
         />
+            </>
+
+        )}
+       
       </div>
 
       {/* Student Info */}
@@ -108,12 +119,12 @@ const year = handleYearLevel(Stud)
     </div>
 
     {/* Buttons */}
-    <div className="mt-8 flex  gap-4 pr-4">
+    <div className="mt-8 flex gap-4 pr-4">
       <button
-        onClick={""}
-        className="bg-purple-700 hover:bg-purple-800 text-white px-5 py-2 rounded-lg font-medium transition-all duration-300"
+        onClick={handleEdit}
+        className="bg-purple-700 hover:bg-purple-800  hover:scale-98  text-white px-5 py-2 rounded-lg font-medium cursor-pointer  transition-all duration-300"
       >
-        Edit Profile
+        {edit ? 'Save Profile' : 'Edit Profile'}
       </button>
       <button
         onClick={""}

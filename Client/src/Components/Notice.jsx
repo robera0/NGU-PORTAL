@@ -6,18 +6,16 @@ import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { useQuery } from "@tanstack/react-query"
 import { useUser } from "./userContext"
 import { useState } from "react"
- import FileLoader from '../Inputs/FileLoader';
-
+import FileLoader from '../Inputs/FileLoader';
 
 const Notice = () => {
-  const {NumofNotice,setNumofNotice,newMessage, setNewMessage } = useUser() 
+ 
+ const {NumofNotice,setNumofNotice,newMessage, setNewMessage } = useUser() 
  const  [openIndex, setOpenIndex] = useState(null)
-
-
-      
-  // fetch the messages
-  const fetchDailyNotice = async () => {
-    const res = await fetch('https://ngu-portal.onrender.com/api/notice')
+    
+   // fetch the messages
+    const fetchDailyNotice = async () => {
+    const res = await fetch("http://localhost:8000/api/notices")
     return res.json()
   }
 

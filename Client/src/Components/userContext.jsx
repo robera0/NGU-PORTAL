@@ -4,8 +4,6 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
 
-
-
  const fetchStud=async()=>{
 
   const res = await fetch('https://ngu-portal.onrender.com/api/students')
@@ -17,8 +15,6 @@ export const UserProvider = ({ children }) => {
   queryFn:fetchStud
  })
   const profile = Stud?.find(items=> items.id.profile)
-
-  console.log(profile)
  
  const [ImageUrl, setImageurl] = useState( profile ? profile : '/defaultUser.jpg'); // profile iamge setter
  
@@ -54,9 +50,52 @@ export const UserProvider = ({ children }) => {
   const[isBasicFormValid ,setBasicFormValid]=useState(false)
   const[isAcadamicFormValid ,setAcadamicFormValid]=useState(false)
   const [Next,setNext]=useState(false)
-   const scrollRef =useRef(null) //the scroll after the next btn clicked 
-   const [NumofNotice,setNumofNotice]=useState('')
-    const [newMessage, setNewMessage] = useState([])
+  const scrollRef =useRef(null) //the scroll after the next btn clicked 
+  const [NumofNotice,setNumofNotice]=useState('')
+  const [newMessage, setNewMessage] = useState([])
+  const [SubmitLoader, setSubmitLoader] = useState(false);
+  const [message, setMessage] = useState("");
+  // Send student info to server
+  const newStudent = async () => {
+   try {
+        const res = await fetch('http://localhost:8000/api/students', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+               firstname: firstName,
+               middlename: middleName,
+               lastname: lastName,
+               student_id: studentNumber,
+               email:email,
+               phone_number: phoneNumber,
+               gender:gender,
+               date_of_birth: `${birthYear}-${birthMonth}-${birthDay}`,
+               country: countries,
+               address: permanentAddress,
+               college: "New Generation",
+               department: degreeProgram,
+               program: `BSC ${degreeProgram}`,
+               enrollment: { year: yearLevel, student_type: "Regular" },
+               batch: `${date.getFullYear()}`,
+               semester: "",
+               emergency_contact: emrfirstName,
+              password:String(Math.floor(1000 + Math.random() * 9000 ))
+             })
+           });
+     
+           const data = await res.json();
+           if (!res.ok) {
+             console.error('Server Error:', data);
+             throw new Error('Failed to post data');
+           }
+     
+           return data; 
+     
+         } catch (error) {
+           console.error('Fetch error:', error.message);
+         }
+       };
+     
 
 
   return (
@@ -77,14 +116,14 @@ export const UserProvider = ({ children }) => {
         birthDay, setBirthDay,
         birthYear, setBirthYear,gender,setGender,
         permanentAddress, setPermanentAddress,
-        city, setCity,
+        city, setCity,newStudent,
         emrfirstName, setEmrFirstName,
         emrlastName, setemrLastName,
         Relationship,setRelationship,
         EmergencyAddress, setEmergencyAddress,
-        EmrphoneNumber, setEmrPhoneNumber,
-        hgname,setHgnamel,
-        transcript ,setTranscript,
+        EmrphoneNumber, setEmrPhoneNumber,gender,setGender,
+        hgname,setHgnamel,message, setMessage,
+        transcript ,setTranscript,SubmitLoader, setSubmitLoader,
         matric,setMatric,newMessage, setNewMessage,
         listTranscript,setListTranscript,NumofNotice,setNumofNotice,
         extra,setExtra,isBasicFormValid,setBasicFormValid,Next,setNext,scrollRef,isAcadamicFormValid ,setAcadamicFormValid

@@ -11,6 +11,9 @@ import Courses from './Components/Courses'
 import Schedule from './Components/Schedule'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Notice from './Components/Notice'
+import RegistrationPayment from './Components/RegistrationPayment'
+import Login from './Components/Login'
+import NewRegistrationForm from './Components/NewRegistrationForm'
 const App = () => {
   const queryclient = new QueryClient()
   return (
@@ -23,7 +26,10 @@ const App = () => {
        <Routes>
          <Route>
          
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path='/registrationpayment' element={<RegistrationPayment />} />
+            <Route path="/newregisteration" element={<NewRegistrationForm/>} />
+            <Route path='/home' element={<Home/>}/>
             <Route path="/paymentinfo" element={<Payment_info/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/registeration' element={<RegistrationForm/>}/>

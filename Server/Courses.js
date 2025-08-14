@@ -1,91 +1,29 @@
-import {
-  faCode,
-  faNetworkWired,
-  faSquareRootVariable,
-  faChartBar,
-  faDatabase,
-  faMicrochip,
-  faPenNib
-} from '@fortawesome/free-solid-svg-icons';
 
-const enrolledCourses = [
-  {
-    course_id: "CSCI101",
-    course_name: "Introduction to Programming",
-    instructor: "Dr. Alice Tesfaye",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faCode,
-    grade: "A",
-    grade_point: 4.0,
-    course_fee: 1500
-  },
-  {
-    course_id: "CSCI202",
-    course_name: "Data Structures & Algorithms",
-    instructor: "Mr. Daniel Mulugeta",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faNetworkWired,
-    grade: "A-",
-    grade_point: 3.7,
-    course_fee: 1600
-  },
-  {
-    course_id: "MATH201",
-    course_name: "Discrete Mathematics",
-    instructor: "Dr. Sara Hailu",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faSquareRootVariable,
-    grade: "B+",
-    grade_point: 3.3,
-    course_fee: 1400
-  },
-  {
-    course_id: "STAT210",
-    course_name: "Statistics for Computer Science",
-    instructor: "Mr. Elias Tadesse",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faChartBar,
-    grade: "B",
-    grade_point: 3.0,
-    course_fee: 1350
-  },
-  {
-    course_id: "CSCI205",
-    course_name: "Database Systems",
-    instructor: "Ms. Selamawit Bekele",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faDatabase,
-    grade: "A",
-    grade_point: 4.0,
-    course_fee: 1550
-  },
-  {
-    course_id: "CSCI230",
-    course_name: "Computer Architecture",
-    instructor: "Mr. Yohannes Mekonnen",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faMicrochip,
-    grade: "A",
-    grade_point: 4.0,
-    course_fee: 1650
-  },
-  {
-    course_id: "ENGL103",
-    course_name: "Technical Writing",
-    instructor: "Ms. Bethlehem Alemu",
-    credit_hours: 3,
-    semester: "Fall 2025",
-    icon: faPenNib,
-    grade: "A-",
-    grade_point: 3.7,
-    course_fee: 1200,
-  }
-];
+import courseModel from './courseModel.js'; 
+import studentsModel from './studentsModel.js'
+import express from 'express'
+//get the courses
 
-export default enrolledCourses;
+const courseRouter = express.Router()
+
+courseRouter.get('/course', async (req,res)=>{
+    
+    const coursedata = await courseModel.find()
+
+ res.status(200).json(coursedata)
+}
+)
+
+// get courses with department
+
+courseRouter.get('/course/:departemnt', async (req,res)=>{
+    const {department}= req.params
+    const coursedep= studentsModel.find(department)
+    const coursedata = await courseModel.find(department)
+
+ res.status(200).json(coursedata)
+}
+)
+
+
+export default courseRouter

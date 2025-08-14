@@ -2,7 +2,6 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useRef } from 'react';
 import { useUser } from './userContext';
 import {
   faCode,
@@ -13,6 +12,15 @@ import {
   faMicrochip,
   faPenNib
 } from '@fortawesome/free-solid-svg-icons'
+const iconMap = {
+  faCode: faCode,
+  faNetworkWired: faNetworkWired,
+  faSquareRootVariable: faSquareRootVariable,
+  faChartBar: faChartBar,
+  faDatabase: faDatabase,
+  faMicrochip: faMicrochip,
+  faPenNib: faPenNib
+};
 
 const Enrolled_Cources = () => {
  
@@ -20,9 +28,10 @@ const Enrolled_Cources = () => {
     const {scrollRef} =useUser()
      // fetchong the courses
   const fetchCources =async()=>{
-    const res= await fetch('https://ngu-portal.onrender.com/api/courses');
+    const res= await fetch('http://localhost:8000/api/course');
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
+    
   }
   
     const {data,error}=useQuery({
@@ -46,7 +55,7 @@ const Enrolled_Cources = () => {
                     </div>
 
                     <div className='w-[40%] flex justify-center items-center text-6xl text-[#9360E3]'>
-                      <FontAwesomeIcon icon={Course.icon} />
+                     <FontAwesomeIcon icon={iconMap[Course.icon]} />
                     </div>
                   </div>
     ));

@@ -26,7 +26,7 @@ const SideBar = () => {
       {/* Navigation */}
       <div className='flex flex-col justify-center items-center w-full gap-4'>
         {/* Dashboard */}
-        <Link to="/" className='w-full flex justify-center'>
+        <Link to="/home" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
             ${isActive("/") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faBox} />
@@ -89,7 +89,7 @@ const SideBar = () => {
         </Link>
 
         {/* Log Out */}
-        <Link to="/log in" className='w-full flex justify-center'>
+        <Link to="/" className='w-full flex justify-center'>
           <div className={`flex items-center justify-center gap-3 px-4 h-12 rounded-2xl text-white transition-all duration-300 transform 
             ${isActive("/log in") ? "bg-[#8200DB] -translate-x-2 shadow-xl" : "hover:bg-[#8200DB]"}`}>
             <FontAwesomeIcon icon={faRightFromBracket} />

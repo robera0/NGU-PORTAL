@@ -40,7 +40,7 @@ const Basicinfo = () => {
     emrlastName, setemrLastName,
     Relationship,setRelationship,
     EmergencyAddress, setEmergencyAddress,
-    EmrphoneNumber, setEmrPhoneNumber,hgname,
+    EmrphoneNumber, setEmrPhoneNumber,hgname,setGender,gender,
     countries, setCountries,setBasicFormValid,isBasicFormValid,setAcSlide,scrollRef
   } = useUser();
 
@@ -65,7 +65,7 @@ const {Selectedcountry}=useCountryApi()
   const handleRelationship=(e)=>setRelationship(e.target.value);
   const handleEmergencyAddress=(e)=>setEmergencyAddress(e.target.value);
   const handleEmrPhoneNumberChange = (e) => setEmrPhoneNumber(e.target.value);
-  
+  const handleGender=(e)=>setGender(e.target.value);
   const [validatForm,setValidateForm]=useState("") // the error when the inputs are empty
   
    const Filled = // check the inputs values not to be empty
@@ -240,7 +240,6 @@ const {Selectedcountry}=useCountryApi()
                     />
                     <p className='text-sm text-gray-500'>username@gmail.com</p>
                   </div>
-
                   {/* Phone Number */}
                   <div className='space-y-1'>
                     <p className='font-semibold mb-3 mt-10'>Phone Number</p>
@@ -256,7 +255,6 @@ const {Selectedcountry}=useCountryApi()
                     <p className='text-sm text-gray-500'>+251</p>
                   </div>
                 </div>
-
                 <div className='flex flex-wrap gap-26'>
                   {/* Birth Month */}
                   <div className='space-y-1'>
@@ -273,7 +271,6 @@ const {Selectedcountry}=useCountryApi()
                       ))}
                     </select>
                   </div>
-
                   {/* Birth Day */}
                   <div className='space-y-1'>
                     <p className='font-semibold mb-3 mt-10'>Birth Day</p>
@@ -305,8 +302,21 @@ const {Selectedcountry}=useCountryApi()
                       ))}
                     </select>
                   </div>
-                </div>
-
+                  {/*Gender */}
+                    <div className='space-y-1'>
+                    <p className='font-semibold mb-3 mt-10'>Gender</p>
+                    <select
+                      className="w-56 h-10 px-3 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      onChange={handleGender}
+                      value={gender}
+                      required
+                    >
+                     <option value="">Please Select Gender</option>
+                     <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                     </div>
+                     </div>
                   {/* Permanent Address */}
                  <div className='space-y-1 mt-10'>
                     <p className='font-semibold mb-3'>Permanent Address</p>

@@ -3,16 +3,17 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons/faCoins';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query'
-import { useRef } from 'react';
 import { useUser } from './userContext';
  import FileLoader from '../Inputs/FileLoader';
-
+ 
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);
   const [seeAllMessg, setSeeAllMessg] = useState(false);
   const {scrollRef,newMessage} =useUser()
+  
+    // fetching the messages 
      const fetchDailyNotice = async () => {
-    const res = await fetch('https://ngu-portal.onrender.com/api/notice')
+    const res = await fetch('http://localhost:8000/api/notices')
     return res.json()
   }
 
@@ -22,7 +23,7 @@ const Finance = () => {
   })
   // fetchong the cs teachers
  const fetchTeachers = async () => {
-  const res = await fetch('https://ngu-portal.onrender.com/api/csteachers');
+  const res = await fetch('http://localhost:8000/api/teachers');
   if (!res.ok) throw new Error('Failed to fetch');
   return res.json();
 };

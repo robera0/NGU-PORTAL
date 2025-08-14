@@ -5,7 +5,7 @@ import { useSchedule } from '../Context/Scheduler'
 const Table = () => {
   const Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-  
+   
   const { color, subtitle, setSubtitle, AllInfo } = useSchedule(); 
 
   const handleSubtitle = (e) => setSubtitle(e.target.value);
