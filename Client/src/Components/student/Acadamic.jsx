@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from './userContext';
 import { useState } from 'react';
-import FileLoader from '../Inputs/FileLoader';
+import FileLoader from '../../Inputs/FileLoader'
 import { Link } from 'react-router-dom';
 
 const Acadamic = () => {

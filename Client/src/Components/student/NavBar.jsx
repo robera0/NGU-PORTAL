@@ -1,9 +1,8 @@
-import React from 'react'
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUser } from './userContext'
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+
 const NavBar = () => {
 
     const{ImageUrl,NumofNotice}=useUser()

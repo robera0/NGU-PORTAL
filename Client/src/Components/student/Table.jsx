@@ -1,15 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
-import { useSchedule } from '../Context/Scheduler'
+import { useSchedule } from '../../Context/Scheduler'
 
 const Table = () => {
   const Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-
-   
   const { color, subtitle, setSubtitle, AllInfo } = useSchedule(); 
-
   const handleSubtitle = (e) => setSubtitle(e.target.value);
-
   // Generate time (2:00 to 10:30)
   let hr = 2;
   let min = 0;

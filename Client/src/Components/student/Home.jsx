@@ -1,8 +1,8 @@
 import React from 'react'
-import SideBar from './SideBar'
-import NavBar from './NavBar'
-import Finance from './Finance'
-import Enrolled_Cources from './Enrolled_Cources'
+import SideBar from '../student/SideBar'
+import NavBar from '../student/NavBar'
+import Finance from '../student/Finance'
+import Enrolled_Cources from '../student/Enrolled_Cources'
 import { useQuery } from '@tanstack/react-query'
 
 const Home = () => {

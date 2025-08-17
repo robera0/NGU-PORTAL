@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SideBar from './SideBar'
+import SideBar from '../student/SideBar'
 import { useUser } from './userContext'
 import { useQuery } from '@tanstack/react-query'
 const Profile = () => {
@@ -73,11 +73,8 @@ const handleEdit=()=>{
           className="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
         />
             </>
-
-        )}
-       
+        )} 
       </div>
-
       {/* Student Info */}
       <div className="flex-1 mt-1 space-y-2">
         {!Stud && (

@@ -1,8 +1,8 @@
-import SideBar from "./SideBar"
-import NavBar from './NavBar'
+import SideBar from "../student/SideBar"
+import NavBar from '../student/NavBar'
 import { useUser } from "./userContext"
 import { useQuery } from "@tanstack/react-query"
- import FileLoader from '../Inputs/FileLoader';
+ import FileLoader from '../../Inputs/FileLoader';
 
 const Result = () => {
 

@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList, faDownload, faImage, faPencil, faPrint, faSquarePlus, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
-import { useSchedule } from '../Context/Scheduler'
+import { useSchedule } from '../../Context/Scheduler'
 
 const Tools = () => {
   const { setAddItems,setDeleteItem ,setEditItem,setSaveImage,
       setPrint,setExport,setImport,setNewschedule
-
   } = useSchedule()
   const handleAddItem = () => setAddItems(true) 
   const handleDeleteItem=()=>setDeleteItem(true)

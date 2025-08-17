@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faRotateRight } from '@fortawesome/free-solid-svg-icons';
-import { useSchedule } from '../Context/Scheduler';
-import FileLoader from '../Inputs/FileLoader';
+import { useSchedule } from '../../Context/Scheduler';
+import FileLoader from '../../Inputs/FileLoader';
 
 const ViewAssign = () => {
   const { setView, newAssign } = useSchedule();

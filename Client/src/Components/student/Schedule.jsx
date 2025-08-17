@@ -1,17 +1,15 @@
-import SideBar from "./SideBar";
-import NavBar from './NavBar';
-import Tools from "./Tools";
-import Table from "./Table";
-import { useSchedule } from "../Context/Scheduler";
-import Additem from "./Additem";
+import SideBar from "../student/SideBar";
+import NavBar from '../student/NavBar';
+import Tools from "../student/Tools";
+import Table from "../student/Table";
+import { useSchedule } from "../../Context/Scheduler";
+import Additem from "../student/Additem";
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Schedule = () => {
   const Courses = ["Introduction to Computer Science", "Calculus I", "Academic Writing", "Advanced DataBase"];
   const CourseCode = ["CS101", "MA102", "ENG103", "ECN201"];
-
   const { AddItem } = useSchedule();
-
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-white">
       

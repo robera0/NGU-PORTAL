@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useSchedule } from '../Context/Scheduler';
+import { useSchedule } from '../../Context/Scheduler';
 import { useState } from 'react'; 
 
 const Additem = () => {

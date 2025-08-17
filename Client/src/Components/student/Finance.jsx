@@ -4,7 +4,7 @@ import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query'
 import { useUser } from './userContext';
- import FileLoader from '../Inputs/FileLoader';
+ import FileLoader from '../../Inputs/FileLoader';
  
 const Finance = () => {
   const [seeAll, setSeeAll] = useState(false);

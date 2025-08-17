@@ -1,8 +1,6 @@
 import html2pdf from 'html2pdf.js';
-import Input from "../Inputs/Input";
-import IdInput from "../Inputs/IdInput";
 import { useState, useEffect } from "react";
-import Loader from "../Inputs/SubmitLoader";
+import Loader from "../../Inputs/SubmitLoader";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useUser } from './userContext';
@@ -128,10 +126,11 @@ const RegistrationPayment = () => {
           padding: "20px 15px",
           fontWeight: "bold",
           borderRadius: "8px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+          boxShadow: "0 14px 10px rgba(0,0,0,0.2)",
           zIndex: 1000
         }}>
           You will be automatically redirected to the login page after a few seconds.
+          Note:- MAKE SURE U CHANGE YOUR PASSWORD !
         </div>
       )}
 
@@ -192,11 +191,6 @@ const RegistrationPayment = () => {
 
             {/* Input Section */}
             <div className="flex flex-col items-center gap-6 mb-6">
-              <div className="flex gap-10">
-                <Input />
-                <IdInput />
-              </div>
-
               <div className="flex gap-6 mb-10 items-center">
                 <label className="text-xl font-semibold text-gray-700">Fee:</label>
                 <span className="text-xl font-bold text-green-600">{`Payment fee is ${payenmtfee} + ${totalCourseFee} = ${newFee} birr`}</span>

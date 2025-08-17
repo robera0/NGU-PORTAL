@@ -1,12 +1,12 @@
-import NavBar from "./NavBar"
-import SideBar from "./SideBar"
+import NavBar from "../student/NavBar"
+import SideBar from "../student/SideBar"
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBiohazard } from '@fortawesome/free-solid-svg-icons'
 import { useQuery } from "@tanstack/react-query"
 import { useUser } from "./userContext"
 import { useState } from "react"
-import FileLoader from '../Inputs/FileLoader';
+import FileLoader from '../../Inputs/FileLoader';
 
 const Notice = () => {
  

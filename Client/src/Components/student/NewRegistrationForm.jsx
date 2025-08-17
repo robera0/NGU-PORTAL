@@ -1,8 +1,8 @@
-import Basicinfo from './Basicinfo'
-import Acadamic from './Acadamic'
+import Basicinfo from '../student/Basicinfo'
+import Acadamic from '../student/Acadamic'
 import { useUser } from './userContext'
 import { Link } from 'react-router-dom'
-  import Loader from '../Inputs/SubmitLoader';
+import Loader from '../../Inputs/SubmitLoader';
 
 const NewRegistrationForm = () => {
 const {isFormValid,SubmitLoader,message}=useUser()

@@ -1,19 +1,23 @@
-import Home from './Components/Home'
+import Home from './Components/student/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Payment_info from './Components/Payment_info'
-import Profile from './Components/Profile'
-import { UserProvider } from './Components/userContext'
-import RegistrationForm from './Components/RegistrationForm'
+import Payment_info from './Components/student/Payment_info'
+import Profile from './Components/student/Profile'
+import { UserProvider } from './Components/student/userContext'
+import RegistrationForm from './Components/student/RegistrationForm'
 import { CountryProvider } from './CountryApi/Countryapi'
 import { UserScheduler } from './Context/Scheduler'
-import Result from './Components/Result'
-import Courses from './Components/Courses'
-import Schedule from './Components/Schedule'
+import Result from './Components/student/Result'
+import Courses from './Components/student/Courses'
+import Schedule from './Components/student/Schedule'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import Notice from './Components/Notice'
-import RegistrationPayment from './Components/RegistrationPayment'
-import Login from './Components/Login'
-import NewRegistrationForm from './Components/NewRegistrationForm'
+import Notice from './Components/student/Notice'
+import RegistrationPayment from './Components/student/RegistrationPayment'
+import Login from './Components/student/Login'
+import NewRegistrationForm from './Components/student/NewRegistrationForm'
+import Summerize from './Components/student/Summerize'
+import HelpAi from './Components/student/HelpAi'
+import QA from './Components/student/Q&A'
+import Dashboard from './Components/admin/Dashboard'
 const App = () => {
   const queryclient = new QueryClient()
   return (
@@ -25,16 +29,21 @@ const App = () => {
                 
        <Routes>
          <Route>
-         
+           {/*Admin Routes */}
+             <Route path="/dashboard" element={<Dashboard />} />
+            {/*student Routes */}
             <Route path="/" element={<Login />} />
-            <Route path='/registrationpayment' element={<RegistrationPayment />} />
             <Route path="/newregisteration" element={<NewRegistrationForm/>} />
+            <Route path='/registrationpayment' element={<RegistrationPayment />} />
             <Route path='/home' element={<Home/>}/>
             <Route path="/paymentinfo" element={<Payment_info/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/registeration' element={<RegistrationForm/>}/>
             <Route path='/result' element={<Result/>}/>
             <Route path ='/courses' element= {<Courses/>}/>
+            <Route path='/helpai'  element={<HelpAi/>} />
+            <Route path='/summarize'  element={<Summerize />} />
+            <Route path='/q&a'  element={<QA />} />
             <Route path='/schedule' element={<Schedule/>}/>
             <Route path='/notice' element={<Notice/>}/>
          </Route>

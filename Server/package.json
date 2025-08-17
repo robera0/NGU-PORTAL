@@ -17,13 +17,16 @@
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@google/generative-ai": "^0.24.1",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
     "mogoose": "^0.0.1-security",
     "mongoose": "^8.17.1",
     "multer": "^2.0.2",
+    "openai": "^5.12.2",
     "pdf-parse": "^1.1.1"
   }
 }

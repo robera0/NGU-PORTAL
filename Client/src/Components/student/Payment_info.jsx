@@ -1,10 +1,10 @@
-import NavBar from "./NavBar";
+import NavBar from "../student/NavBar";
 import html2pdf from 'html2pdf.js';
-import Input from "../Inputs/Input";
-import IdInput from "../Inputs/IdInput";
+import Input from "../../Inputs/Input";
+import IdInput from "../../Inputs/IdInput";
 import { useState } from "react";
-import Loader from "../Inputs/Loading";
-import SideBar from "./SideBar";
+import Loader from "../../Inputs/Loading";
+import SideBar from "../student/SideBar";
 import { useQuery } from "@tanstack/react-query";
 const Payment_info = () => {
   const date = new Date();
@@ -26,9 +26,6 @@ const Payment_info = () => {
   const handleAmount = (e) => {
     setPaymentAmount(e.target.value);
   };
-
-
-
   const handleHistory = () => {
     setHistory(prev => !prev);
   };

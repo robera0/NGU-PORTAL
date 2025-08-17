@@ -1,15 +1,8 @@
-import SideBar from './SideBar'
-import Basicinfo from './Basicinfo'
-import Acadamic from './Acadamic'
-import NavBar from './NavBar'
+import SideBar from '../student/SideBar'
+import NavBar from '../student/NavBar'
 import { useUser } from './userContext'
 const RegistrationForm = () => {
-
- 
-
 const {isFormValid,setFormValid}=useUser()
-
- 
   return (
     <div className='flex'>
       {/* Sidebar */}

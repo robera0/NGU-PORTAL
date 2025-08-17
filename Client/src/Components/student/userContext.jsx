@@ -1,13 +1,9 @@
 import { useState,useRef, createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 const UserContext = createContext();
-
 export const UserProvider = ({ children }) => {
-
- const fetchStud=async()=>{
-
-  const res = await fetch('https://ngu-portal.onrender.com/api/students')
-
+const fetchStud=async()=>{
+const res = await fetch('https://ngu-portal.onrender.com/api/students')
   return res.json()
  }
  const {data:Stud ,loadingstudents,studserror}=useQuery({
@@ -121,7 +117,7 @@ export const UserProvider = ({ children }) => {
         emrlastName, setemrLastName,
         Relationship,setRelationship,
         EmergencyAddress, setEmergencyAddress,
-        EmrphoneNumber, setEmrPhoneNumber,gender,setGender,
+        EmrphoneNumber, setEmrPhoneNumber,
         hgname,setHgnamel,message, setMessage,
         transcript ,setTranscript,SubmitLoader, setSubmitLoader,
         matric,setMatric,newMessage, setNewMessage,

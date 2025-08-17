@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useUser } from './userContext'
-import { useCountryApi } from '../CountryApi/Countryapi';
+import { useCountryApi } from '../../CountryApi/Countryapi';
 
 const Basicinfo = () => {
       const Month = [

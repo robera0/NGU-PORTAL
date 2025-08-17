@@ -1,62 +1,46 @@
-import SideBar from "./SideBar"
-import NavBar from './NavBar'
-import { useSchedule } from '../Context/Scheduler';
+import SideBar from "../student/SideBar"
+import NavBar from '../student/NavBar'
+import { useSchedule } from '../../Context/Scheduler';
 import { useQuery } from "@tanstack/react-query"
-import FileLoader from '../Inputs/FileLoader';
+import FileLoader from '../../Inputs/FileLoader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faRotateRight  } from '@fortawesome/free-solid-svg-icons';
 import ViewAssign from "./ViewAssign";
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const Courses = () => {
  
   const {view,setView,setNewassign,newAssign}=useSchedule()
 
      // fetch the course ass,homework and proj
-
      const fetchCourcesAssign =async()=>{
     const res= await fetch('http://localhost:8000/api/c');
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
   }
-  
     const {data:c,refetchAssign,isFetchingAssign,assignerror}=useQuery({
       queryKey:['courseAssing'],
       queryFn:fetchCourcesAssign,
     })
-
-
-
   const fetchCources =async()=>{
     const res= await fetch('http://localhost:8000/api/course');
     if (!res.ok) throw new Error('Failed to fetch');
     return res.json()
   }
-  
     const {data:course,refetch,isFetching,error}=useQuery({
       queryKey:['course'],
       queryFn:fetchCources,
     })
-
-    const Record=course?.length || 0
-
- 
+  const Record=course?.length || 0
   const handleViewAssign=(id)=>{
-    setView(true)
-  
-    const main = Array.isArray(c) ? c.filter(ca => ca.course_id === id) : [];
-
+  setView(true)
+  const main = Array.isArray(c) ? c.filter(ca => ca.course_id === id) : [];
   setNewassign(main)
-
-
-      }
-
-   useEffect(() => {
+}
+  useEffect(() => {
   console.log("Updated assignment data:", newAssign);
 }, [newAssign]);
-
- 
   return (
          <>
               <AnimatePresence>
@@ -91,7 +75,7 @@ const Courses = () => {
             <NavBar/>
          </div>
           {/* Overlay Vew Assignment */}
-      
+     
          <div>
           {/*add search section */}
 
@@ -144,7 +128,14 @@ const Courses = () => {
       }
       
     </div>
-  </div>
+  </div> 
+    <div className="flex justify-end mr-30">
+        <button className="text-md text-white round-4xl bg-purple-500 px-2 py-1 rounded-lg ">
+        <Link to='/helpAi'>Studty with AI</Link>     
+      </button>
+    </div>
+   
+
 </div>
 
             </div>
