@@ -9,6 +9,7 @@ import noticeRouter from './dailyNotice.js'
 import assignmentRouter from './courseAssgn.js';
 import aiRouter from './studyAi.js';
 import course_assRouter from './course_ass.js';
+import adminrouter from './admin.js'
 dotenv.config()
 
 const PORT =process.env.PORT || 8000
@@ -27,6 +28,7 @@ app.use('/api',noticeRouter) // get daily messages
 app.use('/api',assignmentRouter) // get the assignmnet from the instructors 
 app.use('/api',aiRouter)//to get ai summary 
 app.use('/api',course_assRouter)//to filter course assignmnet with courseId
+app.use('/api',adminrouter)//get the admins
 mongoose
 .connect(MONGOURL)
 .then(()=>{

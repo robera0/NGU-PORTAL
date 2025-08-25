@@ -18,6 +18,9 @@ import Summerize from './Components/student/Summerize'
 import HelpAi from './Components/student/HelpAi'
 import QA from './Components/student/Q&A'
 import Dashboard from './Components/admin/Dashboard'
+import { UserAdmin } from './Context/adminContext'
+import Students from './Components/admin/Students'
+import LoginAdmin from './Components/admin/Login'
 const App = () => {
   const queryclient = new QueryClient()
   return (
@@ -25,38 +28,37 @@ const App = () => {
         <UserProvider>
            <CountryProvider>
              <UserScheduler>
+               <UserAdmin>
                 <BrowserRouter>
-                
-       <Routes>
-         <Route>
-           {/*Admin Routes */}
-             <Route path="/dashboard" element={<Dashboard />} />
-            {/*student Routes */}
-            <Route path="/" element={<Login />} />
-            <Route path="/newregisteration" element={<NewRegistrationForm/>} />
-            <Route path='/registrationpayment' element={<RegistrationPayment />} />
-            <Route path='/home' element={<Home/>}/>
-            <Route path="/paymentinfo" element={<Payment_info/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/registeration' element={<RegistrationForm/>}/>
-            <Route path='/result' element={<Result/>}/>
-            <Route path ='/courses' element= {<Courses/>}/>
-            <Route path='/helpai'  element={<HelpAi/>} />
-            <Route path='/summarize'  element={<Summerize />} />
-            <Route path='/q&a'  element={<QA />} />
-            <Route path='/schedule' element={<Schedule/>}/>
-            <Route path='/notice' element={<Notice/>}/>
-         </Route>
-       </Routes>    
-    </BrowserRouter>
-    </UserScheduler>
-    </CountryProvider>
-          </UserProvider>
-           </QueryClientProvider> 
-     
-     
-   
-   
+                    <Routes>
+                        <Route>
+                          {/*Admin Routes */}
+                             <Route path="/loginadmin" element={<LoginAdmin />} />    
+                             <Route path="/dashboard" element={<Dashboard />} />    
+                              <Route path="/students" element={<Students />} />
+                            {/*student Routes */}
+                            <Route path="/" element={<Login />} />
+                            <Route path="/newregisteration" element={<NewRegistrationForm/>} />
+                            <Route path='/registrationpayment' element={<RegistrationPayment />} />
+                            <Route path='/home' element={<Home/>}/>
+                            <Route path="/paymentinfo" element={<Payment_info/>}/>
+                            <Route path='/profile' element={<Profile/>}/>
+                            <Route path='/registeration' element={<RegistrationForm/>}/>
+                            <Route path='/result' element={<Result/>}/>
+                            <Route path ='/courses' element= {<Courses/>}/>
+                            <Route path='/helpai'  element={<HelpAi/>} />
+                            <Route path='/summarize'  element={<Summerize />} />
+                            <Route path='/q&a'  element={<QA />} />
+                            <Route path='/schedule' element={<Schedule/>}/>
+                            <Route path='/notice' element={<Notice/>}/>
+                        </Route>
+                      </Routes>    
+               </BrowserRouter>
+             </UserAdmin>
+            </UserScheduler>
+          </CountryProvider>
+      </UserProvider>
+  </QueryClientProvider>  
   )
 }
 

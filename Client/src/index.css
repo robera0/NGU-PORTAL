@@ -20,3 +20,11 @@ body{
   -webkit-appearance: none;
   margin: 0;
 }
+.scroll-box {
+  max-height: 3000px;  
+  overflow: hidden;    
+}
+
+.scroll-box:hover {
+  overflow-y: auto;  
+}

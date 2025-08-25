@@ -1,4 +1,3 @@
-
 import courseModel from './courseModel.js'; 
 import studentsModel from './studentsModel.js'
 import express from 'express'

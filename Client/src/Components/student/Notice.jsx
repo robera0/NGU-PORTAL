@@ -60,7 +60,8 @@ if(notices && newMessage.length ===0) {
 }
  
 const handleRead = (idToDelete) => {
-  setNewMessage(prev => prev.filter(n => n.id !== idToDelete))
+  setNewMessage(prev => prev.filter((_, index) => index !== idToDelete));
+  console.log("yes")
 }
 
   return (
@@ -148,7 +149,7 @@ const handleRead = (idToDelete) => {
                           <h3 className="font-bold text-purple-500">Date:</h3>
                           <h3>{notice.date}</h3>
                         </div>
-                        <button onClick={()=>handleRead(notice.id)} className="bg-purple-500 text-white px-4 py-1 rounded hover:bg-purple-600">
+                        <button onClick={()=>handleRead(index)} className="bg-purple-500 text-white px-4 py-1 rounded hover:bg-purple-600">
                           Read
                         </button>
                       </div>

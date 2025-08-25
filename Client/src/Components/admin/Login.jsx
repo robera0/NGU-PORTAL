@@ -2,45 +2,42 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-const Login = () => {
+const LoginAdmin = () => {
 
     const navigate=useNavigate()
    
-    const[Id,setId]=useState('')
+    const[username,setUsername]=useState('')
     const[password,setPassword]=useState("")
 
-    const handleId=(e)=>{
-        setId(e.target.value)
+    const handleusername=(e)=>{
+        setUsername(e.target.value)
     }
     const handlePassword=(e)=>{
         setPassword(e.target.value)
     }
 
-    const fetchStudent =async()=>{
-        const res = await fetch('http://localhost:8000/api/students')
-        
-        return res.json()
-    }
-
-    const {data:students}=useQuery({
-        queryKey:['student'],
-        queryFn:fetchStudent
-    })
-
-
-
-const findStudent = students?.find(
-  (s) => s.student_id === Id && s.password === password
-);
-  const handleSignin=()=>{
-     console.log(findStudent)
-     if(findStudent){
-        navigate('/home')
-     }
-
+  const fetchAdmin=async()=>{
+    const res = await fetch('http://localhost:8000/api/admins')
+     return res.json()
   }
+  const {data:admins}=useQuery({
+    queryKey:['admin'],
+    queryFn:fetchAdmin
+  })
 
-
+  const findAdmins= admins?.find(
+    (ad)=>ad?.username === username && ad?.password === password
+);
+   
+   const handleSignin=()=>{
+     console.log(findAdmins)
+     if(findAdmins){
+         navigate(`/dashboard?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
+     }
+     else{
+        console.log("no admin found")
+     }
+  }
   return (
     <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 min-h-screen flex items-center justify-center p-6">
       <div className="flex flex-col md:flex-row bg-white/30 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-white/20 max-w-5xl w-full transition-transform hover:scale-[1.01] duration-300">
@@ -48,7 +45,7 @@ const findStudent = students?.find(
         {/* Left Side Illustration */}
         <div className="hidden md:flex flex-col w-1/2  p-10 items-center justify-center">
           <img
-            src="./Graduation.jpeg"
+            src="./LoginAdminPic.jpg"
             alt="Graduation illustration"
             className="w-3/4 h-auto rounded-2xl shadow-lg border border-white/20"
           />
@@ -57,16 +54,8 @@ const findStudent = students?.find(
         {/* Right Side Form */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-10">
           <div className="w-full max-w-sm">
-            {/* Header */}
-            <div className="w-full mb-6 flex justify-end items-center">
-              <span className="text-sm text-gray-600 mr-2">New here?</span>
-              <Link to='/newregisteration' className="text-sm font-semibold text-purple-700 hover:underline">
-                Register
-              </Link>
-            </div>
-
             <h1 className="text-4xl font-extrabold mb-8 text-gray-800 tracking-tight">
-              Welcome Back
+              Welcome Back Admin
             </h1>
 
             {/* Form */}
@@ -83,9 +72,9 @@ const findStudent = students?.find(
                 </svg>
                 <input
                   type="text"
-                  onChange={handleId}
+                  onChange={handleusername}
                   name="studentId"
-                  placeholder="Enter Student ID"
+                  placeholder="Enter username"
                   className="flex-1 bg-transparent focus:outline-none placeholder-gray-500"
                 />
               </div>
@@ -123,8 +112,8 @@ const findStudent = students?.find(
               © 2025 Student Portal. All rights reserved.
             </p>
           </div>
-           <Link to='/loginadmin' className="mt-5 w-60">
-             <button className="w-full h-full  bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">Sign in as Admin</button>
+          <Link to='/' className="mt-5 w-60">
+             <button className="w-full h-full  bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">Sign in as Student</button>
            </Link>
         </div>
       </div>
@@ -132,4 +121,4 @@ const findStudent = students?.find(
   );
 };
 
-export default Login;
+export default LoginAdmin;

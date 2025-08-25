@@ -1,0 +1,75 @@
+/* Main container */
+.react-calendar {
+  border: none;
+  background: #ffffff;
+  border-radius: 0.75rem; /* rounded-xl */
+  width: 100%;
+  color: #1f2937; /* text-gray-800 */
+}
+
+/* Navigation (Month + arrows) */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.react-calendar__navigation button {
+  color: #7e22ce; /* text-purple-700 */
+  font-weight: 700; /* font-bold */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 0.5rem; /* p-2 */
+  transition: background 0.2s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background: #f3e8ff; /* hover:bg-purple-100 */
+}
+
+.react-calendar__navigation__label {
+  color: #1f2937; /* text-gray-800 */
+  font-weight: 500; /* font-medium */
+  font-size: 1.125rem; /* text-lg */
+}
+
+/* Weekday headers (Su, Mo, etc.) */
+.react-calendar__month-view__weekdays {
+  color: #6b7280; /* text-gray-500 */
+  font-weight: 500; /* font-medium */
+  text-transform: uppercase;
+  font-size: 0.75rem; 
+  margin-bottom: 1rem; /* increased spacing */
+}
+
+/* Day tiles container */
+.react-calendar__month-view__days {
+  gap: 1rem; /* increased vertical spacing between rows */
+}
+
+/* Day tiles */
+.react-calendar__tile {
+  border-radius: 0.5rem;
+  padding: 1rem; /* larger spacing for numbers */
+  transition: background 0.2s ease;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.react-calendar__tile:hover {
+  background: #f3e8ff;
+}
+
+/* Selected day */
+.react-calendar__tile--active {
+  background: #bfdbfe; 
+  color: #111827; 
+  font-weight: 600; 
+}
+
+/* Today’s date */
+.react-calendar__tile--now {
+  background: #7e22ce; /* purple */
+  color: #ffffff; /* white text */
+  font-weight: 700; /* bold */
+}
