@@ -85,109 +85,112 @@ const Dashboard = () => {
   );
 
   const barData = [
-    {
-      country: "AD",
-      "hot dog": 48,
-      burger: 63,
-      sandwich: 183,
-      kebab: 38,
-      fries: 32,
-      donut: 167,
-    },
-    {
-      country: "AE",
-      "hot dog": 150,
-      burger: 66,
-      sandwich: 146,
-      kebab: 72,
-      fries: 128,
-      donut: 184,
-    },
-    {
-      country: "AF",
-      "hot dog": 74,
-      burger: 42,
-      sandwich: 161,
-      kebab: 157,
-      fries: 115,
-      donut: 187,
-    },
-    {
-      country: "AG",
-      "hot dog": 146,
-      burger: 174,
-      sandwich: 59,
-      kebab: 112,
-      fries: 183,
-      donut: 20,
-    },
-    {
-      country: "AI",
-      "hot dog": 118,
-      burger: 192,
-      sandwich: 15,
-      kebab: 170,
-      fries: 79,
-      donut: 16,
-    },
-    {
-      country: "AL",
-      "hot dog": 5,
-      burger: 186,
-      sandwich: 179,
-      kebab: 14,
-      fries: 48,
-      donut: 7,
-    },
-    {
-      country: "AM",
-      "hot dog": 178,
-      burger: 117,
-      sandwich: 163,
-      kebab: 15,
-      fries: 47,
-      donut: 56,
-    },
-  ];
+   
+  {
+    id: "S001",
+    name: "Alice Johnson",
+    age: 20,
+    grade: "Sophomore",
+    math: 88,
+    science: 92,
+    english: 85,
+  },
+  {
+    id: "S002",
+    name: "Ethan Smith",
+    age: 21,
+    grade: "Junior",
+    math: 75,
+    science: 81,
+    english: 79,
+  },
+  {
+    id: "S003",
+    name: "Sophia Brown",
+    age: 19,
+    grade: "Freshman",
+    math: 91,
+    science: 89,
+    english: 94,
+  },
+  {
+    id: "S004",
+    name: "Michael Lee",
+    age: 22,
+    grade: "Senior",
+    math: 84,
+    science: 76,
+    english: 88,
+  },
+  {
+    id: "S005",
+    name: "Olivia Davis",
+    age: 20,
+    grade: "Sophomore",
+    math: 95,
+    science: 90,
+    english: 93,
+  },
+  {
+    id: "S006",
+    name: "Daniel Wilson",
+    age: 21,
+    grade: "Junior",
+    math: 70,
+    science: 68,
+    english: 72,
+  },
+  {
+    id: "S007",
+    name: "Emma Garcia",
+    age: 19,
+    grade: "Freshman",
+    math: 89,
+    science: 94,
+    english: 91,
+  },
 
-  const MyBar = () => (
-    <div className="w-full h-full">
-      <ResponsiveBar
-        data={barData}
-        keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-        indexBy="country"
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-        padding={0.3}
-        valueScale={{ type: "linear" }}
-        indexScale={{ type: "band", round: true }}
-        colors={{ scheme: "nivo" }}
-        borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
-        axisBottom={{
-          legend: "Country",
-          legendPosition: "middle",
-          legendOffset: 32,
-        }}
-        axisLeft={{
-          legend: "Food",
-          legendPosition: "middle",
-          legendOffset: -40,
-        }}
-        labelSkipWidth={12}
-        labelSkipHeight={12}
-        legends={[
-          {
-            dataFrom: "keys",
-            anchor: "bottom-right",
-            direction: "column",
-            translateX: 120,
-            itemsSpacing: 3,
-            itemWidth: 100,
-            itemHeight: 16,
-          },
-        ]}
-      />
-    </div>
-  );
+ ];
+
+const MyBar = () => (
+  <div className="w-full h-full">
+    <ResponsiveBar
+      data={barData}
+      keys={["math", "science", "english"]} 
+      indexBy="name" 
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.3}
+      valueScale={{ type: "linear" }}
+      indexScale={{ type: "band", round: true }}
+      colors={["#2f90f1ff", "#d9acacff", "#aa4be6e1"]}
+      borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
+      axisBottom={{
+        legend: "Students",
+        legendPosition: "middle",
+        legendOffset: 32,
+      }}
+      axisLeft={{
+        legend: "Scores",
+        legendPosition: "middle",
+        legendOffset: -40,
+      }}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      legends={[
+        {
+          dataFrom: "keys",
+          anchor: "bottom-right",
+          direction: "column",
+          translateX: 120,
+          itemsSpacing: 3,
+          itemWidth: 100,
+          itemHeight: 16,
+        },
+      ]}
+    />
+  </div>
+);
+
 
   const teacherpage = 6
   const startindex = (page -1) *  teacherpage
@@ -220,8 +223,9 @@ const Dashboard = () => {
             <h1 className="font-bold text-2xl text-gray-500">91K</h1>
           </div>
         </div>
+        
         {/* Teachers */}
-        <div className="flex gap-4">
+        <div className="flex  gap-4">
           <div className="w-16 h-16 rounded-full bg-orange-500 flex justify-center items-center">
             <FontAwesomeIcon
               className="text-3xl text-white"
@@ -273,7 +277,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Teacher Detail */}
-        <div className="ml-8 mt-10 w-[65%] bg-white rounded-md shadow">
+        <div className="ml-8 z-10 mt-10 w-[65%] h-full bg-white rounded-md shadow">
           <div>
             <p className="font-bold mb-5 pt-5 text-xl pl-4 text-purple-700">
               Teachers Detail
@@ -292,7 +296,7 @@ const Dashboard = () => {
             <tbody className="text-gray-800 font-medium">
               {paginatedTeachers
                 ?.map((teach, idx) => (
-                  <tr key={idx} className="bg-white rounded-lg shadow-sm">
+                  <tr key={idx} className="bg-white rounded-lg">
                       
                     <td className="px-6 py-4">{teach?.name}</td>
                     <td className="px-6 py-4">{teach?.subject}</td>
@@ -307,12 +311,12 @@ const Dashboard = () => {
                 ))}
             </tbody>
           </table>
-             <div className=' w-[80%] mt-2 pl-10'>
+              <div className=' mb-3 w-[80%] mt-2 pl-10'>
                       <div className='flex justify-between'>
                           <div>
                             <p className='text-gray-500'>showing {page} to 15 of {totalPage.length} entries</p>
                           </div>
-                         <div className='flex mb-3  space-x-5'>
+                         <div className='flex  space-x-5'>
                            <button 
                            disabled={page === 1}
                             className="px-3 py-1 hover:bg-purple-700 hover:text-white  text-purple-700 rounded disabled:opacity-50"
@@ -327,8 +331,7 @@ const Dashboard = () => {
                          </div>
                       </div>
                     </div>
-        </div>
-
+        </div> 
       </div>
 
       {/* Unpaid Student Intuition */}
